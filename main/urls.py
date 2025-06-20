@@ -13,6 +13,7 @@ urlpatterns = [
     ########################################################
     #game 
     path('game/', game_page, name="game"),
+    path('handle_action/', handle_action, name="handle_action"),
     
     #######################################################
     #custom
