@@ -1,49 +1,134 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>게임 결과 요약</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body class="result-page">
-  <div class="result-container">
+  <head>
+    <meta charset="UTF-8" />
+    <title>게임 결과 요약</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <style>
+      .review-image {
+        text-align: center;
+      }
 
-    <!-- 왼쪽 이미지 영역 -->
-    <div class="review-image">
-      <p style="color: gray; text-align: center;">📷 사진이 여기에 들어갑니다</p>
-    </div>
+      .image-label {
+        cursor: pointer;
+        display: inline-block;
+      }
 
-    <!-- 오른쪽 요약 영역 -->
-    <div class="summary">
-      <h2>결과 요약</h2>
+      .image-preview {
+        max-width: 100%;
+        height: auto;
+        border-radius: 12px;
+        display: none;
+      }
 
-      <div class="summary-box">
-        <h3>우리가 뭘 했더라...</h3>
-        <p>플레이타임: <strong>{{ play_time }}</strong></p>
-        <p>전체 턴수: <strong>{{ round_count }} 바퀴</strong></p>
-      </div>
+      .image-placeholder {
+        color: gray;
+        text-align: center;
+        font-size: 2rem;
+      }
 
-      <div class="summary-box">
-        <h3>가장 많이 마신 사람</h3>
-        <div class="drinkers">
-          {% for name, count in ranking %}
-            {% if forloop.counter == 1 %}
-              <span>🥇 {{ name }}</span>
-            {% elif forloop.counter == 2 %}
-              <span>🥈 {{ name }}</span>
-            {% elif forloop.counter == 3 %}
-              <span>🥉 {{ name }}</span>
+      .submit-btn {
+        text-align: center;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body class="result-page">
+    <div class="result-container">
+      <!-- 왼쪽 이미지 영역 -->
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="review-image">
+          <label for="image-upload" class="image-label">
+            {% if room.image %}
+              <img id="preview" src="{{ room.image.url }}" alt="업로드 이미지"
+                  class="image-preview" style="display: block;" />
+            {% else %}
+              <img id="preview" alt="업로드 이미지"
+                  class="image-preview" style="display: none;" />
+              <p id="placeholder-text" class="image-placeholder">📷 사진 업로드</p>
             {% endif %}
-          {% endfor %}
+          </label>
         </div>
+
+        <input type="file" id="image-upload" name="image"
+          accept="image/*" required style="display: none"/>
+
+        <button type="button" id="remove-image" style="display: none; margin-top: 0.5rem;">❌ 사진 삭제</button>
+
+      </form>
+
+      <!-- 오른쪽 요약 영역 -->
+      <div class="summary">
+        <h2>결과 요약</h2>
+
+        <div class="summary-box">
+          <h3>우리가 뭘 했더라...</h3>
+          <p>플레이타임: <strong>{{ play_time }}</strong></p>
+          <p>전체 턴수: <strong>{{ round_count }} 바퀴</strong></p>
+        </div>
+
+        <div class="summary-box">
+          <h3>가장 많이 마신 사람</h3>
+          <div class="drinkers">
+            {% for name, count in ranking %} {% if forloop.counter == 1 %}
+            <span>🥇 {{ name }}</span>
+            {% elif forloop.counter == 2 %}
+            <span>🥈 {{ name }}</span>
+            {% elif forloop.counter == 3 %}
+            <span>🥉 {{ name }}</span>
+            {% endif %} {% endfor %}
+          </div>
+        </div>
+
+        <a href="{% url 'start' %}">
+          <button class="home-btn">🏠 홈으로 돌아가기</button>
+        </a>
       </div>
-
-      <a href="{% url 'start' %}">
-        <button class="home-btn">🏠 홈으로 돌아가기</button>
-      </a>
     </div>
-
-  </div>
-</body>
+  </body>
 </html>
+
+<script>
+  function previewImage(event) {
+    const input = event.target;
+    const preview = document.getElementById('preview');
+    const placeholder = document.getElementById('placeholder-text');
+    const removeBtn = document.getElementById('remove-image');
+
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        if (placeholder) placeholder.style.display = 'none';
+        if (removeBtn) removeBtn.style.display = 'inline-block';
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function removeImage() {
+    const input = document.getElementById('image-upload');
+    const preview = document.getElementById('preview');
+    const placeholder = document.getElementById('placeholder-text');
+    const removeBtn = document.getElementById('remove-image');
+
+    input.value = ''; // 선택된 파일 제거
+    preview.src = '';
+    preview.style.display = 'none';
+    if (placeholder) placeholder.style.display = 'block';
+    if (removeBtn) removeBtn.style.display = 'none';
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("image-upload");
+    const removeBtn = document.getElementById("remove-image");
+
+    if (input) input.addEventListener("change", previewImage);
+    if (removeBtn) removeBtn.addEventListener("click", removeImage);
+  });
+</script>
+

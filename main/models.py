@@ -8,6 +8,8 @@ class GameRoom(models.Model):
     current_turn_index = models.PositiveIntegerField(default=0) #턴 관리 (1번님 턴 - 2번님 턴)
     current_round = models.PositiveIntegerField(default=1)      # 바퀴 수 (1라운드 - 2라운드)
     started_at = models.DateTimeField(auto_now_add=True)  # 게임 시작 시간 저장
+    image = models.ImageField(upload_to="result_image/", blank=True, null=True) # 이미지 저장
+
 
 class PlayerInRoom(models.Model):
     nickname = models.CharField(max_length=30, default="익명")

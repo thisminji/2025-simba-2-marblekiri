@@ -1,6 +1,10 @@
 from django.urls import path
 from .views import *
 
+#media 기초세팅
+from django.conf import settings 
+from django.conf.urls.static import static
+
 urlpatterns = [
     # opening 
     path('', start_page, name="start"),
@@ -25,4 +29,4 @@ urlpatterns = [
     path('end_game/', end_game, name="end_game"),
     path('result/', result_page, name="result"),
     
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
