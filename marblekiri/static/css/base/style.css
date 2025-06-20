@@ -1,108 +1,269 @@
-/* 전체 배경 및 정렬 */
+/* 공통 스타일 */
 body {
   margin: 0;
-  font-family: 'Pretendard', sans-serif;
-  background: linear-gradient(90deg, #FF850B 0%, #FFA600 100%);
+  padding: 0;
+  font-family: 'Gugi', sans-serif;
+  background: var(--Grad-Orange, linear-gradient(0deg, #FF850B 0%, #FFB200 100%));
   height: 100vh;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* 최상위 컨테이너 */
 .game-container {
-  width: 95vw;
-  height: 90vh;
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  box-sizing: border-box;
+  width: 1280px;
+  height: 640px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-/* 왼쪽 보드판 */
+/****************************
+         게임 보드
+*****************************/
 .board {
   flex: 3;
   background-color: white;
-  border-radius: 20px;
   padding: 20px;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-/* 오른쪽 사이드바 */
-.sidebar {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* 사이드바 내부 박스 */
-.sidebar > div {
-  flex: 1;
-  background-color: white;
-  border-radius: 16px;
-  padding: 20px;
   box-sizing: border-box;
 }
 
+/* ✅ turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
+.turn-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.turn-header {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.turn-header p {
+  margin: 0;
+}
+
+.end-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #2a2a2a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.players {
+  font-size: 16px;
+  margin: 0;
+  margin-top: 4px;
+  text-align: center;
+}
+
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 80px);
+  grid-template-rows: repeat(5, 80px);
+  gap: 8px;
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+  flex-grow: 1;
+}
+
+.tile {
+  width: 80px;
+  height: 80px;
+  background-color: #ff8801;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.empty {
+  background-color: transparent;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.pass-btn, .drink-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.pass-btn {
+  background-color: #2a2a2a;
+}
+
+.drink-btn {
+  background-color: #ff8801;
+}
+
+/****************************
+         사이드바
+*****************************/
+.sidebar {
+  flex: 1.2;
+  background: var(--Grad-Orange, linear-gradient(0deg, #FF850B 0%, #FFB200 100%));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  box-sizing: border-box;
+  gap: 16px;
+}
+
+.ranking, .missions, .dice {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
 
 .ranking-title {
-  color: var(--Theme-00, #2A2A2A);
+  font-size: 20px;
+  color: #2a2a2a;
+  margin-bottom: 8px;
   text-align: center;
-  font-family: "Partial Sans KR", sans-serif;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-bottom: 10px; /* 아래에 여유 */
-  margin-top: 10px;
 }
 
 .ranking-list {
   display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  list-style: none;
+  justify-content: center;
+  gap: 8px;
   padding: 0;
   margin: 0;
+  list-style: none;
 }
 
 .rank-card {
-  flex: 1;
-  background-color: #f5f5f5;
-  border-radius: 12px;
-  padding: 10px 14px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-family: "Pretendard", sans-serif;
-  font-size: 18px;
-  font-weight: 500;
-  justify-content: center;
-  white-space: nowrap;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
 }
 
 .rank-card img {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 }
 
-/* 순위별 스타일 (선택적 강조) */
-.rank-card.first {
-  background-color: #dadada;
+/****************************
+        미션 목록
+*****************************/
+.missions {
+  height: 600px;
+}
+
+.missions h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.missions ol {
+  margin: 0;
+  padding-left: 20px;
+  max-height: 250px;
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #222;
+}
+
+.missions ol li {
+  font-weight: 500;
+}
+
+/****************************
+         주사위
+*****************************/
+.dice-roll-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.dice-number-box {
+  width: 72px;
+  height: 72px;
+  background: #FF8801;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+}
+
+.dice-number {
+  width: 60px;
+  height: 60px;
+  background: #FFF;
+  border-radius: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Partial Sans KR", sans-serif;
+  font-size: 40px;
   font-weight: 700;
-  color: #000;
+  color: #FF8801;
+  -webkit-text-stroke: 2px #000000;
 }
 
-.rank-card.second {
-  background-color: #eeeeee;
-  color: #888;
+.roll-dice-button {
+  background: var(--Theme-00, #2A2A2A);
+  color: #FFF;
+  text-align: center;
+  font-family: 'Paperlogy', 'Pretendard', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  height: 72px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
 }
 
-.rank-card.third {
-  background-color: #f8f8f8;
-  color: #aaa;
+.roll-dice-button:hover {
+  background-color: #444;
 }

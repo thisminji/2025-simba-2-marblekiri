@@ -2,75 +2,116 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>게임 플레이</title>
+  <meta charset="UTF-8">
+  <title>주루마블 게임</title>
   <link rel="stylesheet" href="{% static 'css/base/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet"> 
 </head>
-<body class="game-page">
-  
-    {% csrf_token %}
-  <div class="game-container">
 
-    <!-- 왼쪽 게임 보드 -->
+<body>
+  <div class="game-container">
+    <!-- 왼쪽: 게임판 -->
     <div class="board">
       <div class="turn-info">
-        <span>현재 턴: <strong>2바퀴</strong></span>
-        <a href="{% url 'end_game' %}">
-          <button class="end-game">게임 종료 🔴</button>
-        </a>
-      </div>
-      <div class="players">
-        {% for player in players %}
-          {{ player.user.nickname }} (순서: {{ player.order }})
-        {% endfor %}
+        <div class="turn-header">
+          <p>현재 턴 : <span class="turn-number">2</span>바퀴</p>
+          <button class="end-button">게임 종료</button>
+        </div>
+        <p class="players">김민수 · 김현수 · 박정민</p>
       </div>
 
-      <!-- 게임판 -->
-      <div class="board-grid">
-        {% for tile in tiles %}
-          <div class="tile">
-            <strong>{{ tile.index|add:1 }}번 칸</strong><br>
-            {{ tile.question.content }}
-          </div>
-        {% endfor %}
+      <!-- 게임 타일 그리드 -->
+      <div class="tiles-grid">
+        <!-- 게임 타일 생략 (기존 동일) -->
+        <div class="tile">11</div>
+        <div class="tile">10</div>
+        <div class="tile">9</div>
+        <div class="tile">8</div>
+        <div class="tile">7</div>
+        <div class="tile">6</div>
+        <div class="tile">5</div>
+
+        <div class="tile">12</div>
+        <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+        <div class="empty"></div><div class="empty"></div>
+        <div class="tile">4</div>
+
+        <div class="tile">13</div>
+        <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+        <div class="empty"></div><div class="empty"></div>
+        <div class="tile">3</div>
+
+        <div class="tile">14</div>
+        <div class="empty"></div><div class="empty"></div><div class="empty"></div>
+        <div class="empty"></div><div class="empty"></div>
+        <div class="tile">2</div>
+
+        <div class="tile">15</div>
+        <div class="tile">16</div>
+        <div class="tile">17</div>
+        <div class="tile">18</div>
+        <div class="tile">19</div>
+        <div class="tile">20</div>
+        <div class="tile">1</div>
       </div>
 
-
-      <div class="board-actions">
-        <button class="btn">통과</button>
-        <button class="btn drink">마셔!</button>
+      <div class="action-buttons">
+        <button class="pass-btn">통과!</button>
+        <button class="drink-btn">마셔!</button>
       </div>
     </div>
 
-    <!-- 오른쪽 정보 -->
+    <!-- 오른쪽: 사이드바 -->
     <div class="sidebar">
-      <div class="drink-counter">
-        <h3>많이 마신 사람</h3>
-        김민수 🥇
-        박정민 🥈
-        이하민 🥉
+      <div class="ranking">
+        <h3 class="ranking-title">많이 마신 사람</h3>
+        <ul class="ranking-list">
+          <li class="rank-card first">
+            <img src="{% static 'assets/icons/noto_1st-place-medal.svg' %}" alt="1등 메달">
+            <span>김민수</span>
+          </li>
+          <li class="rank-card second">
+            <img src="{% static 'assets/icons/noto_2nd-place-medal.svg' %}" alt="2등 메달">
+            <span>박정민</span>
+          </li>
+          <li class="rank-card third">
+            <img src="{% static 'assets/icons/noto_3rd-place-medal.svg' %}" alt="3등 메달">
+            <span>이하민</span>
+          </li>
+        </ul>
       </div>
 
       <div class="missions">
         <h3>미션 목록</h3>
-        <ul>
-          <li>안녕하세요 한잔 마시세요</li>
-          <li>카리나세요? 한잔 마시세요</li>
-          <li>기분이 나쁘네요 한잔 마시세요</li>
-          <li>...</li>
-        </ul>
+        <ol>
+          <!-- 미션 항목 생략 -->
+          <li>안녕하세요 한 잔 마시세요</li>
+          <li>좋아하는 감정선으로 마시세요</li>
+          <li>커피브레이크 한 잔 마시세요</li>
+          <li>개봉이 네 번째 술 한 잔 마시세요</li>
+          <li>안녕하세요 한 잔 마시세요</li>
+          <li>좋아하는 감정선으로 마시세요</li>
+          <li>커피브레이크 한 잔 마시세요</li>
+          <li>개봉이 네 번째 술 한 잔 마시세요</li>
+          <li>좋아하는 감정선으로 마시세요</li>
+          <li>커피브레이크 한 잔 마시세요</li>
+          <li>개봉이 네 번째 술 한 잔 마시세요</li>
+        </ol>
       </div>
 
       <div class="dice">
-        <div class="dice-btn">
-          <button class="btn roll">🎲 주사위 굴리기</button>
-        </div>
-        <div class="dice-result">
-          <p>🎯 나온 숫자: <strong>5</strong></p>
+        <div class="dice-roll-container">
+          <div class="dice-number-box">
+            <div class="dice-circle">
+              <span class="dice-number">5</span>
+            </div>
+          </div>
+          <button class="roll-dice-button">주사위 굴리기</button>
         </div>
       </div>
     </div>
-
   </div>
+  
+  <script src="{% static 'js/game.js' %}"></script>
 </body>
 </html>
