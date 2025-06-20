@@ -16,29 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    
-    #########################################################
-    # opening 
-    path('', views.start_page, name="start"),
-    path('game_start/', views.game_start, name='game_start'),
-    
-    ########################################################
-    #setting
-    path('setup/', views.setup_page, name="setup"),
-    
-    ########################################################
-    #game 
-    path('game/', views.game_page, name="game"),
-    
-    #######################################################
-    #custome
-    path('custom_questions/', views.custom_questions, name="custom_questions"),
-    
-    #######################################################
-    #result
-    path('result/', views.result_page, name="result"),
+    path('', include('main.urls')),  # 메인 앱 URL 포함시키기
 ]
