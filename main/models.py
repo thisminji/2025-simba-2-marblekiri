@@ -12,6 +12,7 @@ class PlayerInRoom(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(GameRoom, on_delete=models.CASCADE)
     turn = models.PositiveIntegerField()
+    is_ready = models.BooleanField(default=False)
 
 class Question(models.Model):
     THEME_CHOICES = [
