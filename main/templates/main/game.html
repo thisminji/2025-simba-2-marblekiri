@@ -14,10 +14,19 @@
     <div class="board">
       <div class="turn-info">
         <div class="turn-header">
-          <p>현재 턴 : <span class="turn-number">2</span>바퀴</p>
+          <!-- ###############연희가 수정한 부분 #################### -->
+          <p>현재 턴 : <span class="turn-number">{{ current_round }}</span>바퀴</p>
+          <a href="{% url 'end_game' %}">
           <button class="end-button">게임 종료</button>
+          </a>
         </div>
-        <p class="players">김민수 · 김현수 · 박정민</p>
+
+        <!-- ###############연희가 수정한 부분 (css 에 넣으려다가 .. p-span태그라 어케할지 모르겟어요)#################### -->
+        <p class="players">
+          <span style="color: #ccc;">{{ prev_player.nickname }}</span>
+          <span style="color: #000; font-weight: bold; margin: 0 20px;">{{ current_player.nickname }}</span>
+          <span style="color: #ccc;">{{ next_player.nickname }}</span>
+        </p>
       </div>
 
       <!-- 게임 타일 그리드 -->
@@ -72,6 +81,7 @@
     <div class="ranking">
       <h3 class="ranking-title">많이 마신 사람</h3>
       <ul class="ranking-list">
+        <!-- ###############연희가 수정한 부분 #################### -->
         {% for player in ranking|slice:":3" %}
           <li class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}">
             {% if forloop.counter == 1 %}

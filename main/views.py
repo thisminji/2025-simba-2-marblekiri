@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.timezone import now
+
 
 import random
 
@@ -16,6 +18,8 @@ def get_random_questions(theme, count):
     questions = Question.objects.filter(theme=theme)
     question_list = list(questions)
     return random.sample(question_list, min(count, len(question_list)))
+
+#######################################################################
 
 def game_start(request):
     if request.method == "POST":
@@ -39,65 +43,73 @@ def game_start(request):
     request.session['room_id'] = room.id
     return redirect('game')
 
+
+###########################################################################
+###게임 상태 관리
+#1) 게임
 def game_page(request):
     room_id = request.session.get('room_id')
-    if not room_id:
-        return redirect('start')  # room_id 없으면 홈으로
+    room = GameRoom.objects.get(id=room_id)
+    players = list(PlayerInRoom.objects.filter(room=room).order_by('turn'))
+    total_players = len(players)
 
-    try:
-        room = GameRoom.objects.get(id=room_id)
-    except GameRoom.DoesNotExist:
-        return redirect('start')
+    current_index = room.current_turn_index % total_players
+    current_player = players[current_index]
 
-    # 모든 플레이어 (턴 순서 기준)
-    players = PlayerInRoom.objects.filter(room=room).order_by('turn')
+    prev_index = (current_index - 1) % total_players
+    next_index = (current_index + 1) % total_players
 
-    # 전체 타일
-    tiles = Tile.objects.filter(room=room).order_by('index')
+    prev_player = players[prev_index]
+    next_player = players[next_index]
 
-    # 현재 턴 플레이어 계산
-    total_players = players.count()
-    if total_players == 0:
-        current_player = None
-    else:
-        current_index = room.current_turn_index % total_players
-        current_player = players[current_index]
+    # drink_count 기준 내림차순 정렬 (랭킹) / 상위 3명만
+    ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
 
-    # drink_count 기준 내림차순 정렬 (랭킹)
-    ranking = sorted(players, key=lambda p: -p.drink_count)
 
     return render(request, 'main/game.html', {
+        'tiles': Tile.objects.filter(room=room).order_by('index'),
         'players': players,
-        'tiles': tiles,
         'current_player': current_player,
+        'prev_player': prev_player,
+        'next_player': next_player,
+        'current_round': room.current_round,
         'ranking': ranking,
     })
 
 
-#턴 넘기기 / 마시기 처리
+#턴 넘기기 (턴 관리) / 마시기 처리
 @csrf_exempt
 def handle_action(request):
     if request.method == "POST":
         room_id = request.session.get('room_id')
         room = GameRoom.objects.get(id=room_id)
-
         players = PlayerInRoom.objects.filter(room=room).order_by('turn')
+
+        #누구 턴인지 관리 
         total_players = players.count()
         current_index = room.current_turn_index % total_players
         current_player = players[current_index]
 
-        action = request.POST.get("action")  # "pass" or "drink"
-
+        # "pass" or "drink"
+        action = request.POST.get("action") 
         if action == "drink":
             current_player.drink_count += 1
             current_player.save()
 
-        # 턴 넘기기 (둘 다 해당)
+        # 턴 + 바퀴 증가
         room.current_turn_index += 1
+        if room.current_turn_index % total_players == 0:
+            room.current_round += 1
         room.save()
 
-        return redirect('game')
+        # 자동 종료 조건 (턴 수 설정 시)
+    if room.max_turns and room.current_round > room.max_turns:
+        return redirect('end_game')
 
+    return redirect('game')
+
+#############################################################################
+### 커스텀
 
 def custom_questions(request):
     return render(request, 'main/custom_questions.html')
@@ -115,12 +127,51 @@ def submit_ready(request, zone_code):
 
         return JsonResponse({})
 
+############################################################################
+### 게임 종료
 def result_page(request):
     return render(request, 'main/result.html')
 
+#종료 조건
 def end_game(request):
-    # custom 테마 질문 삭제
+    room_id = request.session.get('room_id')
+    if not room_id:
+        return redirect('start')
+
+    room = GameRoom.objects.get(id=room_id)
+
+    # 플레이 시간 계산
+    play_time = now() - room.started_at
+    total_minutes = int(play_time.total_seconds() // 60)
+    play_time_text = f"{total_minutes // 60}시간 {total_minutes % 60}분"
+
+    # 랭킹 계산
+    players = PlayerInRoom.objects.filter(room=room).order_by('-drink_count')[:3]
+
+    # 바퀴 수 보정: 턴 제한 모드일 경우 1 감소
+    if room.max_turns: #null 일때만 무제한이니까
+        round_count = max(1, room.current_round - 1)
+    else:
+        round_count = room.current_round
+
+
+    # 삭제 전에 정보 보관
+    ranking_data = [p.nickname for p in players]
+    round_count = room.current_round
+
+    # DB 삭제
+    Tile.objects.filter(room=room).delete()
+    PlayerInRoom.objects.filter(room=room).delete()
+    room.delete()
     Question.objects.filter(theme="custom").delete()
-    
-    # 결과 페이지로 이동
-    return redirect('result')
+
+    # 세션 삭제
+    del request.session['room_id']
+
+    return render(request, 'main/result.html', {
+        'ranking': ranking_data,
+        'play_time': play_time_text,
+        'round_count': round_count,
+    })
+
+###############################################################################

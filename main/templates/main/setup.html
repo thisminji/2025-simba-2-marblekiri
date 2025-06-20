@@ -31,37 +31,83 @@
 
     <div class="game-options">
       <h2>게임 설정</h2>
-      <label>게임 중 랭킹 보기 <input type="checkbox" checked></label>
-      <div>
+      <label>게임 중 랭킹 보기 
+        <input type="checkbox" name="show_ranking" checked>
+      </label>
+
+      <div class="turn-setting">
         <label>턴 수 설정</label><br>
-        <input type="radio" name="turn" value="unlimited" checked> 무제한<br>
-        <input type="radio" name="turn" value="limited"> 진행 턴 수 지정 (ex: 10)
+        <input type="radio" name="turn" value="unlimited" id="unlimited" checked>
+        <label for="unlimited">무제한</label><br>
+
+        <input type="radio" name="turn" value="limited" id="limited">
+        <label for="limited">진행 턴 수 지정</label>
+
+        <!-- 슬라이더: 기본은 숨김 -->
+        <div id="slider-container" style="display: none; margin-top: 10px;">
+          <input type="range" min="1" max="20" value="10" id="turn-slider" name="max_turns">
+          <p>진행 바퀴 수: <span id="turn-count">10</span></p>
+        </div>
       </div>
     </div>
+
 
     <button type="submit" class="game-start-btn">GAME START</button>
   </form>
 
   <script>
+     // 사용자 정의 테마 → 다른 화면 이동
     document.getElementById("gameForm").addEventListener("submit", function(event) {
       const theme = document.getElementById("themeSelect").value;
       if (theme === "custom") {
         event.preventDefault();
-        window.location.href = "/custom_questions/"; // URL은 Django URLconf와 맞춰줘!
+        window.location.href = "/custom_questions/";
       }
     });
 
+    // 인원 추가/삭제
     function addPlayer() {
       const list = document.getElementById("player-list");
       const div = document.createElement("div");
-      div.innerHTML = `<input type="text" name="players[]" placeholder="이름" required>
-                       <button type="button" onclick="removePlayer(this)">-</button>`;
+      div.innerHTML = `
+        <input type="text" name="players[]" placeholder="이름" required>
+        <button type="button" onclick="removePlayer(this)">-</button>`;
       list.appendChild(div);
     }
 
     function removePlayer(btn) {
-      btn.parentElement.remove();
+      const list = document.getElementById("player-list");
+      const playerBlocks = list.querySelectorAll("div");
+
+
+      // !!! 한 명은 추가를 하게 만들기
+      if (playerBlocks.length > 0 ) {
+        btn.parentElement.remove();
+      } else {
+        alert("최소 1명의 플레이어는 필요합니다!");
+      }
     }
+
+    // 슬라이더 설정
+    document.addEventListener("DOMContentLoaded", function () {
+      const unlimitedRadio = document.getElementById("unlimited");
+      const limitedRadio = document.getElementById("limited");
+      const sliderContainer = document.getElementById("slider-container");
+      const slider = document.getElementById("turn-slider");
+      const turnCount = document.getElementById("turn-count");
+
+      unlimitedRadio.addEventListener("change", () => {
+        if (unlimitedRadio.checked) sliderContainer.style.display = "none";
+      });
+
+      limitedRadio.addEventListener("change", () => {
+        if (limitedRadio.checked) sliderContainer.style.display = "block";
+      });
+
+      slider.addEventListener("input", () => {
+        turnCount.textContent = slider.value;
+      });
+    });
   </script>
 </body>
 </html>
