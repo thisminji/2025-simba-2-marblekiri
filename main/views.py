@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import GameRoom, PlayerInRoom, User, Question, Tile
+from .models import *
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 import random
 
@@ -32,20 +33,70 @@ def game_start(request):
                 Tile.objects.create(index=i, question=q, room=room)
 
         for i, name in enumerate(player_names):
-                user = User.objects.create(nickname=name)
-                PlayerInRoom.objects.create(user=user, room=room, turn=i)
+                PlayerInRoom.objects.create(nickname=name, room=room, turn=i)
 
     request.session['room_id'] = room.id
     return redirect('game')
 
 def game_page(request):
     room_id = request.session.get('room_id')
-    room = GameRoom.objects.get(id=room_id)
+    if not room_id:
+        return redirect('start')  # room_id 없으면 홈으로
+
+    try:
+        room = GameRoom.objects.get(id=room_id)
+    except GameRoom.DoesNotExist:
+        return redirect('start')
+
+    # 모든 플레이어 (턴 순서 기준)
     players = PlayerInRoom.objects.filter(room=room).order_by('turn')
-    tiles = Tile.objects.filter(room=room).order_by('index')  # ← 타일도 가져오기
+
+    # 전체 타일
+    tiles = Tile.objects.filter(room=room).order_by('index')
+
+    # 현재 턴 플레이어 계산
+    total_players = players.count()
+    if total_players == 0:
+        current_player = None
+    else:
+        current_index = room.current_turn_index % total_players
+        current_player = players[current_index]
+
+    # drink_count 기준 내림차순 정렬 (랭킹)
+    ranking = sorted(players, key=lambda p: -p.drink_count)
+
+    return render(request, 'main/game.html', {
+        'players': players,
+        'tiles': tiles,
+        'current_player': current_player,
+        'ranking': ranking,
+    })
 
 
-    return render(request, 'main/game.html', {'players': players, 'tiles': tiles})
+#턴 넘기기 / 마시기 처리
+@csrf_exempt
+def handle_action(request):
+    if request.method == "POST":
+        room_id = request.session.get('room_id')
+        room = GameRoom.objects.get(id=room_id)
+
+        players = PlayerInRoom.objects.filter(room=room).order_by('turn')
+        total_players = players.count()
+        current_index = room.current_turn_index % total_players
+        current_player = players[current_index]
+
+        action = request.POST.get("action")  # "pass" or "drink"
+
+        if action == "drink":
+            current_player.drink_count += 1
+            current_player.save()
+
+        # 턴 넘기기 (둘 다 해당)
+        room.current_turn_index += 1
+        room.save()
+
+        return redirect('game')
+
 
 def custom_questions(request):
     return render(request, 'main/custom_questions.html')
