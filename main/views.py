@@ -51,4 +51,3 @@ def custom_questions(request):
 def result_page(request):
     return render(request, 'main/result.html')
 
-

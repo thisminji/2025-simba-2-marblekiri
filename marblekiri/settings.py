@@ -131,4 +131,6 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'marblekiri', 'static')]
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
