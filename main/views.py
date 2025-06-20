@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import GameRoom, PlayerInRoom, User, Question, Tile
+from django.http import JsonResponse
+
 import random
 
 
@@ -48,6 +50,25 @@ def game_page(request):
 def custom_questions(request):
     return render(request, 'main/custom_questions.html')
 
+def submit_ready(request, zone_code):
+    if request.method == "POST":
+        questions = request.POST.getlist('questions[]')
+        player_names = request.POST.getlist('players[]')
+
+        for q in questions:
+            Question.objects.create(theme="custom", content=q)
+
+        request.session['players'] = player_names
+        request.session['theme'] = 'custom'
+
+        return JsonResponse({})
+
 def result_page(request):
     return render(request, 'main/result.html')
 
+def end_game(request):
+    # custom 테마 질문 삭제
+    Question.objects.filter(theme="custom").delete()
+    
+    # 결과 페이지로 이동
+    return redirect('result')
