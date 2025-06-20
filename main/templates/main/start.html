@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>마블끼리</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="start-page">
+  <div class="container">
+    <h1 class="title">마블끼리</h1>
+    <p class="subtitle">술자리에서 우리끼리 즐기는 온라인 보드게임</p>
+    <a href="{% url 'setup' %}">
+      <button class="start-btn">시작하기</button>
+    </a>
+  </div>
+</body>
+</html>

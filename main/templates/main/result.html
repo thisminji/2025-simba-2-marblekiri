@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>게임 결과 요약</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="result-page">
+  <div class="result-container">
+
+    <!-- 왼쪽 이미지 영역 -->
+    <div class="review-image">
+      <p style="color: gray; text-align: center; padding-top: 50%;">📷 사진이 여기에 들어갑니다</p>
+    </div>
+
+    <!-- 오른쪽 요약 영역 -->
+    <div class="summary">
+      <h2>결과 요약</h2>
+
+      <div class="summary-box">
+        <h3>우리가 뭘 했더라...</h3>
+        <p>플레이타임: <strong>3시간 15분</strong></p>
+        <p>전체 턴수: <strong>20바퀴</strong></p>
+      </div>
+
+      <div class="summary-box">
+        <h3>가장 많이 마신 사람</h3>
+        <div class="drinkers">
+          <span>🥇 김민수</span>
+          <span>🥈 박정민</span>
+          <span>🥉 이태민</span>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h3>SNS 공유 옵션</h3>
+        <label><input type="radio" name="share" checked> 텍스트 공유하기</label><br>
+        <label><input type="radio" name="share"> 미션 공유하기</label><br>
+        <select>
+          <option>1번. 테스트 하다가 이건 진짜 재미있고 끝내줌</option>
+        </select>
+      </div>
+
+      <a href="{% url 'start' %}">
+        <button class="home-btn">🏠 홈으로 돌아가기</button>
+      </a>
+    </div>
+
+  </div>
+</body>
+</html>
