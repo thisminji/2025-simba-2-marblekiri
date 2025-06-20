@@ -135,11 +135,19 @@ def result_page(request):
 
 #종료 조건
 def end_game(request):
+
     room_id = request.session.get('room_id')
     if not room_id:
         return redirect('start')
 
     room = GameRoom.objects.get(id=room_id)
+    
+    # 이미지 저장
+    result_image = request.FILES.get('image')
+    if result_image:
+        room.image = result_image
+        room.save()
+
 
     # 플레이 시간 계산
     play_time = now() - room.started_at
@@ -163,6 +171,7 @@ def end_game(request):
     del request.session['room_id']
 
     return render(request, 'main/result.html', {
+        'room': room,
         'ranking': ranking_data,
         'play_time': play_time_text,
         'round_count': round_count,
