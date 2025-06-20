@@ -103,8 +103,9 @@ def handle_action(request):
         room.save()
 
         # 자동 종료 조건 (턴 수 설정 시)
-    if room.max_turns and room.current_round > room.max_turns:
-        return redirect('end_game')
+        if room.max_turns and room.current_round > room.max_turns:
+            room.current_round -= 1
+            return redirect('end_game')
 
     return redirect('game')
 
@@ -148,15 +149,8 @@ def end_game(request):
     # 랭킹 계산
     players = PlayerInRoom.objects.filter(room=room).order_by('-drink_count')[:3]
 
-    # 바퀴 수 보정: 턴 제한 모드일 경우 1 감소
-    if room.max_turns: #null 일때만 무제한이니까
-        round_count = max(1, room.current_round - 1)
-    else:
-        round_count = room.current_round
-
-
     # 삭제 전에 정보 보관
-    ranking_data = [p.nickname for p in players]
+    ranking_data = [(p.nickname, p.drink_count) for p in players]
     round_count = room.current_round
 
     # DB 삭제
