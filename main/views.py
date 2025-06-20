@@ -14,7 +14,7 @@ def setup_page(request):
 def get_random_questions(theme, count):
     questions = Question.objects.filter(theme=theme)
     question_list = list(questions)
-    return random.sample(question_list, min(n, len(question_list)))
+    return random.sample(question_list, min(count, len(question_list)))
 
 def game_start(request):
     if request.method == "POST":
