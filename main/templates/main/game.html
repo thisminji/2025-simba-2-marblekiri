@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>게임 플레이</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="game-page">
+  
+    {% csrf_token %}
+  <div class="game-container">
+
+    <!-- 왼쪽 게임 보드 -->
+    <div class="board">
+      <div class="turn-info">
+        <span>현재 턴: <strong>2바퀴</strong></span>
+        <a href="{% url 'result' %}">
+          <button class="end-game">게임 종료 🔴</button>
+        </a>
+      </div>
+      <div class="players">
+        {% for player in players %}
+          {{ player.user.nickname }} (순서: {{ player.order }})
+        {% endfor %}
+      </div>
+
+      <!-- 게임판 -->
+      <div class="board-grid">
+        {% for tile in tiles %}
+          <div class="tile">
+            <strong>{{ tile.index|add:1 }}번 칸</strong><br>
+            {{ tile.question.content }}
+          </div>
+        {% endfor %}
+      </div>
+
+
+      <div class="board-actions">
+        <button class="btn">통과</button>
+        <button class="btn drink">마셔!</button>
+      </div>
+    </div>
+
+    <!-- 오른쪽 정보 -->
+    <div class="sidebar">
+      <div class="drink-counter">
+        <h3>많이 마신 사람</h3>
+        김민수 🥇
+        박정민 🥈
+        이하민 🥉
+      </div>
+
+      <div class="missions">
+        <h3>미션 목록</h3>
+        <ul>
+          <li>안녕하세요 한잔 마시세요</li>
+          <li>카리나세요? 한잔 마시세요</li>
+          <li>기분이 나쁘네요 한잔 마시세요</li>
+          <li>...</li>
+        </ul>
+      </div>
+
+      <div class="dice">
+        <div class="dice-btn">
+          <button class="btn roll">🎲 주사위 굴리기</button>
+        </div>
+        <div class="dice-result">
+          <p>🎯 나온 숫자: <strong>5</strong></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
