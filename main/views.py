@@ -23,11 +23,18 @@ def get_random_questions(theme, count):
 ### 게임 시작 시 방 생성 + 유저/타일 생성
 def game_start(request):
     if request.method == "POST":
-        player_names = request.POST.getlist('players[]')
         theme = request.POST.get('theme')
+        # custom이면 세션에 저장된 목록, 그 외는 폼에서 가져오기
+        if theme == 'custom':
+            player_names = request.session.get('players', [])
+        else:
+            player_names = request.POST.getlist('players[]')
+        # 이름이 none이거나 공백인 값 제거하여 유효한 플레이어 이름만 남기기
+        player_names = [name for name in player_names if name and name.strip()]
         max_turns = request.POST.get('max_turns')
 
-        show_ranking = request.POST.get('show_ranking') == 'on'  # 랭킹 보기 체크여부 확인
+        # 랭킹 보기 체크여부 확인
+        show_ranking = request.POST.get('show_ranking') == 'on'  
         request.session['show_ranking'] = show_ranking 
 
         # 게임방 생성
@@ -39,6 +46,7 @@ def game_start(request):
         
         # 질문 선택 및 타일 배치
         selected_questions = get_random_questions(theme, 20)
+
         for i, q in enumerate(selected_questions):
                 Tile.objects.create(index=i, question=q, room=room)
 
@@ -118,7 +126,9 @@ def move_player(request):
     # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
     new_pos = (current_pos + steps) % 20
     request.session["index"] = new_pos
-    tile = Tile.objects.get(room=room, index=new_pos) # 이동한 칸의 미션을 db에서 가져옴
+    
+    # 이동한 칸의 미션을 db에서 가져옴
+    tile = Tile.objects.filter(room=room, index=new_pos).first() 
 
     #json 형식 반환
     return JsonResponse({'index': new_pos, 'mission': tile.question.content})
@@ -161,17 +171,28 @@ def handle_action(request):
 ########################### 🔹 커스텀 질문 ############################
 ### 커스텀 질문 입력 화면
 def custom_questions(request):
-    return render(request, 'main/custom_questions.html')
+    players = request.GET.getlist('players')
+    if players:
+        # 커스텀 인원 세션 저장
+        request.session['players'] = players
+    print(request.GET.getlist('players'))
+    return render(request, 'main/custom_questions.html', {'players': players})
 
 ### 커스텀 질문 등록 + 세션에 인원 저장
 def submit_ready(request, zone_code):
     if request.method == "POST":
         questions = request.POST.getlist('questions[]')
-        player_names = request.POST.getlist('players[]')
+        # 이름 하나만 받기
+        player = request.POST.get('player', '').strip()
+        if not player:
+            return JsonResponse({'error': '플레이어 이름이 없습니다.'}, status=400)
 
         for q in questions:
             Question.objects.create(theme="custom", content=q)
 
+        # 처음 한 명은 빈리스트에서 시작하여 name 저장
+        player_names = request.session.get('players', [])
+        player_names.append(player)
         request.session['players'] = player_names
         request.session['theme'] = 'custom'
 
