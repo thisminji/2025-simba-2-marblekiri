@@ -1,17 +1,26 @@
 @font-face {
-  font-family: 'Partial Sans KR';
-  src: url('../../fonts/PartialSansKR-Regular.woff2') format('woff2');
+  font-family: "Partial Sans KR";
+  src: url("../../fonts/PartialSansKR-Regular.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-2ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+}
 
 /* 공통 스타일 */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Gugi', sans-serif;
-  background: var(--Grad-Orange, linear-gradient(0deg, #FF850B 0%, #FFB200 100%));
+  font-family: "Gugi", sans-serif;
+  background: var(
+    --Grad-Orange,
+    linear-gradient(0deg, #ff850b 0%, #ffb200 100%)
+  );
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -55,13 +64,13 @@ body {
 }
 
 .turn-header {
-color: var(--Theme-00, #2A2A2A);
-text-align: center;
-font-family: "Partial Sans KR";
-font-size: 40px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  color: var(--Theme-00, #2a2a2a);
+  text-align: center;
+  font-family: "Partial Sans KR";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .turn-header p {
@@ -86,6 +95,7 @@ line-height: normal;
   margin: 0;
   margin-top: 4px;
   text-align: center;
+  font-family: "Paperlogy";
 }
 
 .tiles-grid {
@@ -124,7 +134,8 @@ line-height: normal;
   margin-top: 10px;
 }
 
-.pass-btn, .drink-btn {
+.pass-btn,
+.drink-btn {
   padding: 12px 24px;
   border: none;
   border-radius: 15px;
@@ -147,7 +158,10 @@ line-height: normal;
 *****************************/
 .sidebar {
   flex: 1.2;
-  background: var(--Grad-Orange, linear-gradient(0deg, #FF850B 0%, #FFB200 100%));
+  background: var(
+    --Grad-Orange,
+    linear-gradient(0deg, #ff850b 0%, #ffb200 100%)
+  );
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -156,7 +170,9 @@ line-height: normal;
   gap: 16px;
 }
 
-.ranking, .missions, .dice {
+.ranking,
+.missions,
+.dice {
   background-color: #fff;
   border-radius: 20px;
   padding: 16px;
@@ -164,13 +180,13 @@ line-height: normal;
 }
 
 .ranking-title {
-color: var(--Theme-00, #2A2A2A);
-text-align: center;
-font-family: "Partial Sans KR";
-font-size: 40px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  color: var(--Theme-00, #2a2a2a);
+  text-align: center;
+  font-family: "Paperlogy";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .ranking-list {
@@ -180,6 +196,7 @@ line-height: normal;
   padding: 0;
   margin: 0;
   list-style: none;
+  font-family: "Paperlogy", sans-serif;
 }
 
 .rank-card {
@@ -206,13 +223,13 @@ line-height: normal;
 }
 
 .missions h3 {
-color: var(--Theme-00, #2A2A2A);
-text-align: center;
-font-family: "Partial Sans KR";
-font-size: 40px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  color: var(--Theme-00, #2a2a2a);
+  text-align: center;
+  font-family: "Partial Sans KR";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .missions ol {
@@ -242,7 +259,7 @@ line-height: normal;
 .dice-number-box {
   width: 72px;
   height: 72px;
-  background: #FF8801;
+  background: #ff8801;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -253,7 +270,7 @@ line-height: normal;
 .dice-number {
   width: 60px;
   height: 60px;
-  background: #FFF;
+  background: #fff;
   border-radius: 26px;
   display: flex;
   justify-content: center;
@@ -261,15 +278,15 @@ line-height: normal;
   font-family: "Partial Sans KR", sans-serif;
   font-size: 40px;
   font-weight: 700;
-  color: #FF8801;
+  color: #ff8801;
   -webkit-text-stroke: 2px #000000;
 }
 
 .roll-dice-button {
-  background: var(--Theme-00, #2A2A2A);
-  color: #FFF;
+  background: var(--Theme-00, #2a2a2a);
+  color: #fff;
   text-align: center;
-  font-family: 'Paperlogy', 'Pretendard', sans-serif;
+  font-family: "Paperlogy", "Pretendard", sans-serif;
   font-size: 20px;
   font-weight: 800;
   height: 72px;
