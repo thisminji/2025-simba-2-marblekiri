@@ -1,0 +1,33 @@
+[33mcommit e9709d73987dcebf448a7d8a94a21490f862e8b8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: thisminji <thisminji@dgu.ac.kr>
+Date:   Sat Jun 21 18:09:41 2025 +0900
+
+    [FE] style: PartialSansKR-Regular, Paperlogy font 추가
+
+[33mcommit ea2e0a1d6482e6f90c747840e784fcb60571f385[m
+Merge: 7f88438 e15c0bc
+Author: thisminji <thisminji@dgu.ac.kr>
+Date:   Sat Jun 21 16:27:18 2025 +0900
+
+    Merge remote-tracking branch 'upstream/main'
+
+[33mcommit 7f88438d771b3b05e507ae1d87dfc6a5a983e973[m
+Merge: d922b98 01354af
+Author: thisminji <thisminji@dgu.ac.kr>
+Date:   Fri Jun 20 22:05:42 2025 +0900
+
+    Merge remote-tracking branch 'upstream/main'
+
+[33mcommit d922b984a7d812db93bb97139e895773c5b45b8c[m
+Merge: ef910a3 9384cd8
+Author: thisminji <thisminji@dgu.ac.kr>
+Date:   Fri Jun 20 21:32:59 2025 +0900
+
+    Merge remote-tracking branch 'upstream/main'
+
+[33mcommit ef910a3b9b5177368d805a626205e1d5af2a7700[m
+Merge: c590267 48dcc05
+Author: thisminji <thisminji@dgu.ac.kr>
+Date:   Fri Jun 20 21:30:59 2025 +0900
+
+    Merge remote-tracking branch 'upstream/main'

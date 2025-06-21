@@ -1,3 +1,17 @@
+@font-face {
+  font-family: 'Partial Sans KR';
+  src: url('../../fonts/PartialSansKR-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+  @font-face {
+    font-family: 'Paperlogy';
+    src: url('/static/fonts/Paperlogy-2ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+  }
+
 /* 공통 스타일 */
 body {
   margin: 0;
@@ -47,9 +61,13 @@ body {
 }
 
 .turn-header {
-  width: 100%;
-  text-align: center;
-  position: relative;
+color: var(--Theme-00, #2A2A2A);
+text-align: center;
+font-family: "Partial Sans KR";
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 
 .turn-header p {
@@ -74,6 +92,7 @@ body {
   margin: 0;
   margin-top: 4px;
   text-align: center;
+    font-family: 'Paperlogy';
 }
 
 .tiles-grid {
@@ -152,10 +171,13 @@ body {
 }
 
 .ranking-title {
-  font-size: 20px;
-  color: #2a2a2a;
-  margin-bottom: 8px;
-  text-align: center;
+color: var(--Theme-00, #2A2A2A);
+text-align: center;
+font-family: 'Paperlogy';
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 
 .ranking-list {
@@ -165,6 +187,7 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
+  font-family: 'Paperlogy', sans-serif;
 }
 
 .rank-card {
@@ -191,9 +214,13 @@ body {
 }
 
 .missions h3 {
-  font-size: 22px;
-  margin-bottom: 12px;
-  text-align: center;
+color: var(--Theme-00, #2A2A2A);
+text-align: center;
+font-family: "Partial Sans KR";
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 
 .missions ol {
