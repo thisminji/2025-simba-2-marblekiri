@@ -1,34 +1,42 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <title>게임 설정</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body class="setup-page">
-  <form id="gameForm" method="POST" action="{% url 'game_start' %}">
-    {% csrf_token %}
+  <head>
+    <meta charset="UTF-8" />
+    <title>게임 설정</title>
+    <link rel="stylesheet" href="{% static 'css/setup.css' %}" />
+  </head>
 
-    <div class="theme-select">
-      <label>테마 선택</label>
-      <select name="theme" id="themeSelect">
-        <option value="college">대학생</option>
-        <option value="sports">스포츠</option>
-        <option value="idol">아이돌</option>
-        <option value="custom">사용자 정의</option>
-      </select>
-    </div>
-    
-    <div class="player-select">
-      <h2>인원 설정</h2>
-      <ol id="player-list">
-        <input type="text" name="players[]" placeholder="이름" required>
-        <button type="button" onclick="removePlayer(this)">-</button>
-      </ol>
-      <button type="button" onclick="addPlayer()">+ 인원 추가</button>
-    </div>
+  <body class="setup-page">
+    <form id="gameForm" method="POST" action="{% url 'game_start' %}">
+      {% csrf_token %}
 
+      <h2 class="title">테마 선택</h2>
+      <div class="theme-select">
+        <div class="theme-select-container">
+          <div class="theme-category-container">
+            <div class="theme-category">기본</div>
+          </div>
+          <div class="theme-category-container">
+            <div class="theme-category">스포츠</div>
+          </div>
+          <div class="theme-category-container">
+            <div class="theme-category">스포츠</div>
+          </div>
+          <div class="theme-category-container">
+            <div class="theme-category">아이돌</div>
+          </div>
+          <div class="theme-category-container">
+            <div class="theme-category">커스텀</div>
+          </div>
+        </div>
+
+        <!-- <select name="theme" id="themeSelect">
+          <option value="college">대학생</option>
+          <option value="sports">스포츠</option>
+          <option value="idol">아이돌</option>
+          <option value="custom">사용자 정의</option>
+        </select> -->
     <div class="game-options">
       <h2>게임 설정</h2>
       <label>게임 중 랭킹 보기 
@@ -49,7 +57,7 @@
           <p>진행 바퀴 수: <span id="turn-count">10</span></p>
         </div>
       </div>
-    </div>
+
 
 
     <button type="submit" class="game-start-btn">GAME START</button>

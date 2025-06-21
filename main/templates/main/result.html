@@ -43,21 +43,60 @@
         <div class="review-image">
           <label for="image-upload" class="image-label">
             {% if room.image %}
+<<<<<<< HEAD
+            <img
+              id="preview"
+              src="{{ room.image.url }}"
+              alt="업로드 이미지"
+              class="image-preview"
+              style="display: block"
+            />
+            {% else %}
+            <img
+              id="preview"
+              alt="업로드 이미지"
+              class="image-preview"
+              style="display: none"
+            />
+            <p id="placeholder-text" class="image-placeholder">
+              📷 사진 업로드
+            </p>
+=======
               <img id="preview" src="{{ room.image.url }}" alt="업로드 이미지"
                   class="image-preview" style="display: block;" />
             {% else %}
               <img id="preview" alt="업로드 이미지"
                   class="image-preview" style="display: none;" />
               <p id="placeholder-text" class="image-placeholder">📷 사진 업로드</p>
+>>>>>>> upstream/main
             {% endif %}
           </label>
         </div>
 
+<<<<<<< HEAD
+        <input
+          type="file"
+          id="image-upload"
+          name="image"
+          accept="image/*"
+          required
+          style="display: none"
+        />
+
+        <button
+          type="button"
+          id="remove-image"
+          style="display: none; margin-top: 0.5rem"
+        >
+          ❌ 사진 삭제
+        </button>
+=======
         <input type="file" id="image-upload" name="image"
           accept="image/*" required style="display: none"/>
 
         <button type="button" id="remove-image" style="display: none; margin-top: 0.5rem;">❌ 사진 삭제</button>
 
+>>>>>>> upstream/main
       </form>
 
       <!-- 오른쪽 요약 영역 / 연희 수정 -->
@@ -95,6 +134,19 @@
 <script>
   function previewImage(event) {
     const input = event.target;
+<<<<<<< HEAD
+    const preview = document.getElementById("preview");
+    const placeholder = document.getElementById("placeholder-text");
+    const removeBtn = document.getElementById("remove-image");
+
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = "block";
+        if (placeholder) placeholder.style.display = "none";
+        if (removeBtn) removeBtn.style.display = "inline-block";
+=======
     const preview = document.getElementById('preview');
     const placeholder = document.getElementById('placeholder-text');
     const removeBtn = document.getElementById('remove-image');
@@ -106,12 +158,25 @@
         preview.style.display = 'block';
         if (placeholder) placeholder.style.display = 'none';
         if (removeBtn) removeBtn.style.display = 'inline-block';
+>>>>>>> upstream/main
       };
       reader.readAsDataURL(input.files[0]);
     }
   }
 
   function removeImage() {
+<<<<<<< HEAD
+    const input = document.getElementById("image-upload");
+    const preview = document.getElementById("preview");
+    const placeholder = document.getElementById("placeholder-text");
+    const removeBtn = document.getElementById("remove-image");
+
+    input.value = ""; // 선택된 파일 제거
+    preview.src = "";
+    preview.style.display = "none";
+    if (placeholder) placeholder.style.display = "block";
+    if (removeBtn) removeBtn.style.display = "none";
+=======
     const input = document.getElementById('image-upload');
     const preview = document.getElementById('preview');
     const placeholder = document.getElementById('placeholder-text');
@@ -122,6 +187,7 @@
     preview.style.display = 'none';
     if (placeholder) placeholder.style.display = 'block';
     if (removeBtn) removeBtn.style.display = 'none';
+>>>>>>> upstream/main
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -132,4 +198,7 @@
     if (removeBtn) removeBtn.addEventListener("click", removeImage);
   });
 </script>
+<<<<<<< HEAD
+=======
 
+>>>>>>> upstream/main
