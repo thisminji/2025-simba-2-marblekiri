@@ -5,6 +5,12 @@
   font-style: normal;
 }
 
+  @font-face {
+    font-family: 'Paperlogy';
+    src: url('/static/fonts/Paperlogy-2ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-style: normal;
+  }
 
 /* 공통 스타일 */
 body {
@@ -86,6 +92,7 @@ line-height: normal;
   margin: 0;
   margin-top: 4px;
   text-align: center;
+    font-family: 'Paperlogy';
 }
 
 .tiles-grid {
@@ -166,7 +173,7 @@ line-height: normal;
 .ranking-title {
 color: var(--Theme-00, #2A2A2A);
 text-align: center;
-font-family: "Partial Sans KR";
+font-family: 'Paperlogy';
 font-size: 40px;
 font-style: normal;
 font-weight: 400;
@@ -180,6 +187,7 @@ line-height: normal;
   padding: 0;
   margin: 0;
   list-style: none;
+  font-family: 'Paperlogy', sans-serif;
 }
 
 .rank-card {
