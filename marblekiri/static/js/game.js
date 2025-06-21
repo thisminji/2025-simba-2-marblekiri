@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
           .then(data => { //미션 내용 화면에 표시
             moveHorseTo(data.index);
             missionBox.innerHTML = `
-              <h3>${data.index + 1}번 칸</h3>
               <h3>${data.mission ? data.mission : "에러"}</p>
             `;
           })
