@@ -43,10 +43,10 @@ def game_start(request):
         for i, name in enumerate(player_names):
                 PlayerInRoom.objects.create(nickname=name, room=room, turn=i)
 
-    # room_id 세션에 저장 → 게임 상태 관리용
-    request.session['room_id'] = room.id
-    request.session["index"] = 1 # 게임 시작 시 위치 1으로 초기화
-    return redirect('game')
+        # room_id 세션에 저장 → 게임 상태 관리용
+        request.session['room_id'] = room.id
+        request.session["index"] = 1 # 게임 시작 시 위치 1으로 초기화
+        return redirect('game')
 
 ########################### 🔹 게임 진행 ############################
 ### 게임 화면
