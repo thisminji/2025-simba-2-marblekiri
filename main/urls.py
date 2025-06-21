@@ -18,6 +18,7 @@ urlpatterns = [
     #game 
     path('game/', game_page, name="game"),
     path('handle_action/', handle_action, name="handle_action"),
+    path('move_player/', move_player, name="move_player"),
     
     #######################################################
     #custom
