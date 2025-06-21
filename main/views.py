@@ -70,9 +70,10 @@ def game_page(request):
     prev_player = players[prev_index]
     next_player = players[next_index]
 
-    # drink_count 기준 내림차순 정렬 (랭킹) / 상위 3명만
+    # 랭킹 / 상위 3명만
     ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
 
+    # 현재 타일 
     current_tile_index = request.session.get("index", 0)
     try:
         tile = Tile.objects.get(room=room, index=current_tile_index)
@@ -80,8 +81,11 @@ def game_page(request):
     except Tile.DoesNotExist:
         current_question = ""
 
+    # 타일 미션 질문 리스트
+    tiles = Tile.objects.filter(room=room).order_by('index')
+
     return render(request, 'main/game.html', {
-        'tiles': Tile.objects.filter(room=room).order_by('index'),
+        'tiles': tiles,
         'players': players,
         'current_player': current_player,
         'prev_player': prev_player,
