@@ -27,6 +27,9 @@ def game_start(request):
         theme = request.POST.get('theme')
         max_turns = request.POST.get('max_turns')
 
+        show_ranking = request.POST.get('show_ranking') == 'on'  # 랭킹 보기 체크여부 확인
+        request.session['show_ranking'] = show_ranking 
+
         # 게임방 생성
         room = GameRoom.objects.create(
                 theme=theme,
@@ -55,6 +58,7 @@ def game_page(request):
     room = GameRoom.objects.get(id=room_id)
     players = list(PlayerInRoom.objects.filter(room=room).order_by('turn'))
     total_players = len(players)
+    show_ranking = request.session.get('show_ranking', True)
 
     # 현재 턴 계산
     current_index = room.current_turn_index % total_players
@@ -86,6 +90,7 @@ def game_page(request):
         'ranking': ranking,
         'current_tile_index': current_tile_index,
         'current_question': current_question,
+        'show_ranking': show_ranking,
     })
 
 ### 2) 말 이동

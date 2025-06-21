@@ -5,117 +5,137 @@
     <meta charset="UTF-8" />
     <title>게임 설정</title>
     <link rel="stylesheet" href="{% static 'css/setup.css' %}" />
+    <script defer src="{% static 'js/setup.js' %}"></script>
   </head>
 
   <body class="setup-page">
     <form id="gameForm" method="POST" action="{% url 'game_start' %}">
       {% csrf_token %}
 
-      <h2 class="title">테마 선택</h2>
-      <div class="theme-select">
-        <div class="theme-select-container">
-          <div class="theme-category-container">
-            <div class="theme-category">기본</div>
-          </div>
-          <div class="theme-category-container">
-            <div class="theme-category">스포츠</div>
-          </div>
-          <div class="theme-category-container">
-            <div class="theme-category">스포츠</div>
-          </div>
-          <div class="theme-category-container">
-            <div class="theme-category">아이돌</div>
-          </div>
-          <div class="theme-category-container">
-            <div class="theme-category">커스텀</div>
+      <div class="grid-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; justify-items: center;">
+        <!-- 테마 선택 -->
+        <div class="theme-select">
+          <h2 class="title">테마 선택</h2>
+          <div class="theme-select-container">
+            <div class="theme-category-container" data-value="basic" tabindex="0">
+              <div class="theme-category">기본</div>
+            </div>
+            <div class="theme-category-container" data-value="sports" tabindex="0">
+              <div class="theme-category">스포츠</div>
+            </div>
+            <div class="theme-category-container" data-value="idol" tabindex="0">
+              <div class="theme-category">아이돌</div>
+            </div>
+            <div class="theme-category-container" data-value="custom" tabindex="0">
+              <div class="theme-category">커스텀</div>
+            </div>
+            <input type="hidden" name="theme" id="selected-theme" value="basic" />
           </div>
         </div>
 
-        <!-- <select name="theme" id="themeSelect">
-          <option value="college">대학생</option>
-          <option value="sports">스포츠</option>
-          <option value="idol">아이돌</option>
-          <option value="custom">사용자 정의</option>
-        </select> -->
-    <div class="game-options">
-      <h2>게임 설정</h2>
-      <label>게임 중 랭킹 보기 
-        <input type="checkbox" name="show_ranking" checked>
-      </label>
+        <!-- 인원 설정 -->
+        <div class="player-setup">
+          <h2 class="title">인원 설정</h2>
+          <p class="subtext">이름을 적어 인원을 추가해주세요.<br />게임은 낮은 번호 순으로 진행됩니다.</p>
+          <div id="player-list" class="player-list">
+            <div class="player-entry">
+              <span class="player-number">1.</span>
+              <input type="text" name="players[]" placeholder="성이름" required />
+              <button type="button" class="remove-btn" onclick="removePlayer(this)">-</button>
+            </div>
+          </div>
+          <button type="button" class="add-btn" onclick="addPlayer()">+ 인원 추가</button>
+        </div>
 
-      <div class="turn-setting">
-        <label>턴 수 설정</label><br>
-        <input type="radio" name="turn" value="unlimited" id="unlimited" checked>
-        <label for="unlimited">무제한</label><br>
+        <!-- 게임 설정 -->
+        <div class="game-options">
+          <h2 class="title">게임 설정</h2>
+          <label class="toggle-label">
+            게임 중 랭킹 보기
+            <input type="checkbox" name="show_ranking" id="ranking-toggle" checked />
+            <span class="slider"></span>
+          </label>
 
-        <input type="radio" name="turn" value="limited" id="limited">
-        <label for="limited">진행 턴 수 지정</label>
+          <div class="turn-setting">
+            <label>턴 수 설정</label><br />
+            <div class="radio-wrap">
+              <input type="radio" name="turn" value="unlimited" id="unlimited" checked />
+              <label for="unlimited">무제한 턴 수</label>
+            </div>
+            <div class="radio-wrap">
+              <input type="radio" name="turn" value="limited" id="limited" />
+              <label for="limited">진행할 바퀴 수 지정</label>
+            </div>
 
-        <!-- 슬라이더: 기본은 숨김 -->
-        <div id="slider-container" style="display: none; margin-top: 10px;">
-          <input type="range" min="1" max="20" value="10" id="turn-slider" name="max_turns">
-          <p>진행 바퀴 수: <span id="turn-count">10</span></p>
+            <div id="slider-container" style="display: none; margin-top: 10px">
+              <p>진행할 바퀴 수: <span id="turn-count">2</span></p>
+              <input type="range" min="2" max="20" step="2" value="2" id="turn-slider" name="max_turns" class="turn-slider" />
+            </div>
+          </div>
+
+          <button type="submit" class="game-start-btn">GAME START</button>
         </div>
       </div>
+    </form>
 
+    
+  </body>
+</html>
 
+    <script>
+      // 사용자 정의 테마 → 다른 화면 이동
+      document
+        .getElementById("gameForm")
+        .addEventListener("submit", function (event) {
+          const theme = document.getElementById("themeSelect").value;
+          if (theme === "custom") {
+            event.preventDefault();
+            window.location.href = "/custom_questions/";
+          }
+        });
 
-    <button type="submit" class="game-start-btn">GAME START</button>
-  </form>
-
-  <script>
-     // 사용자 정의 테마 → 다른 화면 이동
-    document.getElementById("gameForm").addEventListener("submit", function(event) {
-      const theme = document.getElementById("themeSelect").value;
-      if (theme === "custom") {
-        event.preventDefault();
-        window.location.href = "/custom_questions/";
-      }
-    });
-
-    // 인원 추가/삭제
-    function addPlayer() {
-      const list = document.getElementById("player-list");
-      const div = document.createElement("div");
-      div.innerHTML = `
+      // 인원 추가/삭제
+      function addPlayer() {
+        const list = document.getElementById("player-list");
+        const div = document.createElement("div");
+        div.innerHTML = `
         <input type="text" name="players[]" placeholder="이름" required>
         <button type="button" onclick="removePlayer(this)">-</button>`;
-      list.appendChild(div);
-    }
-
-    function removePlayer(btn) {
-      const list = document.getElementById("player-list");
-      const playerBlocks = list.querySelectorAll("div");
-
-
-      // !!! 한 명은 추가를 하게 만들기
-      if (playerBlocks.length > 0 ) {
-        btn.parentElement.remove();
-      } else {
-        alert("최소 1명의 플레이어는 필요합니다!");
+        list.appendChild(div);
       }
-    }
 
-    // 슬라이더 설정
-    document.addEventListener("DOMContentLoaded", function () {
-      const unlimitedRadio = document.getElementById("unlimited");
-      const limitedRadio = document.getElementById("limited");
-      const sliderContainer = document.getElementById("slider-container");
-      const slider = document.getElementById("turn-slider");
-      const turnCount = document.getElementById("turn-count");
+      function removePlayer(btn) {
+        const list = document.getElementById("player-list");
+        const playerBlocks = list.querySelectorAll("div");
 
-      unlimitedRadio.addEventListener("change", () => {
-        if (unlimitedRadio.checked) sliderContainer.style.display = "none";
+        // !!! 한 명은 추가를 하게 만들기
+        if (playerBlocks.length > 0) {
+          btn.parentElement.remove();
+        } else {
+          alert("최소 1명의 플레이어는 필요합니다!");
+        }
+      }
+
+      // 슬라이더 설정
+      document.addEventListener("DOMContentLoaded", function () {
+        const unlimitedRadio = document.getElementById("unlimited");
+        const limitedRadio = document.getElementById("limited");
+        const sliderContainer = document.getElementById("slider-container");
+        const slider = document.getElementById("turn-slider");
+        const turnCount = document.getElementById("turn-count");
+
+        unlimitedRadio.addEventListener("change", () => {
+          if (unlimitedRadio.checked) sliderContainer.style.display = "none";
+        });
+
+        limitedRadio.addEventListener("change", () => {
+          if (limitedRadio.checked) sliderContainer.style.display = "block";
+        });
+
+        slider.addEventListener("input", () => {
+          turnCount.textContent = slider.value;
+        });
       });
-
-      limitedRadio.addEventListener("change", () => {
-        if (limitedRadio.checked) sliderContainer.style.display = "block";
-      });
-
-      slider.addEventListener("input", () => {
-        turnCount.textContent = slider.value;
-      });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>
