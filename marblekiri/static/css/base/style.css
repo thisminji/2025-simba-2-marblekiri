@@ -100,9 +100,8 @@ body {
 
 .tiles-grid {
   display: grid;
-  grid-template-columns: repeat(7, 80px);
-  grid-template-rows: repeat(5, 80px);
-  gap: 8px;
+  grid-template-columns: repeat(7, 100px);
+  grid-template-rows: repeat(5, 100px);
   justify-content: center;
   align-content: center;
   margin: 0 auto;
@@ -110,8 +109,8 @@ body {
 }
 
 .tile {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: #ff8801;
   color: white;
   font-weight: bold;
@@ -180,13 +179,13 @@ body {
 }
 
 .ranking-title {
-  color: var(--Theme-00, #2a2a2a);
-  text-align: center;
-  font-family: "Paperlogy";
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+color: var(--Theme-00, #2A2A2A);
+text-align: center;
+font-family: 'Paperlogy';
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
 }
 
 .ranking-list {
