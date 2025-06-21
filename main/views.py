@@ -41,6 +41,7 @@ def game_start(request):
                 PlayerInRoom.objects.create(nickname=name, room=room, turn=i)
 
     request.session['room_id'] = room.id
+    request.session["index"] = 1 # 게임 시작 시 위치 1으로 초기화
     return redirect('game')
 
 
@@ -75,6 +76,31 @@ def game_page(request):
         'current_round': room.current_round,
         'ranking': ranking,
     })
+
+#2) 말 이동
+def move_player(request):
+    steps = int(request.GET.get("steps", 1))
+    room_id = request.session.get("room_id")  # 현재 게임방
+    if not room_id:
+        return redirect('start')
+
+    room = GameRoom.objects.get(id=room_id)
+    current_pos = request.session.get("index", 0)
+
+    if steps == 0: # step==0이면 이동하지 않음
+        tile = Tile.objects.get(room=room, index=current_pos)
+        return JsonResponse({
+            'index': current_pos,
+            'mission': tile.question.content if tile.question else None
+        })
+
+    new_pos = (current_pos + steps) % 20 # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
+
+    request.session["index"] = new_pos
+
+    tile = Tile.objects.get(room=room, index=new_pos) # 이동한 칸의 미션을 db에서 가져옴
+
+    return JsonResponse({'index': new_pos, 'mission': tile.question.content})
 
 
 #턴 넘기기 (턴 관리) / 마시기 처리
