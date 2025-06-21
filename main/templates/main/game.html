@@ -4,9 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <title>주루마블 게임</title>
+
+  <!-- ✅ 외부 CSS 파일 -->
   <link rel="stylesheet" href="{% static 'css/base/style.css' %}">
+
+  <!-- ✅ Gugi 폰트 (Google Fonts) -->
   <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet"> 
 </head>
+
 
 <body>
   <div class="game-container">
@@ -15,7 +20,7 @@
       <div class="turn-info">
         <div class="turn-header">
           <!-- ###############연희가 수정한 부분 #################### -->
-          <p>현재 턴 : <span class="turn-number">{{ current_round }}</span>바퀴</p>
+          <p class="turn-header">현재 턴 : <span class="turn-number">{{ current_round }}</span>바퀴</p>
           <a href="{% url 'end_game' %}">
           <button class="end-button">게임 종료</button>
           </a>
