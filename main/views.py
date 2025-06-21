@@ -78,22 +78,34 @@ def game_page(request):
     prev_player = players[prev_index]
     next_player = players[next_index]
 
-    # drink_count 기준 내림차순 정렬 (랭킹) / 상위 3명만
+    # 랭킹 / 상위 3명만
     ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
 
+    # 현재 타일 
+    current_tile_index = request.session.get("index", 0)
+    try:
+        tile = Tile.objects.get(room=room, index=current_tile_index)
+        current_question = tile.question.content
+    except Tile.DoesNotExist:
+        current_question = ""
+
+    # 타일 미션 질문 리스트
+    tiles = Tile.objects.filter(room=room).order_by('index')
 
     return render(request, 'main/game.html', {
-        'tiles': Tile.objects.filter(room=room).order_by('index'),
+        'tiles': tiles,
         'players': players,
         'current_player': current_player,
         'prev_player': prev_player,
         'next_player': next_player,
         'current_round': room.current_round,
         'ranking': ranking,
+        'current_tile_index': current_tile_index,
+        'current_question': current_question,
         'show_ranking': show_ranking,
     })
 
-#2) 말 이동
+### 2) 말 이동
 def move_player(request):
     steps = int(request.GET.get("steps", 1))
     room_id = request.session.get("room_id")  # 현재 게임방
@@ -103,19 +115,22 @@ def move_player(request):
     room = GameRoom.objects.get(id=room_id)
     current_pos = request.session.get("index", 0)
 
-    if steps == 0: # step==0이면 이동하지 않음
-        tile = Tile.objects.get(room=room, index=current_pos)
-        return JsonResponse({
-            'index': current_pos,
-            'mission': tile.question.content if tile.question else None
-        })
+    
+    #if steps == 0: # step==0이면 이동하지 않음
+    #    tile = Tile.objects.get(room=room, index=current_pos)
+    #    return JsonResponse({
+    #        'index': current_pos,
+    #       'mission': tile.question.content if tile.question else None
+    #    })
 
-    new_pos = (current_pos + steps) % 20 # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
-
+    # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
+    new_pos = (current_pos + steps) % 20
     request.session["index"] = new_pos
+    
+    # 이동한 칸의 미션을 db에서 가져옴
+    tile = Tile.objects.filter(room=room, index=new_pos).first() 
 
-    tile = Tile.objects.filter(room=room, index=new_pos).first() # 이동한 칸의 미션을 db에서 가져옴
-
+    #json 형식 반환
     return JsonResponse({'index': new_pos, 'mission': tile.question.content})
 
 
