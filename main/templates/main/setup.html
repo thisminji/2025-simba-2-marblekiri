@@ -87,10 +87,17 @@
       document
         .getElementById("gameForm")
         .addEventListener("submit", function (event) {
-          const theme = document.getElementById("themeSelect").value;
+          const theme = document.getElementById("selected-theme").value;
+
           if (theme === "custom") {
             event.preventDefault();
-            window.location.href = "/custom_questions/";
+            // 플레이어 이름 값만 필터링하여 추출
+            const playerInputs = document.querySelectorAll('input[name="players[]"]');
+            const players = [...playerInputs].map(input => input.value.trim()).filter(Boolean);
+            // 플레이어 이름을 쿼리 파라미터에 추가하여 전달
+            const query = new URLSearchParams();
+            players.forEach(p => query.append('players', p));
+            window.location.href = `/custom_questions/?${query.toString()}`;
           }
         });
 
