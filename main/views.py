@@ -56,7 +56,7 @@ def game_start(request):
 
         # room_id 세션에 저장 → 게임 상태 관리용
         request.session['room_id'] = room.id
-        request.session["index"] = 1 # 게임 시작 시 위치 1으로 초기화
+        request.session["index"] = 0 # 게임 시작 시 위치 1으로 초기화
         return redirect('game')
 
 ########################### 🔹 게임 진행 ############################
