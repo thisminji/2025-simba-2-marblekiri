@@ -107,10 +107,11 @@ def handle_action(request):
         # 자동 종료 조건 (턴 수 설정 시)
         if room.max_turns and room.current_round > room.max_turns:
             room.current_round -= 1
+            room.save()
             return redirect('end_game')
         
         room.save()
-
+        
     return redirect('game')
 
 ########################### 🔹 커스텀 질문 ############################
