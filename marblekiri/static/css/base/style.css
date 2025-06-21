@@ -107,6 +107,7 @@ body {
   align-content: center;
   margin: 0 auto;
   flex-grow: 1;
+  position: relative;
 }
 
 .tile {
@@ -302,4 +303,13 @@ body {
 
 .roll-dice-button:hover {
   background-color: #444;
+}
+
+
+/* 연희 수정 / 말 */
+.horse {
+  width: 50px;
+  position: absolute;
+  transition: all 0.3s ease;
+  z-index: 1000;
 }
