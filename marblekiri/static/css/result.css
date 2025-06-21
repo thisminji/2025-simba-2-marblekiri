@@ -121,3 +121,16 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+/*연희가 추가함 - 버튼 폼형식으로 바꾼 후 스타일 inline*/
+/* 버튼들을 가로로 정렬 */
+.action-buttons {
+  display: flex;
+  gap: 10px; /* 버튼 사이 간격 */
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.action-buttons form {
+  display: inline-block;
+}
