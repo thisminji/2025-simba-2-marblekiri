@@ -1,0 +1,68 @@
+/* @font-face {
+  font-family: "Paperlogy-8ExtraBold";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2")
+    format("woff2");
+  font-weight: 800;
+  font-style: normal;
+} */
+
+.setup-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+body {
+  background: linear-gradient(to bottom right, #ffa726, #fb8c00);
+  color: white;
+  /* text-align: center; */
+  padding: 2rem;
+}
+
+.title {
+  color: #fff;
+  font-family: "Paperlogy";
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.theme-select {
+  display: flex;
+  width: 348px;
+  height: 540px;
+  padding: 31px 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 20px;
+  border: 2px solid var(--Main-Disabled-2, #e8e8e8);
+  background: #fff;
+}
+
+.theme-select-container {
+  display: flex;
+  width: 300px;
+  height: 478px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 26px;
+  flex-shrink: 0;
+}
+
+.theme-category-container {
+  width: 300px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--Main-Gray-2, #c3c3c3);
+}
+
+.theme-category {
+  color: black;
+}
