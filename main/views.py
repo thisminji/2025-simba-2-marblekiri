@@ -3,57 +3,60 @@ from .models import *
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import now
-
-
 import random
 
-
+########################### 🔹 시작 화면 · 세팅 ############################
+### 홈 (게임 시작 전 첫 화면)
 def start_page(request):
     return render(request, 'main/start.html')
 
+### 게임 설정 페이지 (테마/인원/옵션 선택)
 def setup_page(request):
     return render(request, 'main/setup.html')
 
+### 랜덤 질문 추출 (테마, 개수에 따라)
 def get_random_questions(theme, count):
     questions = Question.objects.filter(theme=theme)
     question_list = list(questions)
     return random.sample(question_list, min(count, len(question_list)))
 
-#######################################################################
-
+### 게임 시작 시 방 생성 + 유저/타일 생성
 def game_start(request):
     if request.method == "POST":
         player_names = request.POST.getlist('players[]')
         theme = request.POST.get('theme')
         max_turns = request.POST.get('max_turns')
 
+        # 게임방 생성
         room = GameRoom.objects.create(
                 theme=theme,
                 max_turns=max_turns if max_turns else None,
                 started=True  # 또는 False, 필요에 따라
             )
+        
+        # 질문 선택 및 타일 배치
         selected_questions = get_random_questions(theme, 20)
-
         for i, q in enumerate(selected_questions):
                 Tile.objects.create(index=i, question=q, room=room)
 
+        # 플레이어 생성 및 방에 배정
         for i, name in enumerate(player_names):
                 PlayerInRoom.objects.create(nickname=name, room=room, turn=i)
 
+    # room_id 세션에 저장 → 게임 상태 관리용
     request.session['room_id'] = room.id
     request.session["index"] = 1 # 게임 시작 시 위치 1으로 초기화
     return redirect('game')
 
-
-###########################################################################
-###게임 상태 관리
-#1) 게임
+########################### 🔹 게임 진행 ############################
+### 게임 화면
 def game_page(request):
     room_id = request.session.get('room_id')
     room = GameRoom.objects.get(id=room_id)
     players = list(PlayerInRoom.objects.filter(room=room).order_by('turn'))
     total_players = len(players)
 
+    # 현재 턴 계산
     current_index = room.current_turn_index % total_players
     current_player = players[current_index]
 
@@ -103,7 +106,7 @@ def move_player(request):
     return JsonResponse({'index': new_pos, 'mission': tile.question.content})
 
 
-#턴 넘기기 (턴 관리) / 마시기 처리
+### 마셔! / 통과! 처리 + 턴 & 바퀴 증가 + 게임 종료 조건 체크
 @csrf_exempt
 def handle_action(request):
     if request.method == "POST":
@@ -126,21 +129,23 @@ def handle_action(request):
         room.current_turn_index += 1
         if room.current_turn_index % total_players == 0:
             room.current_round += 1
-        room.save()
 
         # 자동 종료 조건 (턴 수 설정 시)
         if room.max_turns and room.current_round > room.max_turns:
             room.current_round -= 1
+            room.save()
             return redirect('end_game')
-
+        
+        room.save()
+        
     return redirect('game')
 
-#############################################################################
-### 커스텀
-
+########################### 🔹 커스텀 질문 ############################
+### 커스텀 질문 입력 화면
 def custom_questions(request):
     return render(request, 'main/custom_questions.html')
 
+### 커스텀 질문 등록 + 세션에 인원 저장
 def submit_ready(request, zone_code):
     if request.method == "POST":
         questions = request.POST.getlist('questions[]')
@@ -154,12 +159,12 @@ def submit_ready(request, zone_code):
 
         return JsonResponse({})
 
-############################################################################
-### 게임 종료
+########################### 🔹 게임 종료 처리 ############################
+### 결과 요약 화면 (데이터 없이 접근 시 예비용)
 def result_page(request):
     return render(request, 'main/result.html')
 
-#종료 조건
+### 게임 종료 처리 → 기록 정리 + 요약 정보 전달
 def end_game(request):
 
     room_id = request.session.get('room_id')
