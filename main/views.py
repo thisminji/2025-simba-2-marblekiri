@@ -105,6 +105,8 @@ def game_page(request):
         'show_ranking': show_ranking,
     })
 
+
+
 ### 2) 말 이동
 def move_player(request):
     steps = int(request.GET.get("steps", 1))
@@ -116,12 +118,12 @@ def move_player(request):
     current_pos = request.session.get("index", 0)
 
     
-    #if steps == 0: # step==0이면 이동하지 않음
-    #    tile = Tile.objects.get(room=room, index=current_pos)
-    #    return JsonResponse({
-    #        'index': current_pos,
-    #       'mission': tile.question.content if tile.question else None
-    #    })
+    if steps == 0: # step==0이면 이동하지 않음
+        tile = Tile.objects.get(room=room, index=current_pos)
+        return JsonResponse({
+            'index': current_pos,
+            'mission': tile.question.content if tile.question else None
+        })
 
     # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
     new_pos = (current_pos + steps) % 20
@@ -134,39 +136,57 @@ def move_player(request):
     return JsonResponse({'index': new_pos, 'mission': tile.question.content})
 
 
-### 마셔! / 통과! 처리 + 턴 & 바퀴 증가 + 게임 종료 조건 체크
+
+
+### 마시기 카운트
+def process_action(player, action):
+    if action == "drink":
+        player.drink_count += 1
+        player.save()
+
+### 턴 & 바퀴 증가 + 게임 종료 조건 체크
+def advance_turn(room, total_players):
+    room.current_turn_index += 1
+    if room.current_turn_index % total_players == 0:
+        room.current_round += 1
+
+    # 게임 종료 조건
+    if room.max_turns and room.current_round > room.max_turns:
+        room.current_round -= 1
+        room.save()
+        return True  # 게임 종료
+
+    room.save()
+    return False  # 계속 진행
+
+### 마셔! / 통과! 처리
 @csrf_exempt
 def handle_action(request):
-    if request.method == "POST":
-        room_id = request.session.get('room_id')
-        room = GameRoom.objects.get(id=room_id)
-        players = PlayerInRoom.objects.filter(room=room).order_by('turn')
+    if request.method != "POST":
+        return JsonResponse({'error': 'Invalid request'}, status=400)
 
-        #누구 턴인지 관리 
-        total_players = players.count()
-        current_index = room.current_turn_index % total_players
-        current_player = players[current_index]
+    room_id = request.session.get('room_id')
+    room = GameRoom.objects.get(id=room_id)
+    players = PlayerInRoom.objects.filter(room=room).order_by('turn')
 
-        # "pass" or "drink"
-        action = request.POST.get("action") 
-        if action == "drink":
-            current_player.drink_count += 1
-            current_player.save()
+    total_players = players.count()
+    current_index = room.current_turn_index % total_players
+    current_player = players[current_index]
 
-        # 턴 + 바퀴 증가
-        room.current_turn_index += 1
-        if room.current_turn_index % total_players == 0:
-            room.current_round += 1
+    action = request.POST.get("action")
+    process_action(current_player, action)
 
-        # 자동 종료 조건 (턴 수 설정 시)
-        if room.max_turns and room.current_round > room.max_turns:
-            room.current_round -= 1
-            room.save()
-            return redirect('end_game')
-        
-        room.save()
-        
-    return redirect('game')
+    is_game_over = advance_turn(room, total_players)
+
+    if is_game_over:
+        return JsonResponse({'end_game': True})
+
+    return JsonResponse({
+        'end_game': False,
+        'current_turn': room.current_turn_index,
+        'round': room.current_round,
+        'player_index': current_player.index  # 말 위치 업데이트할 경우 사용
+    })
 
 ########################### 🔹 커스텀 질문 ############################
 ### 커스텀 질문 입력 화면
