@@ -23,9 +23,19 @@ def get_random_questions(theme, count):
 ### 게임 시작 시 방 생성 + 유저/타일 생성
 def game_start(request):
     if request.method == "POST":
-        player_names = request.POST.getlist('players[]')
         theme = request.POST.get('theme')
+        # custom이면 세션에 저장된 목록, 그 외는 폼에서 가져오기
+        if theme == 'custom':
+            player_names = request.session.get('players', [])
+        else:
+            player_names = request.POST.getlist('players[]')
+        # 이름이 none이거나 공백인 값 제거하여 유효한 플레이어 이름만 남기기
+        player_names = [name for name in player_names if name and name.strip()]
         max_turns = request.POST.get('max_turns')
+
+        # 랭킹 보기 체크여부 확인
+        show_ranking = request.POST.get('show_ranking') == 'on'  
+        request.session['show_ranking'] = show_ranking 
 
         # 게임방 생성
         room = GameRoom.objects.create(
@@ -36,6 +46,7 @@ def game_start(request):
         
         # 질문 선택 및 타일 배치
         selected_questions = get_random_questions(theme, 20)
+
         for i, q in enumerate(selected_questions):
                 Tile.objects.create(index=i, question=q, room=room)
 
@@ -45,7 +56,7 @@ def game_start(request):
 
         # room_id 세션에 저장 → 게임 상태 관리용
         request.session['room_id'] = room.id
-        request.session["index"] = 1 # 게임 시작 시 위치 1으로 초기화
+        request.session["index"] = 0 # 게임 시작 시 위치 1으로 초기화
         return redirect('game')
 
 ########################### 🔹 게임 진행 ############################
@@ -55,6 +66,7 @@ def game_page(request):
     room = GameRoom.objects.get(id=room_id)
     players = list(PlayerInRoom.objects.filter(room=room).order_by('turn'))
     total_players = len(players)
+    show_ranking = request.session.get('show_ranking', True)
 
     # 현재 턴 계산
     current_index = room.current_turn_index % total_players
@@ -66,21 +78,34 @@ def game_page(request):
     prev_player = players[prev_index]
     next_player = players[next_index]
 
-    # drink_count 기준 내림차순 정렬 (랭킹) / 상위 3명만
+    # 랭킹 / 상위 3명만
     ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
 
+    # 현재 타일 
+    current_tile_index = request.session.get("index", 0)
+    try:
+        tile = Tile.objects.get(room=room, index=current_tile_index)
+        current_question = tile.question.content
+    except Tile.DoesNotExist:
+        current_question = ""
+
+    # 타일 미션 질문 리스트
+    tiles = Tile.objects.filter(room=room).order_by('index')
 
     return render(request, 'main/game.html', {
-        'tiles': Tile.objects.filter(room=room).order_by('index'),
+        'tiles': tiles,
         'players': players,
         'current_player': current_player,
         'prev_player': prev_player,
         'next_player': next_player,
         'current_round': room.current_round,
         'ranking': ranking,
+        'current_tile_index': current_tile_index,
+        'current_question': current_question,
+        'show_ranking': show_ranking,
     })
 
-#2) 말 이동
+### 2) 말 이동
 def move_player(request):
     steps = int(request.GET.get("steps", 1))
     room_id = request.session.get("room_id")  # 현재 게임방
@@ -90,19 +115,22 @@ def move_player(request):
     room = GameRoom.objects.get(id=room_id)
     current_pos = request.session.get("index", 0)
 
-    if steps == 0: # step==0이면 이동하지 않음
-        tile = Tile.objects.get(room=room, index=current_pos)
-        return JsonResponse({
-            'index': current_pos,
-            'mission': tile.question.content if tile.question else None
-        })
+    
+    #if steps == 0: # step==0이면 이동하지 않음
+    #    tile = Tile.objects.get(room=room, index=current_pos)
+    #    return JsonResponse({
+    #        'index': current_pos,
+    #       'mission': tile.question.content if tile.question else None
+    #    })
 
-    new_pos = (current_pos + steps) % 20 # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
-
+    # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
+    new_pos = (current_pos + steps) % 20
     request.session["index"] = new_pos
+    
+    # 이동한 칸의 미션을 db에서 가져옴
+    tile = Tile.objects.filter(room=room, index=new_pos).first() 
 
-    tile = Tile.objects.get(room=room, index=new_pos) # 이동한 칸의 미션을 db에서 가져옴
-
+    #json 형식 반환
     return JsonResponse({'index': new_pos, 'mission': tile.question.content})
 
 
@@ -143,17 +171,28 @@ def handle_action(request):
 ########################### 🔹 커스텀 질문 ############################
 ### 커스텀 질문 입력 화면
 def custom_questions(request):
-    return render(request, 'main/custom_questions.html')
+    players = request.GET.getlist('players')
+    if players:
+        # 커스텀 인원 세션 저장
+        request.session['players'] = players
+    print(request.GET.getlist('players'))
+    return render(request, 'main/custom_questions.html', {'players': players})
 
 ### 커스텀 질문 등록 + 세션에 인원 저장
 def submit_ready(request, zone_code):
     if request.method == "POST":
         questions = request.POST.getlist('questions[]')
-        player_names = request.POST.getlist('players[]')
+        # 이름 하나만 받기
+        player = request.POST.get('player', '').strip()
+        if not player:
+            return JsonResponse({'error': '플레이어 이름이 없습니다.'}, status=400)
 
         for q in questions:
             Question.objects.create(theme="custom", content=q)
 
+        # 처음 한 명은 빈리스트에서 시작하여 name 저장
+        player_names = request.session.get('players', [])
+        player_names.append(player)
         request.session['players'] = player_names
         request.session['theme'] = 'custom'
 
