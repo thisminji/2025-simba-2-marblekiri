@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // 방문한 칸 추적용 Set
   const visitedTiles = new Set();
+  //////////////////////////////////////////////
+  passBtn?.addEventListener("click", () => handleAction("pass"));
+  drinkBtn?.addEventListener("click", () => handleAction("drink"));
 
+  /////----------drink 카운트------------------
   //마셔 / 통과
   function handleAction(actionType) {
     fetch("/handle_action/", {
@@ -33,8 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/end_game/";
       } else {
         // ranking
-        updateRanking();
-
+        updateRanking(data.ranking);
+        //round
+        updateRound(data.round);
+        //player
+        updatePlayers(data.prev_player, data.current_player, data.next_player);
+        
+        //hourse
         // 말 위치 다시 요청 (index 유지용)
         fetch("/move_player/?steps=0") // 0칸 이동 → 위치 정보만 받아오기
           .then(res => res.json())
@@ -47,23 +56,55 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(error => console.error("에러 발생:", error));
   }
 
-  passBtn?.addEventListener("click", () => handleAction("pass"));
-  drinkBtn?.addEventListener("click", () => handleAction("drink"));
-
   //////////////////////////////////////////////////////////////////
 /////----------랭킹------------------
-function updateRanking() {
-  fetch("/get_ranking/")
-    .then((res) => res.json())
-    .then((data) => {
-      const rankingContainer = document.querySelector(".ranking-list");
-      rankingContainer.innerHTML = data.html;
-    })
-    .catch((err) => console.error("랭킹 갱신 실패:", err));
+function updateRanking(ranking) {
+  const list = document.getElementById("ranking-list");
+  list.innerHTML = "";  // 기존 삭제
+
+  ranking.forEach((player, i) => {
+    const li = document.createElement("li");
+    li.classList.add("rank-card");
+    if (i === 0) li.classList.add("first");
+    else if (i === 1) li.classList.add("second");
+    else if (i === 2) li.classList.add("third");
+
+    const img = document.createElement("img");
+    img.src = `/static/assets/icons/noto_${i + 1}-place-medal.svg`;
+    img.alt = `${i + 1}등 메달`;
+
+    const span = document.createElement("span");
+    span.textContent = `${player.nickname} (${player.drink_count}잔)`;
+
+    li.appendChild(img);
+    li.appendChild(span);
+    list.appendChild(li);
+  });
+
+  //fetch("/get_ranking/")
+  //  .then((res) => res.json())
+  //  .then((data) => {
+  //    const rankingContainer = document.querySelector(".ranking-list");
+  //    rankingContainer.innerHTML = data.html;
+  //  })
+  //  .catch((err) => console.error("랭킹 갱신 실패:", err));
 }
 
+////////////////////////////////////////////////////////////////////
+/////----------라운드------------------
+function updateRound(round) {
+  console.log("👉 Round update:", round);
+  document.getElementById("turn-number").textContent = round;
+}
+/////----------턴 담당자------------------
+function updatePlayers(prev, current, next) {
+  console.log("👉 Player update:", prev, " / ",current, " / ", next);
+  document.getElementById("prev-player").textContent = prev;
+  document.getElementById("current-player").textContent = current;
+  document.getElementById("next-player").textContent = next;
+}
   //////////////////////////////////////////////////////////////////
-
+/////---------- 주사위 ------------------
   // 1. 버튼 비활성화
   rollButton.addEventListener("click", () => {
     rollButton.disabled = true;
