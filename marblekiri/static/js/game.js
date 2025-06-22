@@ -13,36 +13,56 @@ document.addEventListener("DOMContentLoaded", () => {
   const visitedTiles = new Set();
 
   //마셔 / 통과
+  function handleAction(actionType) {
+    fetch("/handle_action/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-CSRFToken": csrfToken,
+      },
+      body: `action=${actionType}`
+    })
+    
+    .then(res => {
+      if (!res.ok) throw new Error("❌ 서버 응답 오류");
 
-function handleAction(actionType) {
-  fetch("/handle_action/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-      "X-CSRFToken": csrfToken,
-    },
-    body: `action=${actionType}`
-  })
-  .then(response => response.json())
-  .then(data => {
-    if (data.end_game) {
-      window.location.href = "/end_game/";
-    } else {
-      // 말 위치 다시 요청 (index 유지용)
-      fetch("/move_player/?steps=0") // 0칸 이동 → 위치 정보만 받아오기
-        .then(res => res.json())
-        .then(data => {
-          moveHorseTo(data.index);
-          missionBox.innerHTML = `<h3>${data.mission}</h3>`;
-        });
-      }
-  })
-  .catch(error => console.error("에러 발생:", error));
+      return res.json();
+    })
+    .then(data => {
+      if (data.end_game) {
+        window.location.href = "/end_game/";
+      } else {
+        // ranking
+        updateRanking();
+
+        // 말 위치 다시 요청 (index 유지용)
+        fetch("/move_player/?steps=0") // 0칸 이동 → 위치 정보만 받아오기
+          .then(res => res.json())
+          .then(data => {
+            moveHorseTo(data.index);
+            missionBox.innerHTML = `<h3>${data.mission}</h3>`;
+          });
+        }
+    })
+    .catch(error => console.error("에러 발생:", error));
+  }
+
+  passBtn?.addEventListener("click", () => handleAction("pass"));
+  drinkBtn?.addEventListener("click", () => handleAction("drink"));
+
+  //////////////////////////////////////////////////////////////////
+/////----------랭킹------------------
+function updateRanking() {
+  fetch("/get_ranking/")
+    .then((res) => res.json())
+    .then((data) => {
+      const rankingContainer = document.querySelector(".ranking-list");
+      rankingContainer.innerHTML = data.html;
+    })
+    .catch((err) => console.error("랭킹 갱신 실패:", err));
 }
 
-passBtn?.addEventListener("click", () => handleAction("pass"));
-drinkBtn?.addEventListener("click", () => handleAction("drink"));
-
+  //////////////////////////////////////////////////////////////////
 
   // 1. 버튼 비활성화
   rollButton.addEventListener("click", () => {
