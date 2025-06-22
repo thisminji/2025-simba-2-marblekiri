@@ -51,7 +51,7 @@ body {
   box-sizing: border-box;
 }
 
-/* ✅ turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
+/* turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
 .turn-info {
   position: relative;
   display: flex;
