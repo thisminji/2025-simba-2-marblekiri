@@ -23,24 +23,30 @@ document.addEventListener("DOMContentLoaded", () => {
   // 방문한 칸 추적용 Set
   const visitedTiles = new Set();
 
-  //<< 모달 >> //
-  // 🧩 게임 종료 모달 요소 가져오기
-  const modal = document.getElementById("endGameModal");
-  const endButton = document.querySelector(".end-button");
-  const continueButton = document.querySelector(".continue-button");
+//<< 모달 >> //
+const modal = document.getElementById("endGameModal");
+const endButton = document.querySelector(".end-button");              // 상단의 "게임 종료" 버튼
+const continueButton = document.querySelector(".continue-button");    // 모달의 "이어서 진행" 버튼
+const endGameConfirmButton = document.querySelector(".end-button-modal"); // 모달의 "게임 종료" 버튼
 
-  //===================⏩ 모달 ===============================
+//===================⏩ 모달 ===============================
 
-  // 🧩 게임 종료 버튼 클릭 시 모달 표시
-  endButton?.addEventListener("click", (e) => {
-    e.preventDefault();
-    modal?.classList.remove("hidden");
-  });
+// 🧩 상단 "게임 종료" 버튼 클릭 시 → 모달 열기
+endButton?.addEventListener("click", (e) => {
+  e.preventDefault();
+  modal?.classList.remove("hidden");
+});
 
-  // 🧩 이어서 진행 클릭 시 모달 닫기
-  continueButton?.addEventListener("click", () => {
-    modal?.classList.add("hidden");
-  });
+// 🧩 모달에서 "이어서 진행" 클릭 시 → 모달 닫기
+continueButton?.addEventListener("click", () => {
+  modal?.classList.add("hidden");
+});
+
+// ✅ 모달에서 "게임 종료" 버튼 클릭 시 → 페이지 이동
+endGameConfirmButton?.addEventListener("click", () => {
+  window.location.href = "{% url 'end_game' %}";
+});
+
 
   //===================⏩ 마셔 / 통과 ==========================
   // 1) 버튼 눌렀을 때 함수 호출
