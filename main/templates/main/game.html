@@ -92,11 +92,14 @@
     </div>
     {% endif %}
 
-      <!--세인 수정, 도착한 칸의 미션 목록을 누적해서 띄우기-->
+      <!--세인 수정, 미션 목록 전체 띄우기-->
       <div class="missions">
         <h3>미션 목록</h3>
-        <oi class="mission-list">
-        </oi>
+        <ol class="mission-list">
+        {% for tile in tiles %}
+          <li>{{ tile.index |add:"1" }}. {{ tile.question.content }}</li>
+        {% endfor %}
+        </ol>
       </div>
 
       <div class="dice">
