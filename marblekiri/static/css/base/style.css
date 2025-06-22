@@ -560,9 +560,19 @@ body {
   align-self: auto !important;
 }
 
+.modal-buttons {
+  display: flex;               /* 가로 정렬 */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;                   /* 버튼 사이 간격 */
+  margin-top: 24px;
+}
+
+
 .modal-title {
   align-self: stretch;
-  color: var(--Theme-00, #2a2a2a);
+  color: black;
   text-align: center;
 
   /* Header 1 */
@@ -571,6 +581,8 @@ body {
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+
+  margin-bottom: 17px;
 }
 
 .modal-warning {
@@ -578,7 +590,7 @@ body {
   align-items: center;
   justify-content: center;
 
-  color: var(--Theme-00, #2a2a2a);
+  color: black;
   text-align: center;
 
   /* Header 3 */
@@ -592,7 +604,9 @@ body {
 .warning-icon {
   width: 32px;
   height: 32px;
+  margin-right: 3px; /* 아이콘과 텍스트 사이 간격 추가 */
 }
+
 
 .continue-button {
   background-color: #555;
@@ -603,6 +617,15 @@ body {
   cursor: pointer;
   text-align: center;
 
+display: flex;
+padding: 10px 20px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+
+  border-radius: 15px;
+background: var(--Theme-00, #2A2A2A);
+
   /* Header 2 */
   font-family: Paperlogy;
   font-size: 32px;
@@ -612,21 +635,27 @@ body {
 }
 
 .end-button-modal {
-  background-color: #ff4d4f;
-  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 20px;
   border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
+  border-radius: 15px;
+  background: #F00; /* 빨간 배경만 다르게 */
+
+  color: white;
   cursor: pointer;
   text-align: center;
 
-  /* Header 2 */
   font-family: Paperlogy;
   font-size: 32px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
 }
+
 
 .hidden {
   display: none !important;
