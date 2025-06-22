@@ -79,6 +79,11 @@ def game_page(request):
     prev_player = players[prev_index]
     next_player = players[next_index]
 
+    # 세션에 저장 (처음 로딩 시)
+    #request.session['prev_player_id'] = prev_player.id
+    #request.session['current_player_id'] = current_player.id
+    #request.session['next_player_id'] = next_player.id
+
     # 랭킹 / 상위 3명만
     ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
 
@@ -184,7 +189,6 @@ def handle_action(request):
 
         action = request.POST.get("action")
         print("▶️ 받은 action:", action)
-
         process_action(current_player, action)
 
         # ✅ ranking 리스트 생성
@@ -194,23 +198,25 @@ def handle_action(request):
             for p in ranking
         ]
 
-        #턴 담당자
-        current_index = room.current_turn_index % total_players
-        current_player = players[current_index]
-
-        prev_index = (current_index - 1) % total_players
-        next_index = (current_index + 1) % total_players
-
-        prev_player = players[prev_index]
-        next_player = players[next_index]
-
-
+        #종료조건
         is_game_over = advance_turn(room, total_players)
-
         if is_game_over:
             print("🎉 게임 종료!")
             return JsonResponse({'end_game': True})
         
+
+        # 🔁 여기서 players / index 다시 계산해야 반영됨
+        players = list(PlayerInRoom.objects.filter(room=room).order_by('turn'))  # 다시 불러오기 (선택사항)
+        new_index = room.current_turn_index % total_players
+        prev_index = (new_index - 1) % total_players
+        next_index = (new_index + 1) % total_players
+
+        # ✅ ranking 리스트 생성
+        ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
+        ranking_data = [
+            {'nickname': p.nickname, 'drink_count': p.drink_count}
+            for p in ranking
+        ]
 
         return JsonResponse({
             'end_game': False,
@@ -218,9 +224,9 @@ def handle_action(request):
             'round': room.current_round,
             'player_index': request.session.get("index", 0),  # 말 위치 업데이트할 경우 사용
             'ranking': ranking_data,
-            'prev_player': prev_player.nickname,
-            'current_player': current_player.nickname,
-            'next_player': next_player.nickname,
+            'prev_player': players[prev_index].nickname,
+            'current_player':  players[new_index].nickname,
+            'next_player': players[next_index].nickname,
         })
     
     except Exception as e:

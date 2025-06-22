@@ -1,17 +1,35 @@
 document.addEventListener("DOMContentLoaded", () => {
+  //===================1️⃣ 변수 설정==========================
   const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
+   //<<주사위 >> //
   const rollButton = document.querySelector(".roll-dice-button");
   const diceNumber = document.querySelector(".dice-number");
+
+    //<<미션 >> //
   const missionBox = document.querySelector(".mission-box");
   const missionList = document.querySelector(".mission-list");
+
+  //<<마셔 / 통과 >> //
   const passBtn = document.querySelector(".pass-btn");
   const drinkBtn = document.querySelector(".drink-btn");
 
+  const player = document.getElementById("player-data");
+  const prev = player.dataset.prev;
+  const current = player.dataset.current;
+  const next = player.dataset.next;
+  //updatePlayers(prev, current, next);
+
+  // 방문한 칸 추적용 Set
+  const visitedTiles = new Set();
+
+  //<< 모달 >> //
   // 🧩 게임 종료 모달 요소 가져오기
   const modal = document.getElementById("endGameModal");
   const endButton = document.querySelector(".end-button");
   const continueButton = document.querySelector(".continue-button");
+
+  //===================⏩ 모달 ===============================
 
   // 🧩 게임 종료 버튼 클릭 시 모달 표시
   endButton?.addEventListener("click", (e) => {
@@ -24,14 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
     modal?.classList.add("hidden");
   });
 
-  // 방문한 칸 추적용 Set
-  const visitedTiles = new Set();
-  //////////////////////////////////////////////
+  //===================⏩ 마셔 / 통과 ==========================
+  // 1) 버튼 눌렀을 때 함수 호출
   passBtn?.addEventListener("click", () => handleAction("pass"));
   drinkBtn?.addEventListener("click", () => handleAction("drink"));
 
   /////----------drink 카운트------------------
-  //마셔 / 통과
+  //2) 마셔 / 통과 함수
   function handleAction(actionType) {
     fetch("/handle_action/", {
       method: "POST",
@@ -70,8 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(error => console.error("에러 발생:", error));
   }
 
-  //////////////////////////////////////////////////////////////////
-  /////----------랭킹------------------
+    //===================⏩ 랭킹 / 라운드 / 턴 ==========================
+  /////1) ----------랭킹------------------
   function updateRanking(ranking) {
     const list = document.getElementById("ranking-list");
     list.innerHTML = "";  // 기존 삭제
@@ -97,13 +114,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //////////////////////////////////////////////////////////////////
-  /////----------라운드------------------
+  /////2) ----------라운드------------------
   function updateRound(round) {
     console.log("👉 Round update:", round);
     document.getElementById("turn-number").textContent = round;
   }
 
-  /////----------턴 담당자------------------
+  /////3) ----------턴 플레이어------------------
   function updatePlayers(prev, current, next) {
     console.log("👉 Player update:", prev, " / ", current, " / ", next);
     document.getElementById("prev-player").textContent = prev;
@@ -111,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("next-player").textContent = next;
   }
 
-  //////////////////////////////////////////////////////////////////
+   //===================⏩ 주사위==========================
   /////---------- 주사위 ------------------
   // 1. 버튼 비활성화
   rollButton.addEventListener("click", () => {
@@ -129,14 +146,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const final = Math.floor(Math.random() * 6) + 1;
         diceNumber.textContent = final;
 
-        // 세인 수정 부분, fetch 서버로 주사위 결과 전송
+        // fetch 서버로 주사위 결과 전송
         fetch(`/move_player/?steps=${final}`)
           .then(response => {
             if (!response.ok) throw new Error("서버 응답 오류");
             return response.json();
           })
-          .then(data => { //미션 내용 화면에 표시
+          .then(data => { 
+            //말이동
             moveHorseTo(data.index);
+
+            //미션 내용 화면에 표시
             missionBox.innerHTML = `
               <h3>${data.mission ? data.mission : "에러"}</h3>
             `;
@@ -161,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 80);
   });
 
-    //////////////////////////////////////////////////////////////////
+    //===================⏩ 말==========================
     // 타일 위치 가져오기 & 말 이동 함수
   function moveHorseTo(index) {
     console.log("👉 말 이동 함수 실행됨, index:", index);
