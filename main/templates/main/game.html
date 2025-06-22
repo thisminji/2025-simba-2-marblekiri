@@ -87,8 +87,8 @@
 
       <div class="action-buttons">
         <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        <button class="pass-btn" data-action="pass">통과!</button>
-        <button class="drink-btn" data-action="drink">마셔!</button>
+        <button class="pass-btn" data-action="pass" disabled>통과!</button>
+        <button class="drink-btn" data-action="drink" disabled>마셔!</button>
       </div>
     </div>
 
@@ -98,22 +98,6 @@
       <div class="ranking">
         <h3 class="ranking-title">많이 마신 사람</h3>
         <ul class="ranking-list" id="ranking-list">
-          <!-- /////////////// js 로 넣었습니다 /////////////
-            {% for player in ranking|slice:":3" %}
-          <li
-            class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}"
-          >
-            {% if forloop.counter == 1 %}
-            <img src="{% static 'assets/icons/noto_1st-place-medal.svg' %}" alt="1등 메달" />
-            {% elif forloop.counter == 2 %}
-            <img src="{% static 'assets/icons/noto_2nd-place-medal.svg' %}" alt="2등 메달" />
-            {% elif forloop.counter == 3 %}
-            <img src="{% static 'assets/icons/noto_3rd-place-medal.svg' %}" alt="3등 메달" />
-            {% endif %}
-            <span>{{ player.nickname }} ({{ player.drink_count }}잔)</span>
-          </li>
-          {% endfor %}
-          -->
         </ul>
       </div>
       {% endif %}

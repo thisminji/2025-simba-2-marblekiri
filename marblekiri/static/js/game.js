@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const rollButton = document.querySelector(".roll-dice-button");
   const diceNumber = document.querySelector(".dice-number");
 
+  // 버튼 연결 확인
+  if (!rollButton) {
+    console.error("❌ 버튼 요소를 찾을 수 없습니다.");
+    return;
+  }
+
     //<<미션 >> //
   const missionBox = document.querySelector(".mission-box");
   const missionList = document.querySelector(".mission-list");
@@ -13,12 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   //<<마셔 / 통과 >> //
   const passBtn = document.querySelector(".pass-btn");
   const drinkBtn = document.querySelector(".drink-btn");
-
-  const player = document.getElementById("player-data");
-  const prev = player.dataset.prev;
-  const current = player.dataset.current;
-  const next = player.dataset.next;
-  //updatePlayers(prev, current, next);
 
   // 방문한 칸 추적용 Set
   const visitedTiles = new Set();
@@ -82,6 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
             moveHorseTo(data.index);
             missionBox.innerHTML = `<h3>${data.mission}</h3>`;
           });
+
+        // 마셔 / 통과 누른 후 다시 비활성화
+        passBtn.disabled = true;
+        drinkBtn.disabled = true;
+
+        //주사위 활성화
+        rollButton.disabled = false;
       }
     })
     .catch(error => console.error("에러 발생:", error));
@@ -131,7 +138,15 @@ document.addEventListener("DOMContentLoaded", () => {
    //===================⏩ 주사위==========================
   /////---------- 주사위 ------------------
   // 1. 버튼 비활성화
+
+  let isRolling = false;
+
   rollButton.addEventListener("click", () => {
+    if (isRolling) return; // 주사위 굴리는 중이면 무시
+    if (rollButton.disabled) return;
+
+    isRolling = true;
+    console.log("🎲 주사위 시작");
     rollButton.disabled = true;
 
     // 2. 가짜 굴림 애니메이션 (랜덤 10번 바꿈)
@@ -168,6 +183,11 @@ document.addEventListener("DOMContentLoaded", () => {
               li.textContent = `${data.index + 1}. ${data.mission}`;
               missionList.appendChild(li);
             }
+
+            // 주사위 굴린 후 → 마셔 / 통과 버튼 활성화
+            passBtn.disabled = false;
+            drinkBtn.disabled = false;
+
           })
           .catch(error => {
             console.error("에러:", error);
@@ -175,7 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
           })
           .finally(() => {
             //다시 주사위 버튼 활성화
-            rollButton.disabled = false;
+            console.log("✅ 주사위 끝");
+            isRolling = false; // 🔓 다음 클릭 허용
           });
       }
     }, 80);
@@ -192,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
 
     const rect = tile.getBoundingClientRect();
-    console.log("top:", rect.top, "left:", rect.left);
+    //console.log("top:", rect.top, "left:", rect.left);
 
     const tileRect = tile.getBoundingClientRect();
     const gridRect = document.querySelector('.tiles-grid').getBoundingClientRect();
@@ -200,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 타일 위치를 기준으로 horse 아이콘의 위치 설정
     const offsetX = tileRect.left - gridRect.left;
     const offsetY = tileRect.top - gridRect.top;
-    console.log("📍 offsetX:", offsetX, "offsetY:", offsetY);
+    //console.log("📍 offsetX:", offsetX, "offsetY:", offsetY);
 
     horse.style.left = `${offsetX + 10}px`;
     horse.style.top = `${offsetY - 50}px`;
