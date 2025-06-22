@@ -92,26 +92,24 @@
     </div>
     {% endif %}
 
-    <div class="missions">
-      <h3>미션 목록</h3>
-      <ol>
-        {% for tile in tiles %}
-          <li>{{ tile.question.content }}</li>
-        {% endfor %}
-      </ol>
-    </div>
+      <!--세인 수정, 도착한 칸의 미션 목록을 누적해서 띄우기-->
+      <div class="missions">
+        <h3>미션 목록</h3>
+        <oi class="mission-list">
+        </oi>
+      </div>
 
-    <div class="dice">
-      <div class="dice-roll-container">
-        <div class="dice-number-box">
-          <div class="dice-circle">
-            <span class="dice-number">5</span>
+      <div class="dice">
+        <div class="dice-roll-container">
+          <div class="dice-number-box">
+            <div class="dice-circle">
+              <span class="dice-number">5</span>
+            </div>
           </div>
+          <button class="roll-dice-button">주사위 굴리기</button>
         </div>
-        <button class="roll-dice-button">주사위 굴리기</button>
       </div>
     </div>
-
   </div>
 
   <script src="{% static 'js/game.js' %}"></script>
