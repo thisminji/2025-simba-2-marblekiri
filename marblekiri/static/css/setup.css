@@ -4,6 +4,21 @@
   font-weight: 200;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-6SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-8ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
 .setup-page {
   display: flex;
   flex-direction: row;
@@ -13,10 +28,32 @@
 }
 
 body {
-  background: linear-gradient(to bottom right, #ffa726, #fb8c00);
+  background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
   color: white;
   /* text-align: center; */
+  height: 100vh;
   padding: 2rem;
+  transition: background 0.6s ease-in-out;
+}
+
+body.hover-college,
+body.selected-college {
+  background: linear-gradient(0deg, #FF850B, #FFB200);
+}
+
+body.hover-sports,
+body.selected-sports {
+  background: linear-gradient(90deg, #1FB230, #4CC85A);
+}
+
+body.hover-idol,
+body.selected-idol {
+  background: linear-gradient(90deg, #812FA7, #8A49D5);
+}
+
+body.hover-custom,
+body.selected-custom {
+  background: linear-gradient(270deg, #E22D2D, #DB3445);
 }
 
 .title {
@@ -61,8 +98,41 @@ body {
   background: var(--Main-Gray-2, #c3c3c3);
 }
 
+/* hover 및 선택 시 효과 */
+.theme-category-container[data-value="college"]:hover,
+.theme-category-container.selected[data-value="college"] {
+  border-radius: 10px;
+  border: 3px solid #000;
+  background: var(--Grad-Orange, linear-gradient(0deg, #FF850B 0%, #FFB200 100%));
+}
+.theme-category-container[data-value="sports"]:hover,
+.theme-category-container.selected[data-value="sports"] {
+  border-radius: 10px;
+  border: 3px solid #000;
+  background: var(--Grad-Green, linear-gradient(90deg, #1FB230 0%, #4CC85A 100%));
+}
+.theme-category-container[data-value="idol"]:hover,
+.theme-category-container.selected[data-value="idol"] {
+  border-radius: 10px;
+  border: 3px solid #000;
+  background: var(--Grad-Purple, linear-gradient(90deg, #812FA7 0%, #8A49D5 100%));
+}
+.theme-category-container[data-value="custom"]:hover,
+.theme-category-container.selected[data-value="custom"] {
+  border-radius: 10px;
+  border: 3px solid var(--Main-Black, #2A2A2A);
+  background: var(--Grad-Red, linear-gradient(270deg, #E22D2D 0%, #DB3445 100%));
+}
+
 .theme-category {
-  color: black;
+  color: #FFF;
+  font-family: Paperlogy;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  width: 64px;
+  padding: 60px 239px 12px 18px;
 }
 
 /* 인원 설정 전체 박스 */
@@ -160,4 +230,63 @@ body {
 
 .add-btn:hover {
   background-color: #eee;
+}
+
+/* 게임 설정 */
+.toggle-label {
+  display: flex;
+  width: 352px;
+  height: 84px;
+  padding: 24px 25px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 20px;
+  border: 2px solid var(--Main-Disabled-2, #E8E8E8);
+  background: #FFF;   
+  color: #000;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+/* 토글 스위치 커스텀 */
+.toggle-label input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-label .slider {
+  width: 70px;
+  height: 36px;
+  background-color: #ccc;
+  border-radius: 50px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.toggle-label .slider::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 1px;
+  top: 1px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+/* 체크됐을 때 토글 애니메이션 */
+.toggle-label input:checked + .slider {
+  background-color: #21cf71;
+}
+
+.toggle-label input:checked + .slider::before {
+  transform: translateX(20px);
 }
