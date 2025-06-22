@@ -31,8 +31,12 @@
           <!-- 버튼을 a 태그에서 분리 -->
           <button class="end-button">게임 종료</button>
         </div>
-        <p class="players">
-          <span id="prev-player" style="color: #ccc">
+        <p id="player-data" class="players"
+          data-prev="{{ prev_player.nickname|escapejs }}"
+          data-current="{{ current_player.nickname|escapejs }}"
+          data-next="{{ next_player.nickname|escapejs }}">
+
+          <span id="prev-player" style="color: #ccc"> 
             {{ prev_player.nickname }}
           </span>
           <span id="current-player" style="color: #000; font-weight: bold; margin: 0 20px">
