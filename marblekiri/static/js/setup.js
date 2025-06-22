@@ -59,21 +59,34 @@ document.addEventListener("DOMContentLoaded", function () {
 function addPlayer() {
   const list = document.getElementById("player-list");
   const count = list.children.length + 1;
+  console.log("add/현재 인원 수:", list.children.length);
 
-  const div = document.createElement("div");
-  div.className = "player-entry";
-  div.innerHTML = `
-      <span class="player-number">${count}.</span>
-      <input type="text" name="players[]" placeholder="성이름" required />
-      <button type="button" class="remove-btn" onclick="removePlayer(this)">-</button>
-    `;
-  list.appendChild(div);
+  // 최대 10명까지만 추가 가능하도록!
+  if (list.children.length > 9) {
+    alert("최대 10명의 플레이어까지 가능합니다!");
+  }else{
+    const div = document.createElement("div");
+    div.className = "player-entry";
+    div.innerHTML = `
+        <span class="player-number">${count}.</span>
+        <input type="text" name="players[]" placeholder="성이름" required />
+        <button type="button" class="remove-btn" onclick="removePlayer(this)">-</button>
+      `;
+    list.appendChild(div);
+  }
 }
 
 function removePlayer(button) {
   const list = document.getElementById("player-list");
-  button.parentElement.remove();
-  Array.from(list.children).forEach((entry, index) => {
-    entry.querySelector(".player-number").textContent = `${index + 1}.`;
-  });
+  console.log("현재 인원 수:", list.children.length);
+  
+  // 최소 1명 이상일 때만 삭제 가능하도록!
+  if (list.children.length > 1) {
+      button.parentElement.remove();
+      Array.from(list.children).forEach((entry, index) => {
+        entry.querySelector(".player-number").textContent = `${index + 1}.`;
+      });
+    } else {
+      alert("최소 1명의 플레이어는 필요합니다!");
+    }
 }
