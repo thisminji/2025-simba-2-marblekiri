@@ -8,7 +8,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const passBtn = document.querySelector(".pass-btn");
   const drinkBtn = document.querySelector(".drink-btn");
 
-  
+  // 🧩 게임 종료 모달 요소 가져오기
+  const modal = document.getElementById("endGameModal");
+  const endButton = document.querySelector(".end-button");
+  const continueButton = document.querySelector(".continue-button");
+
+  // 🧩 게임 종료 버튼 클릭 시 모달 표시
+  endButton?.addEventListener("click", (e) => {
+    e.preventDefault();
+    modal?.classList.remove("hidden");
+  });
+
+  // 🧩 이어서 진행 클릭 시 모달 닫기
+  continueButton?.addEventListener("click", () => {
+    modal?.classList.add("hidden");
+  });
+
   // 방문한 칸 추적용 Set
   const visitedTiles = new Set();
   //////////////////////////////////////////////
@@ -26,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       body: `action=${actionType}`
     })
-    
     .then(res => {
       if (!res.ok) throw new Error("❌ 서버 응답 오류");
 
@@ -42,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateRound(data.round);
         //player
         updatePlayers(data.prev_player, data.current_player, data.next_player);
-        
+
         //hourse
         // 말 위치 다시 요청 (index 유지용)
         fetch("/move_player/?steps=0") // 0칸 이동 → 위치 정보만 받아오기
@@ -51,60 +65,54 @@ document.addEventListener("DOMContentLoaded", () => {
             moveHorseTo(data.index);
             missionBox.innerHTML = `<h3>${data.mission}</h3>`;
           });
-        }
+      }
     })
     .catch(error => console.error("에러 발생:", error));
   }
 
   //////////////////////////////////////////////////////////////////
-/////----------랭킹------------------
-function updateRanking(ranking) {
-  const list = document.getElementById("ranking-list");
-  list.innerHTML = "";  // 기존 삭제
+  /////----------랭킹------------------
+  function updateRanking(ranking) {
+    const list = document.getElementById("ranking-list");
+    list.innerHTML = "";  // 기존 삭제
 
-  ranking.forEach((player, i) => {
-    const li = document.createElement("li");
-    li.classList.add("rank-card");
-    if (i === 0) li.classList.add("first");
-    else if (i === 1) li.classList.add("second");
-    else if (i === 2) li.classList.add("third");
+    ranking.forEach((player, i) => {
+      const li = document.createElement("li");
+      li.classList.add("rank-card");
+      if (i === 0) li.classList.add("first");
+      else if (i === 1) li.classList.add("second");
+      else if (i === 2) li.classList.add("third");
 
-    const img = document.createElement("img");
-    img.src = `/static/assets/icons/noto_${i + 1}-place-medal.svg`;
-    img.alt = `${i + 1}등 메달`;
+      const img = document.createElement("img");
+      img.src = `/static/assets/icons/noto_${i + 1}-place-medal.svg`;
+      img.alt = `${i + 1}등 메달`;
 
-    const span = document.createElement("span");
-    span.textContent = `${player.nickname} (${player.drink_count}잔)`;
+      const span = document.createElement("span");
+      span.textContent = `${player.nickname} (${player.drink_count}잔)`;
 
-    li.appendChild(img);
-    li.appendChild(span);
-    list.appendChild(li);
-  });
+      li.appendChild(img);
+      li.appendChild(span);
+      list.appendChild(li);
+    });
+  }
 
-  //fetch("/get_ranking/")
-  //  .then((res) => res.json())
-  //  .then((data) => {
-  //    const rankingContainer = document.querySelector(".ranking-list");
-  //    rankingContainer.innerHTML = data.html;
-  //  })
-  //  .catch((err) => console.error("랭킹 갱신 실패:", err));
-}
-
-////////////////////////////////////////////////////////////////////
-/////----------라운드------------------
-function updateRound(round) {
-  console.log("👉 Round update:", round);
-  document.getElementById("turn-number").textContent = round;
-}
-/////----------턴 담당자------------------
-function updatePlayers(prev, current, next) {
-  console.log("👉 Player update:", prev, " / ",current, " / ", next);
-  document.getElementById("prev-player").textContent = prev;
-  document.getElementById("current-player").textContent = current;
-  document.getElementById("next-player").textContent = next;
-}
   //////////////////////////////////////////////////////////////////
-/////---------- 주사위 ------------------
+  /////----------라운드------------------
+  function updateRound(round) {
+    console.log("👉 Round update:", round);
+    document.getElementById("turn-number").textContent = round;
+  }
+
+  /////----------턴 담당자------------------
+  function updatePlayers(prev, current, next) {
+    console.log("👉 Player update:", prev, " / ", current, " / ", next);
+    document.getElementById("prev-player").textContent = prev;
+    document.getElementById("current-player").textContent = current;
+    document.getElementById("next-player").textContent = next;
+  }
+
+  //////////////////////////////////////////////////////////////////
+  /////---------- 주사위 ------------------
   // 1. 버튼 비활성화
   rollButton.addEventListener("click", () => {
     rollButton.disabled = true;
@@ -153,28 +161,3 @@ function updatePlayers(prev, current, next) {
     }, 80);
   });
 });
-
-////////////////////////////////////////////////////////////////////////////////////
-// 타일 위치 가져오기 & 말 이동 함수
-function moveHorseTo(index) {
-  console.log("👉 말 이동 함수 실행됨, index:", index);
-
-  const tile = document.querySelector(`.tile[data-index = "${index}"]`)
-  const horse = document.getElementById('horse-icon');
-  if (!tile || !horse) 
-    return;
-  
-  const rect = tile.getBoundingClientRect();
-  console.log("top:", rect.top, "left:", rect.left);
-
-  const tileRect = tile.getBoundingClientRect();
-  const gridRect = document.querySelector('.tiles-grid').getBoundingClientRect();
-
-  // 타일 위치를 기준으로 horse 아이콘의 위치 설정
-  const offsetX = tileRect.left - gridRect.left;
-  const offsetY = tileRect.top - gridRect.top;
-  console.log("📍 offsetX:", offsetX, "offsetY:", offsetY);
-
-  horse.style.left = `${offsetX + 10}px`;
-  horse.style.top = `${offsetY - 50}px`;
-}

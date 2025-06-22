@@ -28,9 +28,8 @@
           <p>
             현재 턴 : <span id="turn-number" class="turn-number">{{ current_round }}</span>바퀴
           </p>
-          <a href="{% url 'end_game' %}">
-            <button class="end-button">게임 종료</button>
-          </a>
+          <!-- 버튼을 a 태그에서 분리 -->
+          <button class="end-button">게임 종료</button>
         </div>
         <p class="players">
           <span id="prev-player" style="color: #ccc">
@@ -47,6 +46,7 @@
 
       <!-- 게임 타일 그리드 -->
       <div class="tiles-grid">
+        <!-- 타일 목록 생략 -->
         <div class="tile" data-index="10">11</div>
         <div class="tile" data-index="9">10</div>
         <div class="tile" data-index="8">9</div>
@@ -81,24 +81,12 @@
         />
       </div>
 
-    <!--
       <div class="action-buttons">
-      <form method="POST" action="{% url 'handle_action' %}">
-        {% csrf_token %}
-        <button type="submit" name="action" value="pass" class="pass-btn">통과!</button>
-      </form>
-      <form method="POST" action="{% url 'handle_action' %}">
-        {% csrf_token %}
-        <button type="submit" name="action" value="drink" class="drink-btn">마셔!</button>
-      </form>
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <button class="pass-btn" data-action="pass">통과!</button>
+        <button class="drink-btn" data-action="drink">마셔!</button>
+      </div>
     </div>
-    -->
-    <div class="action-buttons">
-      <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-      <button class="pass-btn" data-action="pass">통과!</button>
-      <button class="drink-btn" data-action="drink">마셔!</button>
-    </div>
-  </div>
 
     <!-- 오른쪽: 사이드바 -->
     <div class="sidebar">
@@ -112,20 +100,11 @@
             class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}"
           >
             {% if forloop.counter == 1 %}
-            <img
-              src="{% static 'assets/icons/noto_1st-place-medal.svg' %}"
-              alt="1등 메달"
-            />
+            <img src="{% static 'assets/icons/noto_1st-place-medal.svg' %}" alt="1등 메달" />
             {% elif forloop.counter == 2 %}
-            <img
-              src="{% static 'assets/icons/noto_2nd-place-medal.svg' %}"
-              alt="2등 메달"
-            />
+            <img src="{% static 'assets/icons/noto_2nd-place-medal.svg' %}" alt="2등 메달" />
             {% elif forloop.counter == 3 %}
-            <img
-              src="{% static 'assets/icons/noto_3rd-place-medal.svg' %}"
-              alt="3등 메달"
-            />
+            <img src="{% static 'assets/icons/noto_3rd-place-medal.svg' %}" alt="3등 메달" />
             {% endif %}
             <span>{{ player.nickname }} ({{ player.drink_count }}잔)</span>
           </li>
@@ -152,7 +131,23 @@
         </div>
       </div>
     </div>
-  </div>
+
+    <!-- 게임 종료 모달 -->
+    <div id="endGameModal" class="modal hidden">
+      <div class="modal-box">
+        <h2 class="modal-title">게임을 종료하시겠습니까?</h2>
+        <p class="modal-warning">
+          <img src="{% static 'assets/icons/warning-icon.svg' %}" alt="경고" class="warning-icon" />
+          진행중인 내용은 저장되지 않습니다.
+        </p>
+        <div class="modal-buttons">
+          <button class="continue-button">이어서 진행</button>
+          <a href="{% url 'end_game' %}">
+            <button class="end-button-modal">게임 종료</button>
+          </a>
+        </div>
+      </div>
+    </div>
 
   <script src="{% static 'js/game.js' %}">  </script>
 </body>
