@@ -7,8 +7,64 @@
 
 @font-face {
   font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-1Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
   src: url("/static/fonts/Paperlogy-2ExtraLight.woff2") format("woff2");
   font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-3Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-4Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-5Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-6SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-7Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-8ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-9Black.woff2") format("woff2");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -51,7 +107,7 @@ body {
   box-sizing: border-box;
 }
 
-/* ✅ turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
+/* turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
 .turn-info {
   position: relative;
   display: flex;
@@ -86,8 +142,15 @@ body {
   border: none;
   border-radius: 10px;
   padding: 8px 16px;
-  font-size: 14px;
+
   cursor: pointer;
+
+  /* Header 3 */
+  font-family: Paperlogy;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .players {
@@ -96,13 +159,13 @@ body {
   margin-top: 4px;
   text-align: center;
   font-family: "Paperlogy";
+  font-weight: 700; /* Paperlogy-7Bold */
 }
 
 .tiles-grid {
   display: grid;
-  grid-template-columns: repeat(7, 80px);
-  grid-template-rows: repeat(5, 80px);
-  gap: 8px;
+  grid-template-columns: repeat(7, 100px);
+  grid-template-rows: repeat(5, 100px);
   justify-content: center;
   align-content: center;
   margin: 0 auto;
@@ -111,17 +174,21 @@ body {
 }
 
 .tile {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   background-color: #ff8801;
   color: white;
-  font-weight: bold;
-  font-size: 30px;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
 }
 
 .empty {
@@ -140,18 +207,43 @@ body {
   padding: 12px 24px;
   border: none;
   border-radius: 15px;
-  font-size: 18px;
-  font-weight: bold;
   color: white;
   cursor: pointer;
+
+  color: #fff;
+  text-align: center;
+
+  /* Header 2 */
+  font-family: Paperlogy;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
 }
 
 .pass-btn {
   background-color: #2a2a2a;
+  display: flex;
+  width: 199px;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: var(--Main-Gray, #939393);
 }
 
 .drink-btn {
-  background-color: #ff8801;
+  display: flex;
+  width: 199px;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #fe2600;
 }
 
 /****************************
@@ -183,7 +275,7 @@ body {
 .ranking-title {
   color: var(--Theme-00, #2a2a2a);
   text-align: center;
-  font-family: "Paperlogy";
+  font-family: "Partial Sans KR";
   font-size: 40px;
   font-style: normal;
   font-weight: 400;
@@ -197,7 +289,14 @@ body {
   padding: 0;
   margin: 0;
   list-style: none;
-  font-family: "Paperlogy", sans-serif;
+
+  color: #000;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
 }
 
 .rank-card {
@@ -220,7 +319,7 @@ body {
         미션 목록
 *****************************/
 .missions {
-  height: 600px;
+  height: 419px;
 }
 
 .missions h3 {
@@ -241,10 +340,23 @@ body {
   font-size: 16px;
   line-height: 1.8;
   color: #222;
+
+  color: var(--Main-Black, #2a2a2a);
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
 }
 
 .missions ol li {
-  font-weight: 500;
+  width: 271px;
+  color: #000;
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
 }
 
 /****************************
@@ -284,27 +396,33 @@ body {
 }
 
 .roll-dice-button {
+  border-radius: 15px;
   background: var(--Theme-00, #2a2a2a);
+
   color: #fff;
   text-align: center;
-  font-family: "Paperlogy", "Pretendard", sans-serif;
-  font-size: 20px;
-  font-weight: 800;
+
   height: 72px;
   padding: 10px 20px;
   border: none;
-  border-radius: 15px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-color 0.2s ease;
+  text-align: center;
+
+  /* Header 2 */
+  font-family: Paperlogy;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
 }
 
 .roll-dice-button:hover {
   background-color: #444;
 }
-
 
 /* 연희 수정 / 말 */
 .horse {
@@ -315,8 +433,8 @@ body {
 }
 /* 연희 수정 / 미션 */
 .mission-box {
-  grid-column: 2 / span 5;    /* 가운데 위치 잡기 (3번째 칸부터 3칸 차지) */
-  grid-row: 2 /span 3;                /* 3번째 행에 위치 */
+  grid-column: 2 / span 5; /* 가운데 위치 잡기 (3번째 칸부터 3칸 차지) */
+  grid-row: 2 / span 3; /* 3번째 행에 위치 */
   background-color: #fff;
   border-radius: 0px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
