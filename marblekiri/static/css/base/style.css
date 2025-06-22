@@ -71,17 +71,15 @@
 /* 공통 스타일 */
 body {
   margin: 0;
-  padding: 0;
-  font-family: "Gugi", sans-serif;
-  background: var(
-    --Grad-Orange,
-    linear-gradient(0deg, #ff850b 0%, #ffb200 100%)
-  );
+  padding: 40px;
+  background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
   height: 100vh;
   overflow: hidden;
   display: flex;
+  gap: 24px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  box-sizing: border-box;
 }
 
 .game-container {
@@ -92,19 +90,29 @@ body {
   border-radius: 20px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
   overflow: hidden;
+
+  display: flex;
+  width: 95vw;
+  height: 90vh;
+  max-width: 1280px;
+  max-height: 720px;
+  gap: 24px;
 }
 
 /****************************
          게임 보드
 *****************************/
 .board {
-  flex: 3;
+  flex-shrink: 0;
   background-color: white;
+  border-radius: 20px;
   padding: 20px;
+  box-sizing: border-box;
+  flex: 2;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-sizing: border-box;
 }
 
 /* turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
@@ -166,16 +174,20 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 100px);
   grid-template-rows: repeat(5, 100px);
+  width: 700px;
+  height: 500px;
   justify-content: center;
   align-content: center;
   margin: 0 auto;
-  flex-grow: 1;
   position: relative;
 }
 
 .tile {
   width: 100px;
   height: 100px;
+  font-size: 50px;
+  font-weight: 800;
+  font-family: "Paperlogy";
   background-color: #ff8801;
   color: white;
   border-radius: 10px;
@@ -183,12 +195,6 @@ body {
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  font-family: Paperlogy;
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
 }
 
 .empty {
@@ -250,17 +256,13 @@ body {
          사이드바
 *****************************/
 .sidebar {
-  flex: 1.2;
-  background: var(
-    --Grad-Orange,
-    linear-gradient(0deg, #ff850b 0%, #ffb200 100%)
-  );
+  flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 16px;
-  box-sizing: border-box;
   gap: 16px;
+  flex-shrink: 0;
+  padding: 8px 0;
 }
 
 .ranking,
@@ -268,8 +270,29 @@ body {
 .dice {
   background-color: #fff;
   border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ranking {
+    flex: 0 0 22%;
+  min-height: 0; /* flex 높이 계산 시 overflow 방지 */
+}
+
+.missions {
+   flex: 1 1 auto;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.dice {
+   flex: 0 0 90px;
+  min-height: 100;
   padding: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ranking-title {
@@ -459,5 +482,3 @@ body {
 .mission-list {
   list-style-type: none; /* 숫자 제거 */
 }
-
-
