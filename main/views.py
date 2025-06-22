@@ -234,8 +234,12 @@ def get_ranking(request):
     room_id = request.session.get('room_id')
     room = GameRoom.objects.get(id=room_id)
     players = PlayerInRoom.objects.filter(room=room).order_by('-drink_count')
-    ranking_html = render_to_string('main/partial_ranking.html', {'ranking': players})
-    return JsonResponse({'html': ranking_html})
+    # JSON으로 변환
+    data = [
+        {'nickname': p.nickname, 'drink_count': p.drink_count}
+        for p in players
+    ]
+    return JsonResponse({'ranking': data})
 
 ########################### 🔹 커스텀 질문 ############################
 ### 커스텀 질문 입력 화면
