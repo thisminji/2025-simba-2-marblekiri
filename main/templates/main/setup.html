@@ -8,7 +8,7 @@
     <script defer src="{% static 'js/setup.js' %}"></script>
   </head>
 
-  <body class="setup-page">
+  <body class="theme-{{ theme }}">
     <form id="gameForm" method="POST" action="{% url 'game_start' %}">
       {% csrf_token %}
 

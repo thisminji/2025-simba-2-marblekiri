@@ -48,6 +48,8 @@ containers.forEach((el) => {
   });
 });
 
+
+// 테마 이동
 function clearThemeClasses() {
   themes.forEach((t) => {
     body.classList.remove(`hover-${t}`, `selected-${t}`);
@@ -79,7 +81,7 @@ document
     }
 
     // 커스텀 테마면 redirect
-    if (theme === "custom") {
+    if (theme == "custom") {
       event.preventDefault();
       window.location.href = "/custom_questions/";
     }
