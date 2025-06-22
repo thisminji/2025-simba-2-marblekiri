@@ -22,11 +22,11 @@
 
   </style>
 </head>
-<body>
+<body class = "theme-custom">
   <h1>질문 입력</h1>
   <p>질문은 60자 이내로 자유롭게 적어주세요.<br>4구역의 준비가 모두 완료되면 자동으로 게임이 시작됩니다.</p>
 
-   <div class="container">
+  <div class="container">
     {% for player in "ABCD" %}
       <div class="panel" id="panel-{{ player }}">
         <h2>{{ player }}</h2>

@@ -25,6 +25,8 @@ def get_random_questions(theme, count):
 def game_start(request):
     if request.method == "POST":
         theme = request.POST.get('theme')
+        request.session['theme'] = theme  # ✅ 세션에 저장
+
         # custom이면 세션에 저장된 목록, 그 외는 폼에서 가져오기
         if theme == 'custom':
             player_names = request.session.get('players', [])
@@ -58,6 +60,7 @@ def game_start(request):
         # room_id 세션에 저장 → 게임 상태 관리용
         request.session['room_id'] = room.id
         request.session["index"] = 0 # 게임 시작 시 위치 1으로 초기화
+
         return redirect('game')
 
 ########################### 🔹 게임 진행 ############################
@@ -65,6 +68,7 @@ def game_start(request):
 def game_page(request):
     room_id = request.session.get('room_id')
     room = GameRoom.objects.get(id=room_id)
+    theme = request.session.get('theme')
     players = list(PlayerInRoom.objects.filter(room=room).order_by('turn'))
     total_players = len(players)
     show_ranking = request.session.get('show_ranking', True)
@@ -78,11 +82,6 @@ def game_page(request):
 
     prev_player = players[prev_index]
     next_player = players[next_index]
-
-    # 세션에 저장 (처음 로딩 시)
-    #request.session['prev_player_id'] = prev_player.id
-    #request.session['current_player_id'] = current_player.id
-    #request.session['next_player_id'] = next_player.id
 
     # 랭킹 / 상위 3명만
     ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
@@ -101,6 +100,7 @@ def game_page(request):
     return render(request, 'main/game.html', {
         'tiles': tiles,
         'players': players,
+        'theme' : theme,
         'current_player': current_player,
         'prev_player': prev_player,
         'next_player': next_player,
@@ -250,12 +250,16 @@ def get_ranking(request):
 ########################### 🔹 커스텀 질문 ############################
 ### 커스텀 질문 입력 화면
 def custom_questions(request):
+    theme = request.session.get('theme')
     players = request.GET.getlist('players')
     if players:
         # 커스텀 인원 세션 저장
         request.session['players'] = players
     print(request.GET.getlist('players'))
-    return render(request, 'main/custom_questions.html', {'players': players})
+    return render(request, 'main/custom_questions.html', 
+    {'players': players,
+    'theme' : theme, }
+    )
 
 ### 커스텀 질문 등록 + 세션에 인원 저장
 def submit_ready(request, zone_code):
@@ -280,7 +284,10 @@ def submit_ready(request, zone_code):
 ########################### 🔹 게임 종료 처리 ############################
 ### 결과 요약 화면 (데이터 없이 접근 시 예비용)
 def result_page(request):
-    return render(request, 'main/result.html')
+    theme = request.session.get('theme')
+    return render(request, 'main/result.html',{
+        'theme' : theme,
+    })
 
 ### 게임 종료 처리 → 기록 정리 + 요약 정보 전달
 def end_game(request):
@@ -310,6 +317,9 @@ def end_game(request):
     ranking_data = [(p.nickname, p.drink_count) for p in players]
     round_count = room.current_round
 
+    #테마
+    theme = request.session.get('theme')
+
     # DB 삭제
     Tile.objects.filter(room=room).delete()
     PlayerInRoom.objects.filter(room=room).delete()
@@ -321,6 +331,7 @@ def end_game(request):
 
     return render(request, 'main/result.html', {
         'room': room,
+        'theme' : theme,
         'ranking': ranking_data,
         'play_time': play_time_text,
         'round_count': round_count,
