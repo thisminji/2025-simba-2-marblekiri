@@ -452,3 +452,8 @@ body {
   max-height: 150px;
   overflow-y: auto;
 }
+
+/*세인 수정 - 미션 목록*/
+.mission-list {
+  list-style-type: none; /* 숫자 제거 */
+}

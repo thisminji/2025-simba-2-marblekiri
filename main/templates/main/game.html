@@ -126,12 +126,22 @@
       </div>
       {% endif %}
 
+<<<<<<< HEAD
       <div class="missions">
         <h3>미션 목록</h3>
         <ol>
           {% for tile in tiles %}
           <li>{{ tile.question.content }}</li>
           {% endfor %}
+=======
+      <!--세인 수정, 미션 목록 전체 띄우기-->
+      <div class="missions">
+        <h3>미션 목록</h3>
+        <ol class="mission-list">
+        {% for tile in tiles %}
+          <li>{{ tile.index |add:"1" }}. {{ tile.question.content }}</li>
+        {% endfor %}
+>>>>>>> upstream/main
         </ol>
       </div>
 
@@ -146,7 +156,14 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
 
     <script src="{% static 'js/game.js' %}"></script>
   </body>
+=======
+  </div>
+
+  <script src="{% static 'js/game.js' %}"></script>
+</body>
+>>>>>>> upstream/main
 </html>

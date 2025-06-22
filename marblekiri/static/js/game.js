@@ -2,6 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const rollButton = document.querySelector(".roll-dice-button");
   const diceNumber = document.querySelector(".dice-number");
   const missionBox = document.querySelector(".mission-box");
+  const missionList = document.querySelector(".mission-list");
+
+  // 방문한 칸 추적용 Set
+  const visitedTiles = new Set();
 
   // 페이지 로드시 1번 타일에 말 배치
   moveHorseTo(0);
@@ -31,8 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
           .then(data => { //미션 내용 화면에 표시
             moveHorseTo(data.index);
             missionBox.innerHTML = `
-              <h3>${data.mission ? data.mission : "에러"}</p>
+              <h3>${data.mission ? data.mission : "에러"}</h3>
             `;
+
           })
           .catch(error => {
             console.error("에러:", error);
