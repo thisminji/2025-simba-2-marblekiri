@@ -2,6 +2,107 @@ document.addEventListener("DOMContentLoaded", () => {
   const rollButton = document.querySelector(".roll-dice-button");
   const diceNumber = document.querySelector(".dice-number");
   const missionBox = document.querySelector(".mission-box");
+  const missionList = document.querySelector(".mission-list");
+  const passBtn = document.querySelector(".pass-btn");
+  const drinkBtn = document.querySelector(".drink-btn");
+
+  
+  // 방문한 칸 추적용 Set
+  const visitedTiles = new Set();
+  //////////////////////////////////////////////
+  passBtn?.addEventListener("click", () => handleAction("pass"));
+  drinkBtn?.addEventListener("click", () => handleAction("drink"));
+
+  /////----------drink 카운트------------------
+  //마셔 / 통과
+  function handleAction(actionType) {
+    fetch("/handle_action/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "X-CSRFToken": csrfToken,
+      },
+      body: `action=${actionType}`
+    })
+    
+    .then(res => {
+      if (!res.ok) throw new Error("❌ 서버 응답 오류");
+
+      return res.json();
+    })
+    .then(data => {
+      if (data.end_game) {
+        window.location.href = "/end_game/";
+      } else {
+        // ranking
+        updateRanking(data.ranking);
+        //round
+        updateRound(data.round);
+        //player
+        updatePlayers(data.prev_player, data.current_player, data.next_player);
+        
+        //hourse
+        // 말 위치 다시 요청 (index 유지용)
+        fetch("/move_player/?steps=0") // 0칸 이동 → 위치 정보만 받아오기
+          .then(res => res.json())
+          .then(data => {
+            moveHorseTo(data.index);
+            missionBox.innerHTML = `<h3>${data.mission}</h3>`;
+          });
+        }
+    })
+    .catch(error => console.error("에러 발생:", error));
+  }
+
+  //////////////////////////////////////////////////////////////////
+/////----------랭킹------------------
+function updateRanking(ranking) {
+  const list = document.getElementById("ranking-list");
+  list.innerHTML = "";  // 기존 삭제
+
+  ranking.forEach((player, i) => {
+    const li = document.createElement("li");
+    li.classList.add("rank-card");
+    if (i === 0) li.classList.add("first");
+    else if (i === 1) li.classList.add("second");
+    else if (i === 2) li.classList.add("third");
+
+    const img = document.createElement("img");
+    img.src = `/static/assets/icons/noto_${i + 1}-place-medal.svg`;
+    img.alt = `${i + 1}등 메달`;
+
+    const span = document.createElement("span");
+    span.textContent = `${player.nickname} (${player.drink_count}잔)`;
+
+    li.appendChild(img);
+    li.appendChild(span);
+    list.appendChild(li);
+  });
+
+  //fetch("/get_ranking/")
+  //  .then((res) => res.json())
+  //  .then((data) => {
+  //    const rankingContainer = document.querySelector(".ranking-list");
+  //    rankingContainer.innerHTML = data.html;
+  //  })
+  //  .catch((err) => console.error("랭킹 갱신 실패:", err));
+}
+
+////////////////////////////////////////////////////////////////////
+/////----------라운드------------------
+function updateRound(round) {
+  console.log("👉 Round update:", round);
+  document.getElementById("turn-number").textContent = round;
+}
+/////----------턴 담당자------------------
+function updatePlayers(prev, current, next) {
+  console.log("👉 Player update:", prev, " / ",current, " / ", next);
+  document.getElementById("prev-player").textContent = prev;
+  document.getElementById("current-player").textContent = current;
+  document.getElementById("next-player").textContent = next;
+}
+  //////////////////////////////////////////////////////////////////
+/////---------- 주사위 ------------------
 
   // 🧩 게임 종료 모달 요소 가져오기
   const modal = document.getElementById("endGameModal");

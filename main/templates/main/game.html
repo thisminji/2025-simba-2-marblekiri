@@ -26,17 +26,21 @@
       <div class="turn-info">
         <div class="turn-header">
           <p>
-            현재 턴 : <span class="turn-number">{{ current_round }}</span>바퀴
+            현재 턴 : <span id="turn-number" class="turn-number">{{ current_round }}</span>바퀴
           </p>
           <!-- 버튼을 a 태그에서 분리 -->
           <button class="end-button">게임 종료</button>
         </div>
         <p class="players">
-          <span style="color: #ccc">{{ prev_player.nickname }}</span>
-          <span style="color: #000; font-weight: bold; margin: 0 20px"
-            >{{ current_player.nickname }}</span
-          >
-          <span style="color: #ccc">{{ next_player.nickname }}</span>
+          <span id="prev-player" style="color: #ccc">
+            {{ prev_player.nickname }}
+          </span>
+          <span id="current-player" style="color: #000; font-weight: bold; margin: 0 20px">
+            {{ current_player.nickname }}
+          </span>
+          <span id="next-player" style="color: #ccc">
+            {{ next_player.nickname }}
+          </span>
         </p>
       </div>
 
@@ -89,9 +93,12 @@
       {% if show_ranking %}
       <div class="ranking">
         <h3 class="ranking-title">많이 마신 사람</h3>
-        <ul class="ranking-list">
-          {% for player in ranking|slice:":3" %}
-          <li class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}">
+        <ul class="ranking-list" id="ranking-list">
+          <!-- /////////////// js 로 넣었습니다 /////////////
+            {% for player in ranking|slice:":3" %}
+          <li
+            class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}"
+          >
             {% if forloop.counter == 1 %}
             <img src="{% static 'assets/icons/noto_1st-place-medal.svg' %}" alt="1등 메달" />
             {% elif forloop.counter == 2 %}
@@ -102,17 +109,15 @@
             <span>{{ player.nickname }} ({{ player.drink_count }}잔)</span>
           </li>
           {% endfor %}
+          -->
         </ul>
       </div>
       {% endif %}
 
+      <!--세인 수정, 도착한 칸의 미션 목록을 누적해서 띄우기-->
       <div class="missions">
         <h3>미션 목록</h3>
-        <ol>
-          {% for tile in tiles %}
-          <li>{{ tile.question.content }}</li>
-          {% endfor %}
-        </ol>
+          <oi class="mission-list"></oi>
       </div>
 
       <div class="dice">
@@ -144,6 +149,6 @@
       </div>
     </div>
 
-    <script src="{% static 'js/game.js' %}"></script>
-  </body>
+  <script src="{% static 'js/game.js' %}"></script>
+</body>
 </html>

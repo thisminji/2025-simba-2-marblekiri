@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.timezone import now
 import random
+from django.template.loader import render_to_string
 
 ########################### 🔹 시작 화면 · 세팅 ############################
 ### 홈 (게임 시작 전 첫 화면)
@@ -140,8 +141,10 @@ def move_player(request):
 
 ### 마시기 카운트
 def process_action(player, action):
+    print("Process_action 실행 !")
     if action == "drink":
         player.drink_count += 1
+        print("▶️ 받은 player:", player, " / 카운트 : ", player.drink_count)
         player.save()
 
 ### 턴 & 바퀴 증가 + 게임 종료 조건 체크
@@ -159,34 +162,80 @@ def advance_turn(room, total_players):
     room.save()
     return False  # 계속 진행
 
-### 마셔! / 통과! 처리
+### 마셔!, 통과! / 랭킹 / 플레이어 턴 처리
 @csrf_exempt
 def handle_action(request):
-    if request.method != "POST":
-        return JsonResponse({'error': 'Invalid request'}, status=400)
+    print("✅ handle_action 진입됨")
 
+    try:
+        if request.method != "POST":
+            print("❌ 잘못된 요청 방식")
+            return JsonResponse({'error': 'Invalid request'}, status=400)
+        
+
+        room_id = request.session.get('room_id')
+        room = GameRoom.objects.get(id=room_id)
+        players = PlayerInRoom.objects.filter(room=room).order_by('turn')
+        print("room_id:", room_id)
+
+        total_players = players.count()
+        current_index = room.current_turn_index % total_players
+        current_player = players[current_index]
+
+        action = request.POST.get("action")
+        print("▶️ 받은 action:", action)
+
+        process_action(current_player, action)
+
+        # ✅ ranking 리스트 생성
+        ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
+        ranking_data = [
+            {'nickname': p.nickname, 'drink_count': p.drink_count}
+            for p in ranking
+        ]
+
+        #턴 담당자
+        current_index = room.current_turn_index % total_players
+        current_player = players[current_index]
+
+        prev_index = (current_index - 1) % total_players
+        next_index = (current_index + 1) % total_players
+
+        prev_player = players[prev_index]
+        next_player = players[next_index]
+
+
+        is_game_over = advance_turn(room, total_players)
+
+        if is_game_over:
+            print("🎉 게임 종료!")
+            return JsonResponse({'end_game': True})
+        
+
+        return JsonResponse({
+            'end_game': False,
+            'current_turn': room.current_turn_index,
+            'round': room.current_round,
+            'player_index': request.session.get("index", 0),  # 말 위치 업데이트할 경우 사용
+            'ranking': ranking_data,
+            'prev_player': prev_player.nickname,
+            'current_player': current_player.nickname,
+            'next_player': next_player.nickname,
+        })
+    
+    except Exception as e:
+        print("❌ 서버 처리 중 예외 발생:", str(e))
+        return JsonResponse({'error': str(e)}, status=500)
+    
+
+### 랭킹
+@csrf_exempt
+def get_ranking(request):
     room_id = request.session.get('room_id')
     room = GameRoom.objects.get(id=room_id)
-    players = PlayerInRoom.objects.filter(room=room).order_by('turn')
-
-    total_players = players.count()
-    current_index = room.current_turn_index % total_players
-    current_player = players[current_index]
-
-    action = request.POST.get("action")
-    process_action(current_player, action)
-
-    is_game_over = advance_turn(room, total_players)
-
-    if is_game_over:
-        return JsonResponse({'end_game': True})
-
-    return JsonResponse({
-        'end_game': False,
-        'current_turn': room.current_turn_index,
-        'round': room.current_round,
-        'player_index': current_player.index  # 말 위치 업데이트할 경우 사용
-    })
+    players = PlayerInRoom.objects.filter(room=room).order_by('-drink_count')
+    ranking_html = render_to_string('main/partial_ranking.html', {'ranking': players})
+    return JsonResponse({'html': ranking_html})
 
 ########################### 🔹 커스텀 질문 ############################
 ### 커스텀 질문 입력 화면
