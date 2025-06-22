@@ -13,7 +13,21 @@ document.querySelectorAll(".theme-category-container").forEach((el) => {
 document
   .getElementById("gameForm")
   .addEventListener("submit", function (event) {
+    const unlimitedRadio = document.getElementById("unlimited");
+    const slider = document.getElementById("turn-slider");
     const theme = document.getElementById("selected-theme").value;
+
+    // max_turns 값 name 제거 or 유지
+    if (unlimitedRadio.checked) {
+      slider.removeAttribute("name"); // max_turns 전송 안 되게
+      console.log("무제한 턴 → max_turns 안 보냄");
+    } else {
+      slider.setAttribute("name", "max_turns"); // 제한 모드일 땐 name 유지
+      console.log("지정 턴 수 → max_turns =", slider.value);
+    }
+
+    // 커스텀 테마면 redirect
+    theme = document.getElementById("selected-theme").value;
     if (theme === "custom") {
       event.preventDefault();
       window.location.href = "/custom_questions/";
