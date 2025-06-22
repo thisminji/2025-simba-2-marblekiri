@@ -4,91 +4,78 @@
 <head>
   <meta charset="UTF-8">
   <title>주루마블 게임</title>
-
-  <!-- ✅ 외부 CSS 파일 -->
   <link rel="stylesheet" href="{% static 'css/base/style.css' %}">
-
-  <!-- ✅ Gugi 폰트 (Google Fonts) -->
-  <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
 </head>
 
+<body style="display: flex; gap: 24px; justify-content: center; align-items: flex-start; padding: 40px; box-sizing: border-box;">
 
-<body>
-  <div class="game-container">
-    <!-- 왼쪽: 게임판 -->
-    <div class="board">
-      <div class="turn-info">
-        <div class="turn-header">
-          <!-- ###############연희가 수정한 부분 #################### -->
-          <p class="turn-header">현재 턴 : <span class="turn-number">{{ current_round }}</span>바퀴</p>
-          <a href="{% url 'end_game' %}">
+  <!-- 왼쪽: 게임판 -->
+  <div class="board">
+    <div class="turn-info">
+      <div class="turn-header">
+        <p>현재 턴 : <span class="turn-number">{{ current_round }}</span>바퀴</p>
+        <a href="{% url 'end_game' %}">
           <button class="end-button">게임 종료</button>
-          </a>
-        </div>
-
-        <!-- ###############연희가 수정한 부분 (css 에 넣으려다가 .. p-span태그라 어케할지 모르겟어요)#################### -->
-        <p class="players">
-          <span style="color: #ccc;">{{ prev_player.nickname }}</span>
-          <span style="color: #000; font-weight: bold; margin: 0 20px;">{{ current_player.nickname }}</span>
-          <span style="color: #ccc;">{{ next_player.nickname }}</span>
-        </p>
+        </a>
       </div>
-
-
-      <!-- ###############연희가 수정한 부분 (tile index 추가) #################### -->
-      <!-- 게임 타일 그리드 -->
-      <!--<div class="empty"> -> missionbox로 덮음</div>-->
-
-      <div class="tiles-grid">
-        <div class="tile" data-index="10">11</div>
-        <div class="tile" data-index="9">10</div>
-        <div class="tile" data-index="8">9</div>
-        <div class="tile" data-index="7">8</div>
-        <div class="tile" data-index="6">7</div>
-        <div class="tile" data-index="5">6</div>
-        <div class="tile" data-index="4">5</div>
-
-        <div class="tile" data-index="11">12</div>
-        <div class="tile" data-index="3">4</div>
-
-        <div class="tile" data-index="12">13</div>
-        <!--세인 수정, 가운데 미션 띄우기-->
-        <div class="mission-box"></div>
-        <div class="tile" data-index="2">3</div>
-
-        <div class="tile" data-index="13">14</div>
-        <div class="tile" data-index="1">2</div>
-
-        <div class="tile" data-index="14">15</div>
-        <div class="tile" data-index="15">16</div>
-        <div class="tile" data-index="16">17</div>
-        <div class="tile" data-index="17">18</div>
-        <div class="tile" data-index="18">19</div>
-        <div class="tile" data-index="19">20</div>
-        <div class="tile" data-index="0">1</div>
-        <!--연희 수정, 말 -->
-        <img src="{% static 'assets/images/horse.svg' %}" alt="말" class="horse" id="horse-icon">
-      </div>
-
-      <div class="action-buttons">
-        <form method="POST" action="{% url 'handle_action' %}">
-          {% csrf_token %}
-          <button type="submit" name="action" value="pass" class="pass-btn">통과!</button>
-        </form>
-        <form method="POST" action="{% url 'handle_action' %}">
-          {% csrf_token %}
-          <button type="submit" name="action" value="drink" class="drink-btn">마셔!</button>
-        </form>
-      </div>
-    
+      <p class="players">
+        <span style="color: #ccc;">{{ prev_player.nickname }}</span>
+        <span style="color: #000; font-weight: bold; margin: 0 20px;">{{ current_player.nickname }}</span>
+        <span style="color: #ccc;">{{ next_player.nickname }}</span>
+      </p>
     </div>
 
-    <!-- 오른쪽: 사이드바 -->
+    <!-- 게임 타일 그리드 -->
+    <div class="tiles-grid">
+      <div class="tile" data-index="10">11</div>
+      <div class="tile" data-index="9">10</div>
+      <div class="tile" data-index="8">9</div>
+      <div class="tile" data-index="7">8</div>
+      <div class="tile" data-index="6">7</div>
+      <div class="tile" data-index="5">6</div>
+      <div class="tile" data-index="4">5</div>
+
+      <div class="tile" data-index="11">12</div>
+      <div class="tile" data-index="3">4</div>
+
+      <div class="tile" data-index="12">13</div>
+      <div class="mission-box"></div>
+      <div class="tile" data-index="2">3</div>
+
+      <div class="tile" data-index="13">14</div>
+      <div class="tile" data-index="1">2</div>
+
+      <div class="tile" data-index="14">15</div>
+      <div class="tile" data-index="15">16</div>
+      <div class="tile" data-index="16">17</div>
+      <div class="tile" data-index="17">18</div>
+      <div class="tile" data-index="18">19</div>
+      <div class="tile" data-index="19">20</div>
+      <div class="tile" data-index="0">1</div>
+
+      <img src="{% static 'assets/images/horse.svg' %}" alt="말" class="horse" id="horse-icon">
+    </div>
+
+    <div class="action-buttons">
+      <form method="POST" action="{% url 'handle_action' %}">
+        {% csrf_token %}
+        <button type="submit" name="action" value="pass" class="pass-btn">통과!</button>
+      </form>
+      <form method="POST" action="{% url 'handle_action' %}">
+        {% csrf_token %}
+        <button type="submit" name="action" value="drink" class="drink-btn">마셔!</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 오른쪽: 사이드바 -->
+  <div class="sidebar">
+
     {% if show_ranking %}
     <div class="ranking">
       <h3 class="ranking-title">많이 마신 사람</h3>
       <ul class="ranking-list">
-        <!-- ###############연희가 수정한 부분 #################### -->
         {% for player in ranking|slice:":3" %}
           <li class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}">
             {% if forloop.counter == 1 %}
@@ -100,36 +87,33 @@
             {% endif %}
             <span>{{ player.nickname }} ({{ player.drink_count }}잔)</span>
           </li>
-        {% empty %}
-          <li>참가자가 없습니다.</li>
         {% endfor %}
       </ul>
     </div>
     {% endif %}
 
+    <div class="missions">
+      <h3>미션 목록</h3>
+      <ol>
+        {% for tile in tiles %}
+          <li>{{ tile.question.content }}</li>
+        {% endfor %}
+      </ol>
+    </div>
 
-      <div class="missions">
-        <h3>미션 목록</h3>
-        <ol>
-          {% for tile in tiles %}
-            <li>{{ tile.question.content }}</li>
-          {% endfor %}
-        </ol>
-      </div>
-
-      <div class="dice">
-        <div class="dice-roll-container">
-          <div class="dice-number-box">
-            <div class="dice-circle">
-              <span class="dice-number">5</span>
-            </div>
+    <div class="dice">
+      <div class="dice-roll-container">
+        <div class="dice-number-box">
+          <div class="dice-circle">
+            <span class="dice-number">5</span>
           </div>
-          <button class="roll-dice-button">주사위 굴리기</button>
         </div>
+        <button class="roll-dice-button">주사위 굴리기</button>
       </div>
     </div>
+
   </div>
-  
+
   <script src="{% static 'js/game.js' %}"></script>
 </body>
 </html>
