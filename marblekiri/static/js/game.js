@@ -160,4 +160,30 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }, 80);
   });
+
+    //////////////////////////////////////////////////////////////////
+    // 타일 위치 가져오기 & 말 이동 함수
+  function moveHorseTo(index) {
+    console.log("👉 말 이동 함수 실행됨, index:", index);
+
+    const tile = document.querySelector(`.tile[data-index = "${index}"]`)
+    const horse = document.getElementById('horse-icon');
+    if (!tile || !horse) 
+      return;
+
+    const rect = tile.getBoundingClientRect();
+    console.log("top:", rect.top, "left:", rect.left);
+
+    const tileRect = tile.getBoundingClientRect();
+    const gridRect = document.querySelector('.tiles-grid').getBoundingClientRect();
+
+    // 타일 위치를 기준으로 horse 아이콘의 위치 설정
+    const offsetX = tileRect.left - gridRect.left;
+    const offsetY = tileRect.top - gridRect.top;
+    console.log("📍 offsetX:", offsetX, "offsetY:", offsetY);
+
+    horse.style.left = `${offsetX + 10}px`;
+    horse.style.top = `${offsetY - 50}px`;
+  }
+
 });
