@@ -1,15 +1,63 @@
 // 테마 선택 처리
-document.querySelectorAll(".theme-category-container").forEach((el) => {
+// document.querySelectorAll(".theme-category-container").forEach((el) => {
+//   el.addEventListener("click", () => {
+//     document.querySelectorAll(".theme-category-container").forEach((e) => {
+//       e.classList.remove("selected");
+//     });
+//     el.classList.add("selected");
+//     document.getElementById("selected-theme").value = el.dataset.value;
+//     // console.log("선택한 테마: ", el.dataset.value);
+//   });
+// });
+
+const containers = document.querySelectorAll(".theme-category-container");
+const body = document.body;
+
+// 테마 이름 배열 (for cleanup)
+const themes = ["college", "sports", "idol", "custom"];
+
+containers.forEach((el) => {
+  const theme = el.dataset.value;
+
+  // hover 시 배경 변경
+  el.addEventListener("mouseenter", () => {
+    if (!el.classList.contains("selected")) {
+      clearThemeClasses();  // 기존 hover/selected 클래스 제거
+      body.classList.add(`hover-${theme}`);
+    }
+  });
+
+  // hover 해제 시 원상 복귀
+  el.addEventListener("mouseleave", () => {
+    clearThemeClasses();
+    // 선택된 테마가 있으면 다시 적용
+    const selected = document.querySelector(".theme-category-container.selected");
+    if (selected) {
+      const selectedTheme = selected.dataset.value;
+      body.classList.add(`selected-${selectedTheme}`);
+    }
+  });
+
+  // 클릭 시 선택 확정
   el.addEventListener("click", () => {
-    document.querySelectorAll(".theme-category-container").forEach((e) => {
-      e.classList.remove("selected");
-    });
+    containers.forEach((e) => e.classList.remove("selected"));
     el.classList.add("selected");
-    document.getElementById("selected-theme").value = el.dataset.value;
+
+    clearThemeClasses();
+    body.classList.add(`selected-${theme}`);
   });
 });
 
+
 // 테마 이동
+function clearThemeClasses() {
+  themes.forEach((t) => {
+    body.classList.remove(`hover-${t}`, `selected-${t}`);
+  });
+}
+
+
+// 커스텀 테마 이동
 document
   .getElementById("gameForm")
   .addEventListener("submit", function (event) {
@@ -24,6 +72,12 @@ document
     } else {
       slider.setAttribute("name", "max_turns"); // 제한 모드일 땐 name 유지
       console.log("지정 턴 수 → max_turns =", slider.value);
+    }
+
+    // 테마 미선택 시 alert 띄움
+    if (!theme) {
+      alert("테마를 선택해주세요!");
+      e.preventDefault(); // 제출 막기
     }
 
     // 커스텀 테마면 redirect
