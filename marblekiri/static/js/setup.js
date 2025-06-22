@@ -9,7 +9,7 @@ document.querySelectorAll(".theme-category-container").forEach((el) => {
   });
 });
 
-// 커스텀 테마 이동
+// 테마 이동
 document
   .getElementById("gameForm")
   .addEventListener("submit", function (event) {
@@ -27,8 +27,7 @@ document
     }
 
     // 커스텀 테마면 redirect
-    theme = document.getElementById("selected-theme").value;
-    if (theme === "custom") {
+    if (theme == "custom") {
       event.preventDefault();
       window.location.href = "/custom_questions/";
     }
