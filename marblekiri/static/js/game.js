@@ -38,14 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
               <h3>${data.mission ? data.mission : "에러"}</h3>
             `;
 
-            // 도착한 칸 미션 누적 표시 (중복은 제외)
-            if (data.mission && !visitedTiles.has(data.index)) {
-              visitedTiles.add(data.index); // 이전에 방문하지 않은 칸일 경우만 누적
-
-              const li = document.createElement("li");
-              li.textContent = `${data.index + 1}. ${data.mission}`;
-              missionList.appendChild(li);
-            }
           })
           .catch(error => {
             console.error("에러:", error);
