@@ -77,21 +77,24 @@
         />
       </div>
 
+    <!--
       <div class="action-buttons">
-        <form method="POST" action="{% url 'handle_action' %}">
-          {% csrf_token %}
-          <button type="submit" name="action" value="pass" class="pass-btn">
-            통과!
-          </button>
-        </form>
-        <form method="POST" action="{% url 'handle_action' %}">
-          {% csrf_token %}
-          <button type="submit" name="action" value="drink" class="drink-btn">
-            마셔!
-          </button>
-        </form>
-      </div>
+      <form method="POST" action="{% url 'handle_action' %}">
+        {% csrf_token %}
+        <button type="submit" name="action" value="pass" class="pass-btn">통과!</button>
+      </form>
+      <form method="POST" action="{% url 'handle_action' %}">
+        {% csrf_token %}
+        <button type="submit" name="action" value="drink" class="drink-btn">마셔!</button>
+      </form>
     </div>
+    -->
+    <div class="action-buttons">
+      <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+      <button class="pass-btn" data-action="pass">통과!</button>
+      <button class="drink-btn" data-action="drink">마셔!</button>
+    </div>
+  </div>
 
     <!-- 오른쪽: 사이드바 -->
     <div class="sidebar">

@@ -1,14 +1,48 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
   const rollButton = document.querySelector(".roll-dice-button");
   const diceNumber = document.querySelector(".dice-number");
   const missionBox = document.querySelector(".mission-box");
   const missionList = document.querySelector(".mission-list");
+  const passBtn = document.querySelector(".pass-btn");
+  const drinkBtn = document.querySelector(".drink-btn");
 
+  
   // 방문한 칸 추적용 Set
   const visitedTiles = new Set();
 
-  // 페이지 로드시 1번 타일에 말 배치
-  moveHorseTo(0);
+  //마셔 / 통과
+
+function handleAction(actionType) {
+  fetch("/handle_action/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      "X-CSRFToken": csrfToken,
+    },
+    body: `action=${actionType}`
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.end_game) {
+      window.location.href = "/end_game/";
+    } else {
+      // 말 위치 다시 요청 (index 유지용)
+      fetch("/move_player/?steps=0") // 0칸 이동 → 위치 정보만 받아오기
+        .then(res => res.json())
+        .then(data => {
+          moveHorseTo(data.index);
+          missionBox.innerHTML = `<h3>${data.mission}</h3>`;
+        });
+      }
+  })
+  .catch(error => console.error("에러 발생:", error));
+}
+
+passBtn?.addEventListener("click", () => handleAction("pass"));
+drinkBtn?.addEventListener("click", () => handleAction("drink"));
+
 
   // 1. 버튼 비활성화
   rollButton.addEventListener("click", () => {
@@ -62,6 +96,8 @@ function moveHorseTo(index) {
   if (!tile || !horse) 
     return;
   
+  const rect = tile.getBoundingClientRect();
+  console.log("top:", rect.top, "left:", rect.left);
 
   const tileRect = tile.getBoundingClientRect();
   const gridRect = document.querySelector('.tiles-grid').getBoundingClientRect();
@@ -71,6 +107,6 @@ function moveHorseTo(index) {
   const offsetY = tileRect.top - gridRect.top;
   console.log("📍 offsetX:", offsetX, "offsetY:", offsetY);
 
-  horse.style.left = `${offsetX + 7}px`;
+  horse.style.left = `${offsetX + 10}px`;
   horse.style.top = `${offsetY - 50}px`;
 }
