@@ -68,12 +68,59 @@
   font-style: normal;
 }
 
-body {
-  font-family: "Gmarket Sans", sans-serif;
-  background: linear-gradient(to right, #ff6f00, #ff9800);
-  color: white;
-  text-align: center;
-  padding: 2rem;
+/* 기본 테마 */
+body.theme-college {
+  margin: 0;
+  padding: 40px;
+  background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box; /* 주황 */
+}
+
+/* 스포츠 테마 */
+body.theme-sports {
+  margin: 0;
+  padding: 40px;
+  background: linear-gradient(0deg, #2fc262 0%, #53c079 100%);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box; /* 파랑 */
+}
+
+/* 아이돌 테마 */
+body.theme-idol {
+  margin: 0;
+  padding: 40px;
+  background: linear-gradient(0deg, #813dd3, #7434c2 100%);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box; /* 보라 */
+}
+
+body.theme-custom {
+  margin: 0;
+  padding: 40px;
+  background: linear-gradient(to bottom right, #b4b4b4, #c0c0c0); /* 회색 */
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+  box-sizing: border-box; 
 }
 
 /*연희가 추가함 - 버튼 폼형식으로 바꾼 후 스타일 inline*/
