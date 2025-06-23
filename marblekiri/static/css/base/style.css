@@ -114,21 +114,6 @@ body.theme-custom {
   ); /* 빨강 테마 */
 }
 
-/* 공통 스타일 */
-/*
-body {
-  margin: 0;
-  padding: 40px;
-  background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box;
-}
-*/
 
 .game-container {
   display: flex;
@@ -475,11 +460,6 @@ body.theme-custom .tile[data-index="16"] {
   min-height: 0; /* flex 높이 계산 시 overflow 방지 */
 }
 
-.missions {
-  flex: 1 1 auto;
-  overflow-y: auto;
-  min-height: 0;
-}
 
 .dice {
   flex: 0 0 90px;
@@ -539,6 +519,9 @@ body.theme-custom .tile[data-index="16"] {
 *****************************/
 .missions {
   height: 419px;
+  overflow: hidden;         /* ✅ 바깥쪽 스크롤 제거 */
+  display: flex;
+  flex-direction: column;
 }
 
 .missions h3 {
@@ -549,20 +532,20 @@ body.theme-custom .tile[data-index="16"] {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-top: 8px; 
+  margin-bottom: 8px;        /* 제목 아래 간격 */
 }
 
 .missions ol {
+  flex: 1;                  /* 제목 제외한 공간 전부 차지 */
   margin: 0;
   padding-left: 20px;
-  max-height: 250px;
-  overflow-y: auto;
+  overflow-y: auto;         /* ✅ 안쪽만 스크롤 */
   font-size: 16px;
   line-height: 1.8;
-  color: #222;
 
   color: var(--Main-Black, #2a2a2a);
   font-family: Paperlogy;
-  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 160%; /* 25.6px */
@@ -577,6 +560,7 @@ body.theme-custom .tile[data-index="16"] {
   font-weight: 400;
   line-height: 160%; /* 25.6px */
 }
+
 
 /****************************
          주사위
