@@ -240,19 +240,6 @@ body {
   position: relative;
 }
 
-.tiles-grid {
-  display: grid;
-  grid-template-columns: repeat(7, auto); /* 각 열은 tile의 너비에 맞춤 */
-  grid-template-rows: repeat(5, auto); /* 각 행도 tile 높이에 맞춤 */
-
-  width: fit-content;
-  height: fit-content;
-
-  justify-content: center;
-  align-content: center;
-  margin: 0 auto;
-  position: relative;
-}
 
 .tile {
   width: 100px;
@@ -267,6 +254,8 @@ body {
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
+
+
 
 /* 기본 배경 제거 (테마별로 지정하니까) */
 body[class^="theme-"] .tile {
@@ -403,7 +392,14 @@ body.theme-custom .tile[data-index="16"] {
   align-items: center;
 
   gap: 250px;
-  padding: 20px 0 40px; /* 위-좌우-아래 여백 (아래쪽 띄우기!) */
+  
+  /*아래 padding 줄이고, 위 padding 없앰 */
+  padding: 8px 0 16px;
+
+  /*필요하면 margin-top 추가로 조정 */
+  margin-top: 0;
+
+
   background: transparent; /* 배경 없애기 */
   width: 100%;
   box-sizing: border-box;
@@ -842,3 +838,5 @@ body.theme-custom .dice-number {
     max-height: none;
   }
 }
+
+

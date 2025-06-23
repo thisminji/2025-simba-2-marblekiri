@@ -124,30 +124,39 @@ def move_player(request):
         return redirect('start')
 
     room = GameRoom.objects.get(id=room_id)
-    current_pos = request.session.get("index", 0)          #현재 위치 저장 (출발점)
+    current_pos = request.session.get("index", 0)          # 현재 위치 저장 (출발점)
+
+    # ✅ 현재 랭킹 계산 (모든 경우 공통적으로 필요)
+    players = PlayerInRoom.objects.filter(room=room)
+    ranking = sorted(players, key=lambda p: -p.drink_count)[:3]
+    ranking_data = [
+        {'nickname': p.nickname, 'drink_count': p.drink_count}
+        for p in ranking
+    ]
 
     if steps == 0:  # step == 0이면 이동 없이 현재 위치만 반환
         tile = Tile.objects.get(room=room, index=current_pos)
         return JsonResponse({
-            'prev_index': current_pos,                     #출발 = 도착
+            'prev_index': current_pos,                     # 출발 = 도착
             'index': current_pos,
-            'mission': tile.question.content if tile.question else None
+            'mission': tile.question.content if tile.question else None,
+            'ranking': ranking_data                        # ✅ 랭킹도 함께 반환
         })
 
     # 보드판은 20칸이므로 나머지 계산으로 반복 가능하게 함
     new_pos = (current_pos + steps) % 20
-    request.session["index"] = new_pos                     #세션에 새 위치 저장
+    request.session["index"] = new_pos                     # 세션에 새 위치 저장
 
     # 이동한 칸의 미션 불러오기
     tile = Tile.objects.filter(room=room, index=new_pos).first()
 
-    # 이동 결과를 JSON으로 반환 (출발 + 도착 + 미션 포함)
+    # 이동 결과를 JSON으로 반환 (출발 + 도착 + 미션 + 랭킹 포함)
     return JsonResponse({
         'prev_index': current_pos,                         # 출발 위치
-        'index': new_pos,                                  #도착 위치
-        'mission': tile.question.content if tile and tile.question else None
+        'index': new_pos,                                  # 도착 위치
+        'mission': tile.question.content if tile and tile.question else None,
+        'ranking': ranking_data                            # ✅ 랭킹 포함
     })
-
 
 
 
