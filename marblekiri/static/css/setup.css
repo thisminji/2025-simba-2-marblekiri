@@ -1,3 +1,4 @@
+/* 폰트 선언 */
 @font-face {
   font-family: "Paperlogy";
   src: url("/static/fonts/Paperlogy-2ExtraLight.woff2") format("woff2");
@@ -19,6 +20,7 @@
   font-style: normal;
 }
 
+/* 전체 페이지 배치 */
 .setup-page {
   display: flex;
   flex-direction: row;
@@ -27,49 +29,53 @@
   gap: 32px;
 }
 
+/* 전체 배경 */
 body {
   background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
   color: white;
-  /* text-align: center; */
   height: 100vh;
   padding: 2rem;
   transition: background 0.6s ease-in-out;
 }
 
+/* 테마 hover / 선택 시 배경 */
 body.hover-college,
 body.selected-college {
-  background: linear-gradient(0deg, #FF850B, #FFB200);
+  background: linear-gradient(0deg, #ff850b, #ffb200);
 }
 
 body.hover-sports,
 body.selected-sports {
-  background: linear-gradient(90deg, #1FB230, #4CC85A);
+  background: linear-gradient(90deg, #1fb230, #4cc85a);
 }
 
 body.hover-idol,
 body.selected-idol {
-  background: linear-gradient(90deg, #812FA7, #8A49D5);
+  background: linear-gradient(90deg, #812fa7, #8a49d5);
 }
 
 body.hover-custom,
 body.selected-custom {
-  background: linear-gradient(270deg, #E22D2D, #DB3445);
+  background: linear-gradient(270deg, #e22d2d, #db3445);
 }
 
+/* 제목 공통 */
 .title {
+  display: flex;
   color: #fff;
   font-family: "Paperlogy";
   font-size: 32px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
+  justify-content: center;
 }
 
+/* 테마 선택 박스 */
 .theme-select {
   display: flex;
-  width: 348px;
   height: 540px;
-  padding: 31px 24px;
+  padding: 15px 25px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -90,42 +96,86 @@ body.selected-custom {
   flex-shrink: 0;
 }
 
+/* 테마 버튼 스타일 + 이미지 배경 */
 .theme-category-container {
+  position: relative;
   width: 300px;
   height: 100px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: var(--Main-Gray-2, #c3c3c3);
+  overflow: hidden;
+  background: transparent;
+  border: 3px solid transparent;
+  transition: border 0.2s ease-in-out;
 }
 
-/* hover 및 선택 시 효과 */
-.theme-category-container[data-value="college"]:hover,
-.theme-category-container.selected[data-value="college"] {
-  border-radius: 10px;
-  border: 3px solid #000;
-  background: var(--Grad-Orange, linear-gradient(0deg, #FF850B 0%, #FFB200 100%));
-}
-.theme-category-container[data-value="sports"]:hover,
-.theme-category-container.selected[data-value="sports"] {
-  border-radius: 10px;
-  border: 3px solid #000;
-  background: var(--Grad-Green, linear-gradient(90deg, #1FB230 0%, #4CC85A 100%));
-}
-.theme-category-container[data-value="idol"]:hover,
-.theme-category-container.selected[data-value="idol"] {
-  border-radius: 10px;
-  border: 3px solid #000;
-  background: var(--Grad-Purple, linear-gradient(90deg, #812FA7 0%, #8A49D5 100%));
-}
-.theme-category-container[data-value="custom"]:hover,
-.theme-category-container.selected[data-value="custom"] {
-  border-radius: 10px;
-  border: 3px solid var(--Main-Black, #2A2A2A);
-  background: var(--Grad-Red, linear-gradient(270deg, #E22D2D 0%, #DB3445 100%));
+/* 이미지 태그 공통 스타일 */
+.theme-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
+/* 기본 이미지 보이기 */
+.theme-category-container .default-image {
+  display: block;
+}
+
+/* hover 이미지 숨기기 */
+.theme-category-container .hover-image {
+  display: none;
+}
+
+/* hover 상태 전환 - college */
+.theme-category-container[data-value="college"]:hover .default-image,
+.theme-category-container.selected[data-value="college"] .default-image {
+  display: none;
+}
+
+.theme-category-container[data-value="college"]:hover .hover-image,
+.theme-category-container.selected[data-value="college"] .hover-image {
+  display: block;
+}
+
+/* hover 상태 전환 - sports */
+.theme-category-container[data-value="sports"]:hover .default-image,
+.theme-category-container.selected[data-value="sports"] .default-image {
+  display: none;
+}
+
+.theme-category-container[data-value="sports"]:hover .hover-image,
+.theme-category-container.selected[data-value="sports"] .hover-image {
+  display: block;
+}
+
+/* hover 상태 전환 - idol */
+.theme-category-container[data-value="idol"]:hover .default-image,
+.theme-category-container.selected[data-value="idol"] .default-image {
+  display: none;
+}
+
+.theme-category-container[data-value="idol"]:hover .hover-image,
+.theme-category-container.selected[data-value="idol"] .hover-image {
+  display: block;
+}
+
+/* hover 상태 전환 - custom */
+.theme-category-container[data-value="custom"]:hover .default-image,
+.theme-category-container.selected[data-value="custom"] .default-image {
+  display: none;
+}
+
+.theme-category-container[data-value="custom"]:hover .hover-image,
+.theme-category-container.selected[data-value="custom"] .hover-image {
+  display: block;
+}
+
+/* 텍스트형 버튼 내 텍스트 */
 .theme-category {
-  color: #FFF;
+  color: #fff;
   font-family: Paperlogy;
   font-size: 24px;
   font-style: normal;
@@ -137,9 +187,8 @@ body.selected-custom {
 
 /* 인원 설정 전체 박스 */
 .player-setup {
-  width: 348px;
-  height: 540px;
-  padding: 31px 24px;
+  height: 509px;
+  padding: 31px 30px;
   border-radius: 20px;
   background: #ffffff;
   border: 2px solid var(--Main-Disabled-2, #e8e8e8);
@@ -245,8 +294,8 @@ body.selected-custom {
   flex-shrink: 0;
   align-self: stretch;
   border-radius: 20px;
-  border: 2px solid var(--Main-Disabled-2, #E8E8E8);
-  background: #FFF;   
+  border: 2px solid var(--Main-Disabled-2, #e8e8e8);
+  background: #fff;
   color: #000;
   text-align: center;
   font-family: Paperlogy;
