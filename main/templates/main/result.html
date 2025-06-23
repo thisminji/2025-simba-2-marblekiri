@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>게임 결과 요약</title>
-    <link rel="stylesheet" href="{% static 'css/result.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/result.css' %}?v=2  " />
     <script defer src="{% static 'js/result.js' %}"></script>
   </head>
 
@@ -13,27 +13,35 @@
       <!-- 왼쪽: 업로드 -->
       <div class="left-panel">
         <div class="review-image-{{ show_ranking|yesno:'true,false' }}">
-          <input type="file" id="image-upload" hidden name="image" accept="image/*" />
-          <label for="image-upload" class="image-label">
-            <!-- 미리보기 이미지 -->
-            <img
+          <div class="review-imagebox review-imagebox-{{ theme }}">
+            <input type="file" id="image-upload" hidden name="image" accept="image/*" />
+            <label for="image-upload" class="image-label">
+              <!-- 미리보기 이미지 -->
+              <img
               id="preview"
               alt="업로드 이미지"
               class="image-preview"
-            />
-            <!-- 텍스트 플레이스홀더 -->
-            <p id="placeholder-text" class="image-placeholder">📷 사진 업로드</p>
-          </label>
-          <!-- 삭제 버튼 -->
-          <button
+              />
+              <!-- 텍스트 플레이스홀더 -->
+              <p id="placeholder-text" class="image-placeholder">📷 사진 업로드</p>
+            </label>
+            
+            <!-- 하단 바: 로고 + 날짜 -->
+            <div class="bottom-bar">
+            <!-- 삭제 버튼 -->
+            <button
             type="button"
             id="remove-image"
             class="remove-image-button"
             style="display: none">
             삭제
-          </button>
+            </button>
+            <img class="logo-frame" src="/static/assets/images/frame_logo.svg" alt="마블끼리 프레임 로고"/>
+            <div class="date-frame">{{ date_frame }}</div>
+          </div>
         </div>
       </div>
+    </div>
 
       <!-- 오른쪽: 결과 정보 -->
       <div class="right-panel">
