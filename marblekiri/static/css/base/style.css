@@ -68,7 +68,6 @@
   font-style: normal;
 }
 
-
 /* 공통 body 스타일 (모든 테마 공통 레이아웃) */
 body[class^="theme-"] {
   margin: 0;
@@ -113,7 +112,6 @@ body.theme-custom {
     linear-gradient(270deg, #e22d2d 0%, #db3445 100%)
   ); /* 빨강 테마 */
 }
-
 
 .game-container {
   display: flex;
@@ -225,7 +223,6 @@ body.theme-custom {
   position: relative;
 }
 
-
 .tile {
   width: 100px;
   height: 100px;
@@ -239,8 +236,6 @@ body.theme-custom {
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-
-
 
 /* 기본 배경 제거 (테마별로 지정하니까) */
 body[class^="theme-"] .tile {
@@ -377,19 +372,17 @@ body.theme-custom .tile[data-index="16"] {
   align-items: center;
 
   gap: 250px;
-  
+
   /*아래 padding 줄이고, 위 padding 없앰 */
   padding: 8px 0 16px;
 
   /*필요하면 margin-top 추가로 조정 */
   margin-top: 0;
 
-
   background: transparent; /* 배경 없애기 */
   width: 100%;
   box-sizing: border-box;
 }
-
 
 .pass-btn,
 .drink-btn {
@@ -426,12 +419,11 @@ body.theme-custom .tile[data-index="16"] {
 /* ✅ 비활성화 상태 공통 처리 */
 .pass-btn:disabled,
 .drink-btn:disabled {
-  background: var(--Main-Disabled-2, #E8E8E8);
+  background: var(--Main-Disabled-2, #e8e8e8);
   cursor: not-allowed;
   color: #fff;
   opacity: 1; /* 혹시 다른 곳에서 흐려졌다면 명시적으로 복구 */
 }
-
 
 /****************************
          사이드바
@@ -459,7 +451,6 @@ body.theme-custom .tile[data-index="16"] {
   flex: 0 0 22%;
   min-height: 0; /* flex 높이 계산 시 overflow 방지 */
 }
-
 
 .dice {
   flex: 0 0 90px;
@@ -519,40 +510,57 @@ body.theme-custom .tile[data-index="16"] {
 *****************************/
 .missions {
   height: 419px;
-  overflow: hidden;         /* ✅ 바깥쪽 스크롤 제거 */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
+  align-items: center;           /* ✅ 자식(.mission-list) 가운데 정렬 */
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .missions h3 {
   color: var(--Theme-00, #2a2a2a);
   text-align: center;
   font-family: "Partial Sans KR";
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 8px; 
-  margin-bottom: 8px;        /* 제목 아래 간격 */
+  font-size: 32px;
+  margin: 4px 0 12px 0; /* 제목 위아래 간격 */
 }
 
 .missions ol {
-  flex: 1;                  /* 제목 제외한 공간 전부 차지 */
+  flex: 1;
   margin: 0;
-  padding-left: 20px;
-  overflow-y: auto;         /* ✅ 안쪽만 스크롤 */
-  font-size: 16px;
-  line-height: 1.8;
-
-  color: var(--Main-Black, #2a2a2a);
-  font-family: Paperlogy;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 160%; /* 25.6px */
+  padding: 0;
+  overflow-y: auto;
+  list-style-type: none; /* 숫자 제거 */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center; /* 🔥 가운데 정렬 */
 }
 
+/* 미션 아이템 (말풍선 스타일) */
 .missions ol li {
-  width: 271px;
+  width: 90%;
+  max-width: 270px;
+  background: #f4f4f4;
+  border-radius: 30px;
+  padding: 10px 18px;
+  color: #000;
+  font-family: Paperlogy;
+  font-size: 15px;
+  text-align: center;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* 미션이 채워졌을 때 강조 */
+.missions ol li:not(:empty) {
+  background-color: #fff6da;
+  border-radius: 20px;
+  background: #fff;
   color: #000;
   font-family: Paperlogy;
   font-size: 16px;
@@ -560,6 +568,74 @@ body.theme-custom .tile[data-index="16"] {
   font-weight: 400;
   line-height: 160%; /* 25.6px */
 }
+
+/* 연희 수정 / 미션 */
+.mission-box {
+  grid-column: 2 / span 5; /* 가운데 위치 잡기 (3번째 칸부터 3칸 차지) */
+  grid-row: 2 / span 3; /* 3번째 행에 위치 */
+  background-color: #fff;
+  border-radius: 0px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 0px;
+  font-size: 18px;
+  font-family: "Paperlogy";
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  word-break: keep-all;
+  line-height: 1.6;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.mission-list {
+  width: 90%;
+  max-width: 22rem;
+  height: 22rem;
+  padding: 1rem 0.75rem;
+  border-radius: 1.25rem;
+  background: #E8E8E8;
+
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  margin-left: auto;
+  margin-right: auto;     /* ✅ 가운데 정렬 핵심 */
+  box-sizing: border-box;
+}
+
+.mission-item {
+  width: 100%;
+  max-width: 90%;
+  min-height: 60px;
+  padding: 10px 18px;
+
+  font-family: Paperlogy;
+  font-size: 15px;
+  color: #000;
+
+  border-radius: 20px;
+  border: 2px solid var(--Main-Disabled-2, #e8e8e8);
+  background-color: #fff !important;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* ✅ 왼쪽 정렬 */
+  justify-content: center;
+
+  text-align: left;          /* ✅ 텍스트 앞 정렬 */
+  line-height: 1.5;
+  word-break: keep-all;
+  white-space: normal;
+}
+
 
 
 /****************************
@@ -672,32 +748,6 @@ body.theme-custom .dice-number {
   left: 610px;
   transition: all 0.3s ease;
   z-index: 1000;
-}
-/* 연희 수정 / 미션 */
-.mission-box {
-  grid-column: 2 / span 5; /* 가운데 위치 잡기 (3번째 칸부터 3칸 차지) */
-  grid-row: 2 / span 3; /* 3번째 행에 위치 */
-  background-color: #fff;
-  border-radius: 0px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  text-align: center;
-  padding: 0px;
-  font-size: 18px;
-  font-family: "Paperlogy";
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  word-break: keep-all;
-  line-height: 1.6;
-  max-height: 150px;
-  overflow-y: auto;
-}
-
-/*세인 수정 - 미션 목록*/
-.mission-list {
-  list-style-type: none; /* 숫자 제거 */
 }
 
 .modal {
@@ -822,5 +872,3 @@ body.theme-custom .dice-number {
     max-height: none;
   }
 }
-
-
