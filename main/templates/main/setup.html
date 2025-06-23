@@ -98,18 +98,19 @@
         <!-- 인원 설정 -->
         <div class="player-options">
           <h2 class="title">인원 설정</h2>
+          <p class="subtext">
+            이름을 적어 인원을 추가해주세요.<br />게임은 낮은 번호 순으로
+            진행됩니다.
+          </p>
           <div class="player-setup">
-            <p class="subtext">
-              이름을 적어 인원을 추가해주세요.<br />게임은 낮은 번호 순으로
-              진행됩니다.
-            </p>
             <div id="player-list" class="player-list">
               <div class="player-entry">
                 <span class="player-number">1.</span>
                 <input
                   type="text"
                   name="players[]"
-                  placeholder="성이름"
+                  placeholder="이름 입력"
+                  class="placeholder"
                   required
                 />
                 <button
@@ -130,51 +131,60 @@
         <!-- 게임 설정 -->
         <div class="game-options">
           <h2 class="title">게임 설정</h2>
-          <label class="toggle-label">
-            게임 중 랭킹 보기
-            <input
-              type="checkbox"
-              name="show_ranking"
-              id="ranking-toggle"
-              checked
-            />
-            <span class="slider"></span>
-          </label>
-
-          <div class="turn-setting">
-            <label>턴 수 설정</label><br />
-            <div class="radio-wrap">
+          <p class="subtext">
+            랭킹 기능과 턴 수에 대한 설정을 해주세요.<br />하단의 GAME START
+            버튼을 누르면 게임을 시작합니다.
+          </p>
+          <div class="game-options3">
+            <label class="toggle-label">
+              게임 중 랭킹 보기
               <input
-                type="radio"
-                name="turn"
-                value="unlimited"
-                id="unlimited"
+                type="checkbox"
+                name="show_ranking"
+                id="ranking-toggle"
                 checked
               />
-              <label for="unlimited">무제한 턴 수</label>
+              <span class="slider"></span>
+            </label>
+
+            <div class="turn-setting">
+              <label>턴 수 설정</label><br />
+              <div class="radio-wrap">
+                <input
+                  type="radio"
+                  name="turn"
+                  value="unlimited"
+                  id="unlimited"
+                  checked
+                />
+                <label for="unlimited">무제한 턴 수</label>
+              </div>
+
+              <div class="radio-wrap">
+                <input type="radio" name="turn" value="limited" id="limited" />
+                <label for="limited">진행할 바퀴 수 지정</label>
+              </div>
+
+              <div
+                id="slider-container"
+                style="display: none; margin-top: 10px"
+              >
+                <p>진행할 바퀴 수: <span id="turn-count">2</span></p>
+                <input
+                  type="range"
+                  min="2"
+                  max="20"
+                  step="2"
+                  value="2"
+                  id="turn-slider"
+                  name="max_turns"
+                  class="turn-slider"
+                />
+              </div>
             </div>
 
-            <div class="radio-wrap">
-              <input type="radio" name="turn" value="limited" id="limited" />
-              <label for="limited">진행할 바퀴 수 지정</label>
-            </div>
-
-            <div id="slider-container" style="display: none; margin-top: 10px">
-              <p>진행할 바퀴 수: <span id="turn-count">2</span></p>
-              <input
-                type="range"
-                min="2"
-                max="20"
-                step="2"
-                value="2"
-                id="turn-slider"
-                name="max_turns"
-                class="turn-slider"
-              />
-            </div>
+            <button type="submit" class="game-start-btn">GAME START</button>
           </div>
-
-          <button type="submit" class="game-start-btn">GAME START</button>
         </div>
       </div>
     </form>
