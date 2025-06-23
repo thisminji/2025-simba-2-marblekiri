@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const continueButton = document.querySelector(".continue-button");    // 모달의 "이어서 진행" 버튼
   const endGameConfirmButton = document.querySelector(".end-button-modal"); // 모달의 "게임 종료" 버튼
 
+  //<< 말 위치 조정 >>
+  moveHorseStepByStep(0, 0)
+
   //===================⏩ 모달 ===============================
 
   // 🧙 상단 "게임 종료" 버튼 클릭 시 → 모달 열기
@@ -206,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //===================⏩ 마루 이동 ==========================
   function moveHorseStepByStep(startIndex, endIndex) {
+    console.log("🐴 말 이동 시작");
     const totalTiles = 20;
     const steps = [];
     let current = startIndex;

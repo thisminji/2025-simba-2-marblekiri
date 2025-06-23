@@ -58,6 +58,7 @@ def game_start(request):
         # 플레이어 생성 및 방에 배정
         for i, name in enumerate(player_names):
                 PlayerInRoom.objects.create(nickname=name, room=room, turn=i)
+        print("player 목록:", player_names)
 
         # room_id 세션에 저장 → 게임 상태 관리용
         request.session['room_id'] = room.id
@@ -347,6 +348,10 @@ def end_game(request):
     #테마
     theme = request.session.get('theme')
 
+    # 전체 미션 불러오기
+    all_missions = Tile.objects.filter(room=room).order_by('index')
+    mission_texts = [tile.question.content for tile in all_missions]
+
     # DB 삭제
     Tile.objects.filter(room=room).delete()
     PlayerInRoom.objects.filter(room=room).delete()
@@ -364,7 +369,7 @@ def end_game(request):
         'show_ranking' : show_ranking,
         'play_time': play_time_text,
         'round_count': round_count,
-
+        'mission_texts' : mission_texts,
     })
 
 ###############################################################################

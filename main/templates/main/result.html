@@ -12,7 +12,7 @@
     <div class="result-container">
       <!-- 왼쪽: 업로드 -->
       <div class="left-panel">
-        <div class="review-image">
+        <div class="review-image-{{ show_ranking|yesno:'true,false' }}">
           <input type="file" id="image-upload" hidden name="image" accept="image/*" />
           <label for="image-upload" class="image-label">
             <!-- 미리보기 이미지 -->
@@ -69,6 +69,18 @@
             </div>
           </div>
           {% endif %}
+        </div>
+
+        <div class="all-mission-box">
+          <h2>질문 리스트</h2>
+          <ul class="mission-list">
+            {% for mission in mission_texts %}
+              <li>{{ forloop.counter }}. {{ mission }}</li>
+              <script>
+                console.log("미션:", "{{ mission }}");
+              </script>
+            {% endfor %}
+          </ul>
         </div>
 
 
