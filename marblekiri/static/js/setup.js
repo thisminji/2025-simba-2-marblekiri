@@ -71,7 +71,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // 커스텀 테마일 경우 페이지 이동
     if (theme === "custom") {
       event.preventDefault();
-      window.location.href = "/custom_questions/";
+      const showRanking = document.querySelector('input[name="show_ranking"]')?.checked ? 'on' : '';
+      // 폼 제출 위치 변경해서 전송
+      gameForm.action = "/custom_questions/";
+      gameForm.method = "POST";
+      gameForm.submit();
     }
   });
 });

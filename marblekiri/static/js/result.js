@@ -28,6 +28,7 @@ function removeImage() {
     if (placeholder) placeholder.style.display = "block";
     if (removeBtn) removeBtn.style.display = "none";
 }
+/////////////////////////////////////////////////////////////
 
 document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("image-upload");
@@ -35,5 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (input) input.addEventListener("change", previewImage);
     if (removeBtn) removeBtn.addEventListener("click", removeImage);
+
 });
 

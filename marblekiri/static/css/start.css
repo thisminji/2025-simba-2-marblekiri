@@ -1,8 +1,70 @@
 @font-face {
-  font-family: "Paperlogy-8ExtraBold";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2")
-    format("woff2");
+  font-family: "Partial Sans KR";
+  src: url("../../fonts/PartialSansKR-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-1Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-2ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-3Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-4Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-5Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-6SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-7Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-8ExtraBold.woff2") format("woff2");
   font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-9Black.woff2") format("woff2");
+  font-weight: 900;
   font-style: normal;
 }
 
@@ -17,10 +79,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: var(
-    --Grad-Orange,
-    linear-gradient(0deg, #ff850b 0%, #ffb200 100%)
-  );
+  background: linear-gradient(to bottom, #FFA600, #FE7F00);
   justify-content: center;
   align-items: center;
   overflow: hidden;
@@ -30,6 +89,8 @@ body {
   display: flex;
   width: 422px;
   height: 120px;
+  z-index: 3;
+  position: relative;
 }
 
 .opening_comment {
@@ -40,10 +101,14 @@ body {
   font-style: normal;
   font-weight: 250;
   line-height: normal;
-  letter-spacing: 4.8px;
+  letter-spacing: 4px;
+  z-index: 2;
+  position: relative;
 }
 
 .start_button {
+  position: relative;
+  z-index: 5;
   border: none;
   border-radius: 10px;
   background: #fff;
@@ -60,6 +125,46 @@ body {
   gap: 10px;
 }
 
+.start_button:hover {
+  background: #e9e9e9;
+  color: #fe8701;
+  text-decoration: none;
+}
+
 .button_click {
   text-decoration: none;
+}
+
+/* bg 이미지 */
+/* 공통 이미지 스타일 */
+.start-img {
+  position: absolute;
+  pointer-events: none;
+  opacity: 1;
+}
+
+
+.dice{
+  top: -50px;
+  right: -50px;
+  width: 700px;
+  opacity: 1;  /* 선택 사항: 배경처럼 보이게 */
+  z-index: 0;    /* 배경 요소 뒤로 */
+  pointer-events: none; /* 클릭 방해 방지 */
+}
+
+/* 1번 왼쪽 아래 */
+.bottle {
+  bottom: 50px;
+  left: 20px;
+  width: 800px;
+  z-index: 0; 
+}
+
+/* 2번 가운데 아래 */
+.liquid {
+  bottom: 0px;
+  left: 30%;
+  width: 1000px;
+  z-index: 0;
 }

@@ -42,7 +42,7 @@
           <h1 class="summary-title">결과 요약</h1>
 
           <!-- 우리가 뭘 했더라 -->
-          <div class="summary-section">
+          <div class="summary-section-{{ theme }}">
             <h2>우리가 뭘 했더라...</h2>
             <div class = "summary-text">
             <p>플레이타임: {{ play_time }}</p>
@@ -51,15 +51,27 @@
           </div>
 
           <!-- 가장 많이 마신 사람 -->
-          <div class="summary-card">
-            <h2>가장 많이 마신 사람</h2>
+          <input type="hidden" id="show-ranking-hidden" value="{{ show_ranking|yesno:'true,false' }}">
+          <script>
+            console.log("랭킹 도출 여부:", "{{ show_ranking|yesno:'true,false' }}");
+          </script>
+          {% if show_ranking %}
+          <div class="summary-card-{{ theme }}">
             <div class="ranking-tags">
-              <span class="medal">🥇 김민수</span>
-              <span class="medal">🥈 박정민</span>
-              <span class="medal">🥉 이하민</span>
+              <h2>가장 많이 마신 사람</h2>
+              <ul class="ranking-list" id="ranking-list">
+                {% for nickname, count in ranking %}
+                  <li class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}">
+                    <img src="/static/assets/icons/noto_{{ forloop.counter }}-place-medal.svg" alt="{{ forloop.counter }}등 메달">
+                    <span>{{ nickname }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
+          {% endif %}
         </div>
+
 
         <!-- 돌아가기 버튼 -->
         <div class="back-button-wrapper">

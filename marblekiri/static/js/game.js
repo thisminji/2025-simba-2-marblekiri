@@ -78,8 +78,11 @@ endGameConfirmButton?.addEventListener("click", () => {
       if (data.end_game) {
         window.location.href = "/end_game/";
       } else {
-        // ranking
-        updateRanking(data.ranking);
+        const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
+        console.log("✅ show_ranking:", show_ranking);
+        if (show_ranking){
+          updateRanking(data.ranking);
+        }
         //round
         updateRound(data.round);
         //player

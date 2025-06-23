@@ -37,8 +37,10 @@ def game_start(request):
         max_turns = request.POST.get('max_turns')
 
         # 랭킹 보기 체크여부 확인
-        show_ranking = request.POST.get('show_ranking') == 'on'  
-        request.session['show_ranking'] = show_ranking 
+        if theme != "custom":
+            show_ranking = request.POST.get('show_ranking') == 'on'
+            request.session['show_ranking'] = show_ranking
+        # else일 때는 custom_questions에서 이미 설정됨
 
         # 게임방 생성
         room = GameRoom.objects.create(
@@ -72,6 +74,7 @@ def game_page(request):
     players = list(PlayerInRoom.objects.filter(room=room).order_by('turn'))
     total_players = len(players)
     show_ranking = request.session.get('show_ranking', True)
+    print("🌟 game_page에서 show_ranking =", show_ranking)
 
     # 현재 턴 계산
     current_index = room.current_turn_index % total_players
@@ -106,9 +109,9 @@ def game_page(request):
         'next_player': next_player,
         'current_round': room.current_round,
         'ranking': ranking,
+        'show_ranking': show_ranking,
         'current_tile_index': current_tile_index,
         'current_question': current_question,
-        'show_ranking': show_ranking,
     })
 
 
@@ -251,11 +254,19 @@ def get_ranking(request):
 ### 커스텀 질문 입력 화면
 def custom_questions(request):
     theme = request.session.get('theme')
-    players = request.GET.getlist('players')
-    if players:
-        # 커스텀 인원 세션 저장
+
+    # POST로 받은 플레이어, 랭킹 정보 처리
+    if request.method == "POST":
+        players = request.POST.getlist('players')
+        show_ranking = request.POST.get('show_ranking') == 'on'
+
         request.session['players'] = players
-    print(request.GET.getlist('players'))
+        request.session['show_ranking'] = show_ranking
+
+
+    else:
+        players = request.session.get('players', [])
+
     return render(request, 'main/custom_questions.html', 
     {'players': players,
     'theme' : theme, }
@@ -312,9 +323,12 @@ def end_game(request):
 
     # 랭킹 계산
     players = PlayerInRoom.objects.filter(room=room).order_by('-drink_count')[:3]
+    ranking = [(p.nickname, p.drink_count) for p in players]
 
-    # 삭제 전에 정보 보관
-    ranking_data = [(p.nickname, p.drink_count) for p in players]
+    #랭킹 도출 여부
+    show_ranking = request.session.get('show_ranking', True)
+
+    # 라운드
     round_count = room.current_round
 
     #테마
@@ -332,9 +346,12 @@ def end_game(request):
     return render(request, 'main/result.html', {
         'room': room,
         'theme' : theme,
-        'ranking': ranking_data,
+        'players' : players,
+        'ranking': ranking,
+        'show_ranking' : show_ranking,
         'play_time': play_time_text,
         'round_count': round_count,
+
     })
 
 ###############################################################################

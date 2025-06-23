@@ -72,7 +72,7 @@
 body.theme-college {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
+  background: linear-gradient(to right, #FF6A00, #FF8801);
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -86,7 +86,7 @@ body.theme-college {
 body.theme-sports {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(0deg, #2fc262 0%, #53c079 100%);
+  background: linear-gradient(to right, #1FB230, #4CC85A);
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -100,7 +100,7 @@ body.theme-sports {
 body.theme-idol {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(0deg, #813dd3, #7434c2 100%);
+  background: linear-gradient(to right, #812FA7, #8A49D5);
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -113,7 +113,7 @@ body.theme-idol {
 body.theme-custom {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(to bottom right, #b4b4b4, #c0c0c0); /* 회색 */
+  background: #E8E8E8; /* 회색 */
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -138,7 +138,7 @@ body.theme-custom {
 
 .review-image {
   width: 100%;
-  height: 450px;
+  height: 560px;
   background-color: #999;
   border-radius: 20px;
   position: relative;
@@ -273,12 +273,14 @@ body.theme-custom {
   margin-bottom: 1rem;
 }
 
-.summary-section {
+/*----------------------------------*/
+
+.summary-section-college {
   font-family: "Paperlogy";
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #ff6f00, #ff9800);
+  background: linear-gradient(to right, #FF6A00, #FF8801);
   border-radius: 20px;
   padding: 0.1rem 2rem 0.5rem;
   margin-bottom: 1rem;
@@ -286,6 +288,53 @@ body.theme-custom {
   font-weight: bold;
   text-align: left;
 }
+
+.summary-section-sports {
+  font-family: "Paperlogy";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  background: linear-gradient(to right, #1FB230, #4CC85A);
+  border-radius: 20px;
+  padding: 0.1rem 2rem 0.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+.summary-section-idol {
+  font-family: "Paperlogy";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  background: linear-gradient(to right, #812FA7, #8A49D5);
+  border-radius: 20px;
+  padding: 0.1rem 2rem 0.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+.summary-section-custom {
+  font-family: "Paperlogy";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  background: #939393;
+  border-radius: 20px;
+  padding: 0.1rem 2rem 0.5rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+/*----------------------------------*/
+
+
+
 
 .summary-text{
   font-family: "Paperlogy";
@@ -295,14 +344,14 @@ body.theme-custom {
   color: white;
 }
 
-/*---------------랭킹 ---------------*/
+/*---------------랭킹 -------------------------------------------*/
 
-.summary-card {
+.summary-card-college {
   font-family: "Paperlogy";
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #ff6f00, #ff9800);
+  background: linear-gradient(to right, #FF6A00, #FF8801);
   border-radius: 20px;
   padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
   margin-bottom: 1rem;
@@ -310,6 +359,47 @@ body.theme-custom {
   font-weight: bold;
   text-align: left;
 }
+.summary-card-sports {
+  font-family: "Paperlogy";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  background: linear-gradient(to right, #1FB230, #4CC85A);
+  border-radius: 20px;
+  padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+.summary-card-idol {
+  font-family: "Paperlogy";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  background: linear-gradient(to right, #812FA7, #8A49D5);
+  border-radius: 20px;
+  padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+.summary-card-custom {
+  font-family: "Paperlogy";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 300;
+  background: #939393;
+  border-radius: 20px;
+  padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: bold;
+  text-align: left;
+}
+
+/*---------------------------------------------------------------*/
 
 .summary-title{
   color: var(--Theme-00, #2a2a2a);
@@ -322,11 +412,13 @@ body.theme-custom {
 }
 
 
-.ranking-tags {
+
+
+
+.ranking-list {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
+  gap: 30px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -340,12 +432,15 @@ body.theme-custom {
   line-height: 20px; /* 142.857% */
 }
 
-.ranking-tags .medal {
-  background: white;
-  border-radius: 10px;
-  color: #333;
-  padding: 6px 12px;
-  font-size: 0.9rem;
+.rank-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 4px 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
 }
 
 .rank-card img {

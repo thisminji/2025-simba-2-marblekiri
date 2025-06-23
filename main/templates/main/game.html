@@ -95,6 +95,8 @@
 
     <!-- 오른쪽: 사이드바 -->
     <div class="sidebar">
+      <!--세인 수정, setup의 랭킹 체크 여부 가져오기-->
+      <input type="hidden" id="show-ranking-hidden" value="{{ show_ranking|yesno:'true,false' }}">
       {% if show_ranking %}
       <div class="ranking">
         <h3 class="ranking-title">많이 마신 사람</h3>
