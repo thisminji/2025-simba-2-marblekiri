@@ -78,8 +78,8 @@ endGameConfirmButton?.addEventListener("click", () => {
       if (data.end_game) {
         window.location.href = "/end_game/";
       } else {
-        const show_ranking = document.body.dataset.showRanking === "true";
-        // ranking, 랭킹 옵션이 true일 때만 업데이트하도록 수정
+        const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
+        console.log("✅ show_ranking:", show_ranking);
         if (show_ranking){
           updateRanking(data.ranking);
         }
