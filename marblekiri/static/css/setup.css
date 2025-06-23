@@ -147,7 +147,6 @@ body.selected-custom {
   object-fit: cover;
 }
 
-
 /* 기본 이미지 항상 보이게 */
 .default-image {
   opacity: 1;
@@ -158,20 +157,20 @@ body.selected-custom {
 /* 호버 이미지는 기본적으로 숨김 */
 .hover-image {
   opacity: 0;
-  pointer-events: none; 
+  pointer-events: none;
   z-index: 3;
 }
 
 /* Hover 또는 selected 상태일 때: hover 보이고 default 숨김 */
 .theme-category-container:hover .default-image,
 .theme-category-container.selected .default-image {
-  display: none ;
+  display: none;
   opacity: 1;
   pointer-events: auto;
 }
 .theme-category-container:hover .hover-image,
 .theme-category-container.selected .hover-image {
-  display: block ;
+  display: block;
   opacity: 1;
   pointer-events: none;
 }
@@ -226,10 +225,10 @@ body.selected-custom {
   display: flex;
   flex-direction: column;
   gap: 7px;
-  
+
   /* ✅ 스크롤바 숨기기 */
-  scrollbar-width: none;       /* Firefox */
-  -ms-overflow-style: none;    /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
 
 /* 개별 플레이어 항목 */
@@ -305,7 +304,7 @@ body.selected-custom {
 .game-options3 {
   display: flex;
   width: 370px;
-  height: 482px;
+  height: 520px;
   flex-direction: column;
   justify-content: space-between;
   /* align-items: center; */
@@ -372,7 +371,6 @@ body.selected-custom {
 /*게임 턴 수  박스 레이아웃*/
 .turn-setting {
   display: flex;
-
   padding: 24px;
   flex-direction: column;
   justify-content: center;
@@ -402,7 +400,7 @@ body.selected-custom {
 }
 
 .unlimited {
-  color: var(--Main-Gray, #939393);
+  color: var(--Main-Black, #2a2a2a);
   text-align: center;
   align-items: flex-start;
   font-family: Paperlogy;
@@ -420,6 +418,53 @@ body.selected-custom {
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+}
+
+#slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  align-self: stretch;
+}
+
+.turn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.turn-comment {
+  color: #000;
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.turn-slider {
+  height: 22px;
+  align-self: stretch;
+}
+
+/* 슬라이더 비활성화일 때 회색 처리 */
+#turn-slider:disabled::-webkit-slider-thumb {
+  background: #ccc;
+}
+#turn-slider:disabled {
+  background: #ddd;
+  cursor: not-allowed;
+}
+
+/* 라벨 색상 토글 */
+.radio-wrap label {
+  color: #939393;
+  transition: color 0.3s ease;
+}
+.radio-wrap input:checked + label {
+  color: #000;
 }
 
 .game-start-btn {
@@ -440,4 +485,16 @@ body.selected-custom {
   font-style: normal;
   font-weight: 900;
   line-height: normal;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.game-start-btn.active {
+  color: #fff;
+  font-family: Paperlogy;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  cursor: pointer;
+  background: var(--Main-Black, #2a2a2a);
 }
