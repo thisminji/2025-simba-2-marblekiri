@@ -78,8 +78,11 @@ endGameConfirmButton?.addEventListener("click", () => {
       if (data.end_game) {
         window.location.href = "/end_game/";
       } else {
-        // ranking
-        updateRanking(data.ranking);
+        const show_ranking = document.body.dataset.showRanking === "true";
+        // ranking, 랭킹 옵션이 true일 때만 업데이트하도록 수정
+        if (show_ranking){
+          updateRanking(data.ranking);
+        }
         //round
         updateRound(data.round);
         //player

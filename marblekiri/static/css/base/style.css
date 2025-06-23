@@ -511,7 +511,7 @@ body {
 .horse {
   width: 60px;
   position: absolute;
-  top: 350px; /* 소수점은 생략해도 무방 */
+  top: 280px; /* 소수점은 생략해도 무방 */
   left: 610px;
   transition: all 0.3s ease;
   z-index: 1000;
