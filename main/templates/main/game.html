@@ -12,7 +12,8 @@
     />
   </head>
 
-  <body class = "theme-{{ theme }}"
+  <body
+    class="theme-{{ theme }}"
     style="
       display: flex;
       gap: 24px;
@@ -27,20 +28,35 @@
       <div class="turn-info">
         <div class="turn-header">
           <p>
-            현재 턴 : <span id="turn-number" class="turn-number">{{ current_round }}</span>바퀴
+            현재 턴 :
+            <span id="turn-number" class="turn-number">{{ current_round }}</span
+            >바퀴
           </p>
-          <!-- 버튼을 a 태그에서 분리 -->
-          <button class="end-button">게임 종료</button>
+
+          <button class="end-button">
+            게임 종료
+            <img
+              src="{% static 'assets/icons/tdesign_close-octagon-filled.svg' %}"
+              alt="종료 아이콘"
+              class="end-icon"
+            />
+          </button>
+          
         </div>
-        <p id="player-data" class="players"
+        <p
+          id="player-data"
+          class="players"
           data-prev="{{ prev_player.nickname|escapejs }}"
           data-current="{{ current_player.nickname|escapejs }}"
-          data-next="{{ next_player.nickname|escapejs }}">
-
-          <span id="prev-player" style="color: #ccc"> 
+          data-next="{{ next_player.nickname|escapejs }}"
+        >
+          <span id="prev-player" style="color: #ccc">
             {{ prev_player.nickname }}
           </span>
-          <span id="current-player" style="color: #000; font-weight: bold; margin: 0 20px">
+          <span
+            id="current-player"
+            style="color: #000; font-weight: bold; margin: 0 20px"
+          >
             {{ current_player.nickname }}
           </span>
           <span id="next-player" style="color: #ccc">
@@ -87,7 +103,11 @@
       </div>
 
       <div class="action-buttons">
-        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        <input
+          type="hidden"
+          name="csrfmiddlewaretoken"
+          value="{{ csrf_token }}"
+        />
         <button class="pass-btn" data-action="pass" disabled>통과!</button>
         <button class="drink-btn" data-action="drink" disabled>마셔!</button>
       </div>
@@ -96,26 +116,29 @@
     <!-- 오른쪽: 사이드바 -->
     <div class="sidebar">
       <!--세인 수정, setup의 랭킹 체크 여부 가져오기-->
-      <input type="hidden" id="show-ranking-hidden" value="{{ show_ranking|yesno:'true,false' }}">
+      <input
+        type="hidden"
+        id="show-ranking-hidden"
+        value="{{ show_ranking|yesno:'true,false' }}"
+      />
       {% if show_ranking %}
       <div class="ranking">
         <h3 class="ranking-title">많이 마신 사람</h3>
-        <ul class="ranking-list" id="ranking-list">
-        </ul>
+        <ul class="ranking-list" id="ranking-list"></ul>
       </div>
       {% endif %}
 
       <!--세인 수정, 도착한 칸의 미션 목록을 누적해서 띄우기-->
       <div class="missions">
         <h3>미션 목록</h3>
-          <ol class="mission-list"></ol>
+        <ol class="mission-list"></ol>
       </div>
 
       <div class="dice">
         <div class="dice-roll-container">
           <div class="dice-number-box">
             <div class="dice-circle">
-              <span class="dice-number">5</span>
+              <span class="dice-number">1</span>
             </div>
           </div>
           <button class="roll-dice-button">주사위 굴리기</button>
@@ -128,17 +151,27 @@
       <div class="modal-box">
         <h2 class="modal-title">게임을 종료하시겠습니까?</h2>
         <p class="modal-warning">
-          <img src="{% static 'assets/icons/material-symbols_warning.svg' %}" alt="경고" class="warning-icon" />
+          <img
+            src="{% static 'assets/icons/material-symbols_warning.svg' %}"
+            alt="경고"
+            class="warning-icon"
+          />
           진행중인 내용은 저장되지 않습니다.
         </p>
         <div class="modal-buttons">
           <button class="continue-button">이어서 진행</button>
           <!-- <button class="end-button-modal">게임 종료</button> -->
-          <button class="end-button-modal" id="endGameConfirmButton" data-url="{% url 'end_game' %}">게임 종료</button>
+          <button
+            class="end-button-modal"
+            id="endGameConfirmButton"
+            data-url="{% url 'end_game' %}"
+          >
+            게임 종료
+          </button>
         </div>
       </div>
     </div>
 
-  <script src="{% static 'js/game.js' %}">  </script>
-</body>
+    <script src="{% static 'js/game.js' %}"></script>
+  </body>
 </html>
