@@ -68,60 +68,39 @@
   font-style: normal;
 }
 
-/* 기본 테마 */
+/* 공통 body 스타일 (모든 테마 공통 레이아웃) */
+body[class^="theme-"] {
+  margin: 0;
+  padding: 2.5rem; /* 40px */
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+
+  box-sizing: border-box;
+}
+
+/* 테마별 배경 색상 */
+
 body.theme-college {
-  margin: 0;
-  padding: 40px;
-  background: linear-gradient(to bottom, #FFB200, #FF850B);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box; 
+ background: var(--Grad-Orange, linear-gradient(0deg, #FF850B 0%, #FFB200 100%)); /* 주황 테마 */
 }
 
-/* 스포츠 테마 */
 body.theme-sports {
-  margin: 0;
-  padding: 40px;
-  background: linear-gradient(to bottom, #4CC85A, #1FB230);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box; 
+ background: var(--Grad-Green, linear-gradient(90deg, #1FB230 0%, #4CC85A 100%)); /* 초록 테마 */
 }
 
-/* 아이돌 테마 */
 body.theme-idol {
-  margin: 0;
-  padding: 40px;
-  background: linear-gradient(to bottom, #8A49D5, #812FA7);
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box; 
+  background: var(--Grad-Purple, linear-gradient(90deg, #812FA7 0%, #8A49D5 100%)); /* 보라 테마 */
 }
 
 body.theme-custom {
-  margin: 0;
-  padding: 40px;
-  background: #E8E8E8;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  gap: 24px;
-  justify-content: center;
-  align-items: flex-start;
-  box-sizing: border-box; 
+ background: var(--Grad-Red, linear-gradient(270deg, #E22D2D 0%, #DB3445 100%)); /* 빨강 테마 */
 }
+
 
 /* 공통 스타일 */
 /*
@@ -141,19 +120,21 @@ body {
 
 .game-container {
   display: flex;
-  width: 1280px;
-  height: 640px;
-  background-color: white;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+  flex-direction: row;         /* 기본은 가로 배치 */
+  justify-content: center;
+  align-items: stretch;
+  gap: 2vw;
 
-  display: flex;
   width: 95vw;
   height: 90vh;
   max-width: 1280px;
   max-height: 720px;
-  gap: 24px;
+
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 /****************************
@@ -229,10 +210,28 @@ body {
 
 .tiles-grid {
   display: grid;
-  grid-template-columns: repeat(7, 100px);
-  grid-template-rows: repeat(5, 100px);
-  width: 700px;
-  height: 400px;
+  grid-template-columns: repeat(7, auto);     /* 각 열은 tile의 너비에 맞춤 */
+  grid-template-rows: repeat(5, auto);        /* 각 행도 tile 높이에 맞춤 */
+                                  /* 타일 간격 여유 주고 싶다면 */
+
+  width: fit-content;
+  height: fit-content;
+
+  justify-content: center;
+  align-content: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(7, auto);     /* 각 열은 tile의 너비에 맞춤 */
+  grid-template-rows: repeat(5, auto);        /* 각 행도 tile 높이에 맞춤 */
+
+  width: fit-content;
+  height: fit-content;
+
   justify-content: center;
   align-content: center;
   margin: 0 auto;
@@ -245,7 +244,6 @@ body {
   font-size: 50px;
   font-weight: 800;
   font-family: "Paperlogy";
-  background-color: #ff8801;
   color: white;
   border-radius: 10px;
   display: flex;
@@ -253,6 +251,133 @@ body {
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
+
+/* 기본 배경 제거 (테마별로 지정하니까) */
+body[class^="theme-"] .tile {
+  background-color: transparent;
+}
+
+/* ========== 🎓 기본 테마 (theme-college) ========== */
+body.theme-college .tile[data-index="0"],
+body.theme-college .tile[data-index="4"],
+body.theme-college .tile[data-index="6"],
+body.theme-college .tile[data-index="8"],
+body.theme-college .tile[data-index="12"],
+body.theme-college .tile[data-index="14"],
+body.theme-college .tile[data-index="18"] {
+  background-color: #FF9505;
+}
+
+body.theme-college .tile[data-index="1"],
+body.theme-college .tile[data-index="3"],
+body.theme-college .tile[data-index="5"],
+body.theme-college .tile[data-index="7"],
+body.theme-college .tile[data-index="9"],
+body.theme-college .tile[data-index="11"],
+body.theme-college .tile[data-index="13"],
+body.theme-college .tile[data-index="15"],
+body.theme-college .tile[data-index="17"],
+body.theme-college .tile[data-index="19"] {
+  background-color: #FE8700;
+}
+
+body.theme-college .tile[data-index="2"],
+body.theme-college .tile[data-index="10"],
+body.theme-college .tile[data-index="16"] {
+  background-color: #FE5500;
+}
+
+/* ========== 🏀 스포츠 테마 (theme-sports) ========== */
+body.theme-sports .tile[data-index="0"],
+body.theme-sports .tile[data-index="4"],
+body.theme-sports .tile[data-index="6"],
+body.theme-sports .tile[data-index="8"],
+body.theme-sports .tile[data-index="12"],
+body.theme-sports .tile[data-index="14"],
+body.theme-sports .tile[data-index="18"] {
+  background-color: #2FAC2F;
+}
+
+body.theme-sports .tile[data-index="1"],
+body.theme-sports .tile[data-index="3"],
+body.theme-sports .tile[data-index="5"],
+body.theme-sports .tile[data-index="7"],
+body.theme-sports .tile[data-index="9"],
+body.theme-sports .tile[data-index="11"],
+body.theme-sports .tile[data-index="13"],
+body.theme-sports .tile[data-index="15"],
+body.theme-sports .tile[data-index="17"],
+body.theme-sports .tile[data-index="19"] {
+  background-color: #4BBF59;
+}
+
+body.theme-sports .tile[data-index="2"],
+body.theme-sports .tile[data-index="10"],
+body.theme-sports .tile[data-index="16"] {
+  background-color: #77B555;
+}
+
+/* ========== 🎤 아이돌 테마 (theme-idol) ========== */
+body.theme-idol .tile[data-index="0"],
+body.theme-idol .tile[data-index="4"],
+body.theme-idol .tile[data-index="6"],
+body.theme-idol .tile[data-index="8"],
+body.theme-idol .tile[data-index="12"],
+body.theme-idol .tile[data-index="14"],
+body.theme-idol .tile[data-index="18"] {
+  background-color: #CC2EB7;
+}
+
+body.theme-idol .tile[data-index="1"],
+body.theme-idol .tile[data-index="3"],
+body.theme-idol .tile[data-index="5"],
+body.theme-idol .tile[data-index="7"],
+body.theme-idol .tile[data-index="9"],
+body.theme-idol .tile[data-index="11"],
+body.theme-idol .tile[data-index="13"],
+body.theme-idol .tile[data-index="15"],
+body.theme-idol .tile[data-index="17"],
+body.theme-idol .tile[data-index="19"] {
+  background-color: #CA48D5;
+}
+
+body.theme-idol .tile[data-index="2"],
+body.theme-idol .tile[data-index="10"],
+body.theme-idol .tile[data-index="16"] {
+  background-color: #B111FB;
+}
+
+/* ========== 🎨 커스텀 테마 (theme-custom) ========== */
+body.theme-custom .tile[data-index="0"],
+body.theme-custom .tile[data-index="4"],
+body.theme-custom .tile[data-index="6"],
+body.theme-custom .tile[data-index="8"],
+body.theme-custom .tile[data-index="12"],
+body.theme-custom .tile[data-index="14"],
+body.theme-custom .tile[data-index="18"] {
+  background-color: #FF6347;
+}
+
+body.theme-custom .tile[data-index="1"],
+body.theme-custom .tile[data-index="3"],
+body.theme-custom .tile[data-index="5"],
+body.theme-custom .tile[data-index="7"],
+body.theme-custom .tile[data-index="9"],
+body.theme-custom .tile[data-index="11"],
+body.theme-custom .tile[data-index="13"],
+body.theme-custom .tile[data-index="15"],
+body.theme-custom .tile[data-index="17"],
+body.theme-custom .tile[data-index="19"] {
+  background-color: #FF4D4D;
+}
+
+body.theme-custom .tile[data-index="2"],
+body.theme-custom .tile[data-index="10"],
+body.theme-custom .tile[data-index="16"] {
+  background-color: #FF0000;
+}
+
+
 
 .empty {
   background-color: transparent;
@@ -449,10 +574,10 @@ body {
   gap: 16px;
 }
 
+/* 기본 스타일 (공통) */
 .dice-number-box {
   width: 72px;
   height: 72px;
-  background: #ff8801;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -460,6 +585,7 @@ body {
   padding: 6px;
 }
 
+/* 주사위 숫자 원 (공통) */
 .dice-number {
   width: 60px;
   height: 60px;
@@ -468,7 +594,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #ff8801;
   -webkit-text-stroke: 3px #000000;
   text-align: center;
   font-family: "Partial Sans KR";
@@ -477,6 +602,41 @@ body {
   font-weight: 400;
   line-height: normal;
 }
+
+/* ========== 테마별 색상 덮어쓰기 ========== */
+
+/* r기본 테마 */
+body.theme-college .dice-number-box {
+  background: #FF8801;
+}
+body.theme-college .dice-number {
+  color: #FF8801;
+}
+
+/* 스포츠 테마 */
+body.theme-sports .dice-number-box {
+  background: #10AF6D;
+}
+body.theme-sports .dice-number {
+  color: #10AF6D;
+}
+
+/* 아이돌 테마 */
+body.theme-idol .dice-number-box {
+  background: #B208C2;
+}
+body.theme-idol .dice-number {
+  color: #B208C2;
+}
+
+/* 커스텀 테마 */
+body.theme-custom .dice-number-box {
+  background: #FE0011;
+}
+body.theme-custom .dice-number {
+  color: #FE0011;
+}
+
 
 .roll-dice-button {
   border-radius: 15px;
@@ -659,4 +819,13 @@ background: var(--Theme-00, #2A2A2A);
 
 .hidden {
   display: none !important;
+}
+
+
+@media (max-width: 1279px) {
+  .game-container {
+    flex-direction: column;       /* 작은 화면에선 세로 정렬 */
+    height: auto;
+    max-height: none;
+  }
 }
