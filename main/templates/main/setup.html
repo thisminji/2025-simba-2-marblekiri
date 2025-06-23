@@ -9,192 +9,205 @@
   </head>
 
   <body class="theme-{{ theme }}">
-    <form id="gameForm" method="POST" action="{% url 'game_start' %}">
-      {% csrf_token %}
+    <div class="container">
+      <form id="gameForm" method="POST" action="{% url 'game_start' %}">
+        {% csrf_token %}
 
-      <div
-        class="grid-container"
-        style="
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 32px;
-          justify-items: center;
-        "
-      >
-        <!-- 테마 선택 -->
-        <div class="theme-options">
-          <h2 class="title">테마 선택</h2>
-          <div class="theme-select">
-            <div class="theme-select-container">
-              <div
-                class="theme-category-container"
-                data-value="college"
-                tabindex="0"
-              >
-                <img
-                  src="{% static 'assets/images/college.svg' %}"
-                  class="theme-image default-image"
-                  alt="기본 테마"
-                />
-                
-                <img
-                  src="{% static 'assets/images/college_hover.svg' %}"
-                  class="theme-image hover-image"
-                  alt="기본 테마 호버"
-                  
-                />
-              </div>
-              <div
-                class="theme-category-container"
-                data-value="sports"
-                tabindex="0"
-              >
-                <img
-                  src="{% static 'assets/images/sports.svg' %}"
-                  class="theme-image default-image"
-                  alt="기본 테마"
-                />
-                
-                <img
-                  src="{% static 'assets/images/sports_hover.svg' %}"
-                  class="theme-image hover-image"
-                  alt="기본 테마 호버"
-                />
-              
-              </div>
-              <div
-                class="theme-category-container"
-                data-value="idol"
-                tabindex="0"
-              >
-                <img
-                  src="{% static 'assets/images/idol.svg' %}"
-                  class="theme-image default-image"
-                  alt="기본 테마"
-                />
-                
-                <img
-                  src="{% static 'assets/images/idol_hover.svg' %}"
-                  class="theme-image hover-image"
-                  alt="기본 테마 호버"
-                />
-                
-              </div>
-              <div
-                class="theme-category-container"
-                data-value="custom"
-                tabindex="0"
-              >
-                <img
-                  src="{% static 'assets/images/custom.svg' %}"
-                  class="theme-image default-image"
-                  alt="기본 테마"
-                />
-                <
-                <img
-                  src="{% static 'assets/images/custom_hover.svg' %}"
-                  class="theme-image hover-image"
-                  alt="기본 테마 호버"
-                />
-                
-              </div>
-              <input type="hidden" name="theme" id="selected-theme" value="" />
-            </div>
-          </div>
-        </div>
-
-        <!-- 인원 설정 -->
-        <div class="player-options">
-          <h2 class="title">인원 설정</h2>
-          <p class="subtext">
-            이름을 적어 인원을 추가해주세요.<br />게임은 낮은 번호 순으로
-            진행됩니다.
-          </p>
-          <div class="player-setup">
-            <div id="player-list" class="player-list">
-              <div class="player-entry">
-                <span class="player-number">1.</span>
-                <input
-                  type="text"
-                  name="players[]"
-                  placeholder="이름 입력"
-                  class="placeholder"
-                  required
-                />
-                <button
-                  type="button"
-                  class="remove-btn"
-                  onclick="removePlayer(this)"
+        <div
+          class="grid-container"
+          style="
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            justify-items: center;
+          "
+        >
+          <!-- 테마 선택 -->
+          <div class="theme-options">
+            <h2 class="title">테마 선택</h2>
+            <div class="theme-select">
+              <div class="theme-select-container">
+                <div
+                  class="theme-category-container"
+                  data-value="college"
+                  tabindex="0"
                 >
-                  -
-                </button>
+                  <img
+                    src="{% static 'assets/images/college.svg' %}"
+                    class="theme-image default-image"
+                    alt="기본 테마"
+                  />
+                  <img
+                    src="{% static 'assets/images/college_hover.svg' %}"
+                    class="theme-image hover-image"
+                    alt="기본 테마 호버"
+                  />
+                </div>
+                <div
+                  class="theme-category-container"
+                  data-value="sports"
+                  tabindex="0"
+                >
+                  <img
+                    src="{% static 'assets/images/sports.svg' %}"
+                    class="theme-image default-image"
+                    alt="기본 테마"
+                  />
+                  <img
+                    src="{% static 'assets/images/sports_hover.svg' %}"
+                    class="theme-image hover-image"
+                    alt="기본 테마 호버"
+                  />
+                </div>
+                <div
+                  class="theme-category-container"
+                  data-value="idol"
+                  tabindex="0"
+                >
+                  <img
+                    src="{% static 'assets/images/idol.svg' %}"
+                    class="theme-image default-image"
+                    alt="기본 테마"
+                  />
+                  <img
+                    src="{% static 'assets/images/idol_hover.svg' %}"
+                    class="theme-image hover-image"
+                    alt="기본 테마 호버"
+                  />
+                </div>
+                <div
+                  class="theme-category-container"
+                  data-value="custom"
+                  tabindex="0"
+                >
+                  <img
+                    src="{% static 'assets/images/custom.svg' %}"
+                    class="theme-image default-image"
+                    alt="기본 테마"
+                  />
+                  <img
+                    src="{% static 'assets/images/custom_hover.svg' %}"
+                    class="theme-image hover-image"
+                    alt="기본 테마 호버"
+                  />
+                </div>
+                <input
+                  type="hidden"
+                  name="theme"
+                  id="selected-theme"
+                  value=""
+
+              
+                />
+                
               </div>
             </div>
-            <button type="button" class="add-btn" onclick="addPlayer()">
-              + 인원 추가
-            </button>
           </div>
-        </div>
 
-        <!-- 게임 설정 -->
-        <div class="game-options">
-          <h2 class="title">게임 설정</h2>
-          <p class="subtext">
-            랭킹 기능과 턴 수에 대한 설정을 해주세요.<br />하단의 GAME START
-            버튼을 누르면 게임을 시작합니다.
-          </p>
-          <div class="game-options3">
-            <label class="toggle-label">
-              게임 중 랭킹 보기
-              <input
-                type="checkbox"
-                name="show_ranking"
-                id="ranking-toggle"
-                checked
-              />
-              <span class="slider"></span>
-            </label>
+          <!-- 인원 설정 -->
+          <div class="player-options">
+            <h2 class="title">인원 설정</h2>
+            <p class="subtext">
+              이름을 적어 인원을 추가해주세요.<br />게임은 낮은 번호 순으로
+              진행됩니다.
+            </p>
+            <div class="player-setup">
+              <div id="player-list" class="player-list">
+                <div class="player-entry">
+                  <span class="player-number">1.</span>
+                  <input
+                    type="text"
+                    name="players[]"
+                    placeholder="이름 입력"
+                    class="placeholder"
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="remove-btn"
+                    onclick="removePlayer(this)"
+                  >
+                    -
+                  </button>
+                </div>
+              </div>
+              <button type="button" class="add-btn" onclick="addPlayer()">
+                + 인원 추가
+              </button>
+            </div>
+          </div>
 
-            <div class="turn-setting">
-              <label>턴 수 설정</label><br />
-              <div class="radio-wrap">
+          <!-- 게임 설정 -->
+          <div class="game-options">
+            <h2 class="title">게임 설정</h2>
+            <p class="subtext">
+              랭킹 기능과 턴 수에 대한 설정을 해주세요.<br />하단의 GAME START
+              버튼을 누르면 게임을 시작합니다.
+            </p>
+            <div class="game-options3">
+              <label class="toggle-label">
+                게임 중 랭킹 보기
                 <input
-                  type="radio"
-                  name="turn"
-                  value="unlimited"
-                  id="unlimited"
+                  type="checkbox"
+                  name="show_ranking"
+                  id="ranking-toggle"
                   checked
                 />
-                <label for="unlimited">무제한 턴 수</label>
+                <span class="slider"></span>
+              </label>
+
+              <div class="turn-setting">
+                <div class="turn-container">
+                  <label class="turn-number">턴 수 설정</label><br />
+                  <div class="radio-wrap">
+                    <input
+                      type="radio"
+                      name="turn"
+                      value="unlimited"
+                      id="unlimited"
+                      checked
+                    />
+                    <label for="unlimited" class="unlimited"
+                      >무제한 턴 수</label
+                    >
+                  </div>
+
+                  <div class="radio-wrap">
+                    <input
+                      type="radio"
+                      name="turn"
+                      value="limited"
+                      id="limited"
+                    />
+                    <label for="limited" class="limited"
+                      >진행할 바퀴 수 지정</label
+                    >
+                  </div>
+
+                  <div
+                    id="slider-container"
+                    style="display: none; margin-top: 10px"
+                  >
+                    <p>진행할 바퀴 수: <span id="turn-count">2</span></p>
+                    <input
+                      type="range"
+                      min="2"
+                      max="20"
+                      step="2"
+                      value="2"
+                      id="turn-slider"
+                      name="max_turns"
+                      class="turn-slider"
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div class="radio-wrap">
-                <input type="radio" name="turn" value="limited" id="limited" />
-                <label for="limited">진행할 바퀴 수 지정</label>
-              </div>
-
-              <div
-                id="slider-container"
-                style="display: none; margin-top: 10px"
-              >
-                <p>진행할 바퀴 수: <span id="turn-count">2</span></p>
-                <input
-                  type="range"
-                  min="2"
-                  max="20"
-                  step="2"
-                  value="2"
-                  id="turn-slider"
-                  name="max_turns"
-                  class="turn-slider"
-                />
-              </div>
+              <button type="submit" class="game-start-btn">GAME START</button>
             </div>
-
-            <button type="submit" class="game-start-btn">GAME START</button>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </body>
 </html>
