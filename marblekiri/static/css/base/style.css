@@ -72,7 +72,7 @@
 body.theme-college {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
+  background: linear-gradient(to bottom, #FFB200, #FF850B);
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -86,7 +86,7 @@ body.theme-college {
 body.theme-sports {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(0deg, #2fc262 0%, #53c079 100%);
+  background: linear-gradient(to bottom, #4CC85A, #1FB230);
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -100,7 +100,7 @@ body.theme-sports {
 body.theme-idol {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(0deg, #813dd3, #7434c2 100%);
+  background: linear-gradient(to bottom, #8A49D5, #812FA7);
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -113,7 +113,7 @@ body.theme-idol {
 body.theme-custom {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(to bottom right, #b4b4b4, #c0c0c0); /* 회색 */
+  background: #E8E8E8;
   height: 100vh;
   overflow: hidden;
   display: flex;

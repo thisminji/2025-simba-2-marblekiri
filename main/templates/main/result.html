@@ -42,7 +42,7 @@
           <h1 class="summary-title">결과 요약</h1>
 
           <!-- 우리가 뭘 했더라 -->
-          <div class="summary-section">
+          <div class="summary-section-{{ theme }}">
             <h2>우리가 뭘 했더라...</h2>
             <div class = "summary-text">
             <p>플레이타임: {{ play_time }}</p>
@@ -50,14 +50,13 @@
             </div>
           </div>
 
+          <!-- 가장 많이 마신 사람 -->
           <input type="hidden" id="show-ranking-hidden" value="{{ show_ranking|yesno:'true,false' }}">
           <script>
             console.log("랭킹 도출 여부:", "{{ show_ranking|yesno:'true,false' }}");
           </script>
           {% if show_ranking %}
-          <!-- 가장 많이 마신 사람 -->
-          <div class="summary-card">
-            <!--<h2>가장 많이 마신 사람</h2>-->
+          <div class="summary-card-{{ theme }}">
             <div class="ranking-tags">
               <h2>가장 많이 마신 사람</h2>
               <ul class="ranking-list" id="ranking-list">
