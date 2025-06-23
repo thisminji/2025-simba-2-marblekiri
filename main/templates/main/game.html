@@ -12,9 +12,7 @@
     />
   </head>
 
-  <body
-    class="theme-{{ theme }}"
->
+  <body class="theme-{{ theme }}">
     <!-- 왼쪽: 게임판 -->
     <div class="board">
       <div class="turn-info">
@@ -33,7 +31,6 @@
               class="end-icon"
             />
           </button>
-
         </div>
         <p
           id="player-data"
@@ -123,7 +120,11 @@
       <!--세인 수정, 도착한 칸의 미션 목록을 누적해서 띄우기-->
       <div class="missions">
         <h3>미션 목록</h3>
-        <ol class="mission-list"></ol>
+        <ol class="mission-list">
+          {% for i in "01234567890123456789" %}
+          <li class="mission-item" data-index="{{ forloop.counter0 }}"></li>
+          {% endfor %}
+        </ol>
       </div>
 
       <div class="dice">

@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   //===================1⃣ 빛수 설정==========================
-  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
 
   //<<주사위 >> //
   const rollButton = document.querySelector(".roll-dice-button");
@@ -25,12 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //<< 모달 >> //
   const modal = document.getElementById("endGameModal");
-  const endButton = document.querySelector(".end-button");              // 상단의 "게임 종료" 버튼
-  const continueButton = document.querySelector(".continue-button");    // 모달의 "이어서 진행" 버튼
+  const endButton = document.querySelector(".end-button"); // 상단의 "게임 종료" 버튼
+  const continueButton = document.querySelector(".continue-button"); // 모달의 "이어서 진행" 버튼
   const endGameConfirmButton = document.querySelector(".end-button-modal"); // 모달의 "게임 종료" 버튼
 
   //<< 말 위치 조정 >>
-  moveHorseStepByStep(0, 0)
+  moveHorseStepByStep(0, 0);
 
   //===================⏩ 모달 ===============================
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ 모달에서 "게임 종료" 버튼 클릭 시 → 페이지 이동
   const endGameURL = endGameConfirmButton?.dataset.url;
   endGameConfirmButton?.addEventListener("click", () => {
-    console.log("종료 버튼 클릭 된")
+    console.log("종료 버튼 클릭 된");
     if (endGameURL) {
       window.location.href = endGameURL;
     }
@@ -66,49 +66,55 @@ document.addEventListener("DOMContentLoaded", () => {
         "Content-Type": "application/x-www-form-urlencoded",
         "X-CSRFToken": csrfToken,
       },
-      body: `action=${actionType}`
+      body: `action=${actionType}`,
     })
-    .then(res => {
-      if (!res.ok) throw new Error("❌ 서버 응답 오류");
-      return res.json();
-    })
-    .then(data => {
-      if (data.end_game) {
-        window.location.href = "/end_game/";
-      } else {
-        const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
-        if (show_ranking){
-          updateRanking(data.ranking);
+      .then((res) => {
+        if (!res.ok) throw new Error("❌ 서버 응답 오류");
+        return res.json();
+      })
+      .then((data) => {
+        if (data.end_game) {
+          window.location.href = "/end_game/";
+        } else {
+          const show_ranking =
+            document.getElementById("show-ranking-hidden")?.value === "true";
+          if (show_ranking) {
+            updateRanking(data.ranking);
+          }
+          updateRound(data.round);
+          updatePlayers(
+            data.prev_player,
+            data.current_player,
+            data.next_player
+          );
+
+          fetch("/move_player/?steps=0")
+            .then((res) => res.json())
+            .then((data) => {
+              moveHorseStepByStep(data.prev_index, data.index);
+              missionBox.innerHTML = `<h3>${data.mission}</h3>`;
+            });
+
+          passBtn.disabled = true;
+          drinkBtn.disabled = true;
+          rollButton.disabled = false;
         }
-        updateRound(data.round);
-        updatePlayers(data.prev_player, data.current_player, data.next_player);
-
-        fetch("/move_player/?steps=0")
-          .then(res => res.json())
-          .then(data => { 
-            moveHorseStepByStep(data.prev_index, data.index); 
-            missionBox.innerHTML = `<h3>${data.mission}</h3>`;
-          });
-
-        passBtn.disabled = true;
-        drinkBtn.disabled = true;
-        rollButton.disabled = false;
-      }
-    })
-    .catch(error => console.error("에러 발생:", error));
+      })
+      .catch((error) => console.error("에러 발생:", error));
   }
 
   //===================⏩ 최종 로딩시 라링 표시 ==========================
-  const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
+  const show_ranking =
+    document.getElementById("show-ranking-hidden")?.value === "true";
   if (show_ranking) {
     fetch("/move_player/?steps=0")
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.ranking) {
           updateRanking(data.ranking);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("최고 라링 로딩 실패:", error);
       });
   }
@@ -170,33 +176,39 @@ document.addEventListener("DOMContentLoaded", () => {
         diceNumber.textContent = final;
 
         fetch(`/move_player/?steps=${final}`)
-          .then(response => {
+          .then((response) => {
             if (!response.ok) throw new Error("서버 응답 오류");
             return response.json();
           })
-          .then(data => { 
+          .then((data) => {
             moveHorseStepByStep(data.prev_index, data.index);
 
             missionBox.innerHTML = `
               <h3>${data.mission ? data.mission : "에러"}</h3>
             `;
 
+            // 민지 수정
             if (data.mission && !visitedTiles.has(data.index)) {
               visitedTiles.add(data.index);
-              const li = document.createElement("li");
-              li.textContent = `${data.index + 1}. ${data.mission}`;
-              missionList.appendChild(li);
+
+              const targetLi = document.querySelector(
+                `.mission-item[data-index="${data.index}"]`
+              );
+              if (targetLi) {
+                targetLi.textContent = `${data.index + 1}. ${data.mission}`;
+              }
             }
 
             passBtn.disabled = false;
             drinkBtn.disabled = false;
 
-            const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
+            const show_ranking =
+              document.getElementById("show-ranking-hidden")?.value === "true";
             if (show_ranking && data.ranking) {
               updateRanking(data.ranking);
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.error("에러:", error);
             missionBox.innerHTML = `<p>에러</p>`;
           })
@@ -226,7 +238,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (i >= steps.length) return;
       const tile = document.querySelector(`.tile[data-index="${steps[i]}"]`);
       const tileRect = tile.getBoundingClientRect();
-      const gridRect = document.querySelector(".tiles-grid").getBoundingClientRect();
+      const gridRect = document
+        .querySelector(".tiles-grid")
+        .getBoundingClientRect();
 
       const offsetX = tileRect.left - gridRect.left;
       const offsetY = tileRect.top - gridRect.top;
