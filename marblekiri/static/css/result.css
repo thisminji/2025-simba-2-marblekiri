@@ -322,11 +322,13 @@ body.theme-custom {
 }
 
 
-.ranking-tags {
+
+
+
+.ranking-list {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 24px;
+  gap: 30px;
   padding: 0;
   margin: 0;
   list-style: none;
@@ -340,12 +342,15 @@ body.theme-custom {
   line-height: 20px; /* 142.857% */
 }
 
-.ranking-tags .medal {
-  background: white;
-  border-radius: 10px;
-  color: #333;
-  padding: 6px 12px;
-  font-size: 0.9rem;
+.rank-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 4px 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background-color: #f9f9f9;
 }
 
 .rank-card img {
