@@ -147,7 +147,7 @@ body {
 .dice{
   top: -50px;
   right: -50px;
-  width: 700px;
+  width: 300px;
   opacity: 1;  /* 선택 사항: 배경처럼 보이게 */
   z-index: 0;    /* 배경 요소 뒤로 */
   pointer-events: none; /* 클릭 방해 방지 */
