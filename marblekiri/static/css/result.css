@@ -78,7 +78,7 @@ body.theme-college {
   display: flex;
   gap: 24px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   box-sizing: border-box; /* 주황 */
 }
 
@@ -92,7 +92,7 @@ body.theme-sports {
   display: flex;
   gap: 24px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   box-sizing: border-box; /* 파랑 */
 }
 
@@ -106,7 +106,7 @@ body.theme-idol {
   display: flex;
   gap: 24px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   box-sizing: border-box; /* 보라 */
 }
 
@@ -119,28 +119,18 @@ body.theme-custom {
   display: flex;
   gap: 24px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   box-sizing: border-box; 
 }
 
-/*연희가 추가함 - 버튼 폼형식으로 바꾼 후 스타일 inline*/
-/* 버튼들을 가로로 정렬 */
-.action-buttons {
-  display: flex;
-  gap: 10px; /* 버튼 사이 간격 */
-  justify-content: center;
-  margin-top: 20px;
-}
+/*--- 이미지 ---*/
 
-.action-buttons form {
-  display: inline-block;
-}
-
-.review-image {
-  min-width: 560px;
-  max-width: 560px;
-  min-height: 560px;
-  max-height: 560px;
+/* 렝킹 O */
+.review-image-true {
+  min-width: 810px;
+  max-width: 810px;
+  min-height: 810px;
+  max-height: 810px;
   background-color: #999;
   border-radius: 20px;
   position: relative;
@@ -149,7 +139,24 @@ body.theme-custom {
   align-items: center;
   justify-content: center;
 
-  transform: translateX(-10px);
+  transform: translateX(-180px);
+}
+
+/* 렝킹 X */
+.review-image-false {
+  min-width: 660px;
+  max-width: 660px;
+  min-height: 660px;
+  max-height: 660px;
+  background-color: #999;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateX(-25px);
 }
 
 .image-label {
@@ -190,6 +197,8 @@ body.theme-custom {
   font-size: 0.9rem;
   cursor: pointer;
 }
+
+/*--- 홈으로 돌아가기 ---*/
 
 .back-btn-wrapper {
   text-align: center;
@@ -232,6 +241,8 @@ body.theme-custom {
   text-decoration: none;
 }
 
+/*왼쪽 사이드 바 */
+
 .result-container {
   display: flex;
   justify-content: center;
@@ -256,6 +267,8 @@ body.theme-custom {
   border-radius: 20px;
   color: black;
 }*/
+
+/*오른쪽 사이드 바 */
 
 .summary-box{
   flex: 1;
@@ -351,7 +364,7 @@ body.theme-custom {
   color: white;
 }
 
-/*---------------랭킹 -------------------------------------------*/
+/*----------랭킹 -------------*/
 
 .summary-card-college {
   font-family: "Paperlogy";
@@ -360,7 +373,7 @@ body.theme-custom {
   font-weight: 300;
   background: linear-gradient(to right, #FF6A00, #FF8801);
   border-radius: 20px;
-  padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
+  padding: 0.1rem 2rem 1.3rem 2rem ;
   margin-bottom: 1rem;
   color: white;
   font-weight: bold;
@@ -373,7 +386,7 @@ body.theme-custom {
   font-weight: 300;
   background: linear-gradient(to right, #1FB230, #4CC85A);
   border-radius: 20px;
-  padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
+  padding: 0.1rem 2rem 1.3rem 2rem ;
   margin-bottom: 1rem;
   color: white;
   font-weight: bold;
@@ -386,7 +399,7 @@ body.theme-custom {
   font-weight: 300;
   background: linear-gradient(to right, #812FA7, #8A49D5);
   border-radius: 20px;
-  padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
+  padding: 0.1rem 2rem 1.3rem 2rem ;
   margin-bottom: 1rem;
   color: white;
   font-weight: bold;
@@ -455,4 +468,48 @@ body.theme-custom {
   height: 16px;
 }
 
-/* --------------------- 미션 박스 ------------------*/
+/* -------------- 미션 박스 ------------------*/
+.all-mission-box {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 1rem 2.5rem 1rem 2.5rem ;
+  height: 200px;
+  max-height: 200px;
+  width: 360px;
+  max-width: 360px;
+
+  /* ✅ 스크롤바 숨기기 */
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE 10+ */
+
+  overflow-y: auto;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-top: 1rem;
+  margin-bottom: 1rem ;
+  color: #2a2a2a;
+}
+
+.all-mission-box h2 {
+  font-family: "Paperlogy";
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  border-bottom: 0.6px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.mission-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.mission-list li {
+  font-family: "Paperlogy";
+  margin: 6px 0;
+  white-space: normal;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
