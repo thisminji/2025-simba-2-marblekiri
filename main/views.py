@@ -115,34 +115,38 @@ def game_page(request):
     })
 
 
-
+# 민지수정
 ### 2) 말 이동
 def move_player(request):
-    steps = int(request.GET.get("steps", 1))
-    room_id = request.session.get("room_id")  # 현재 게임방
+    steps = int(request.GET.get("steps", 1))               # 주사위로 몇 칸 이동할지 가져옴
+    room_id = request.session.get("room_id")               # 현재 게임방 ID
     if not room_id:
         return redirect('start')
 
     room = GameRoom.objects.get(id=room_id)
-    current_pos = request.session.get("index", 0)
+    current_pos = request.session.get("index", 0)          #현재 위치 저장 (출발점)
 
-    
-    if steps == 0: # step==0이면 이동하지 않음
+    if steps == 0:  # step == 0이면 이동 없이 현재 위치만 반환
         tile = Tile.objects.get(room=room, index=current_pos)
         return JsonResponse({
+            'prev_index': current_pos,                     #출발 = 도착
             'index': current_pos,
             'mission': tile.question.content if tile.question else None
         })
 
-    # 보드판 계속 돌 수 있도록 나머지 계산하여 구현
+    # 보드판은 20칸이므로 나머지 계산으로 반복 가능하게 함
     new_pos = (current_pos + steps) % 20
-    request.session["index"] = new_pos
-    
-    # 이동한 칸의 미션을 db에서 가져옴
-    tile = Tile.objects.filter(room=room, index=new_pos).first() 
+    request.session["index"] = new_pos                     #세션에 새 위치 저장
 
-    #json 형식 반환
-    return JsonResponse({'index': new_pos, 'mission': tile.question.content})
+    # 이동한 칸의 미션 불러오기
+    tile = Tile.objects.filter(room=room, index=new_pos).first()
+
+    # 이동 결과를 JSON으로 반환 (출발 + 도착 + 미션 포함)
+    return JsonResponse({
+        'prev_index': current_pos,                         # 출발 위치
+        'index': new_pos,                                  #도착 위치
+        'mission': tile.question.content if tile and tile.question else None
+    })
 
 
 
