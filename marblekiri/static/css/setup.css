@@ -27,21 +27,10 @@
   font-style: normal;
 }
 
-/* 전체 페이지 배치 */
-.setup-page {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 32px;
-}
-
 html,
 body {
   margin: 0;
   padding: 0;
-}
-.container {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -51,13 +40,22 @@ body {
   align-items: center;
   overflow: hidden;
 }
+/* .container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #ffa600, #fe7f00);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+} */
 
 /* 전체 배경 */
 body {
   background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
   color: white;
   height: 100vh;
-  padding: 2rem;
   transition: background 0.6s ease-in-out;
 }
 

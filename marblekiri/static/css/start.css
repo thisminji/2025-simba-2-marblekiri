@@ -72,6 +72,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 .container {
@@ -79,10 +80,9 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #FFA600, #FE7F00);
+  background: linear-gradient(to bottom, #ffa600, #fe7f00);
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 .marblekiri_logo {
@@ -143,13 +143,12 @@ body {
   opacity: 1;
 }
 
-
-.dice{
+.dice {
   top: -50px;
   right: -50px;
   width: 300px;
-  opacity: 1;  /* 선택 사항: 배경처럼 보이게 */
-  z-index: 0;    /* 배경 요소 뒤로 */
+  opacity: 1; /* 선택 사항: 배경처럼 보이게 */
+  z-index: 0; /* 배경 요소 뒤로 */
   pointer-events: none; /* 클릭 방해 방지 */
 }
 
@@ -158,7 +157,7 @@ body {
   bottom: 50px;
   left: 20px;
   width: 800px;
-  z-index: 0; 
+  z-index: 0;
 }
 
 /* 2번 가운데 아래 */
