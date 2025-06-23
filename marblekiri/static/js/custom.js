@@ -6,7 +6,7 @@ const readySet = new Set();
     const questionList = form.querySelector(".question-list");
     const addBtn = form.querySelector(".add-btn");
     const readyBtn = form.querySelector(".ready-btn");
-    const player = form.dataset.player;
+    const zone = form.dataset.zone;
 
      // 질문 번호 재정렬 함수 (추가/삭제 후 호출)
     const updateQuestionNumbers = () => {
@@ -41,7 +41,7 @@ const readySet = new Set();
         readyBtn.disabled = true;
         readyBtn.classList.remove('enabled');
         readyBtn.classList.remove('active');
-        readySet.delete(player);
+        readySet.delete(zone);
       }
     };
 
@@ -56,7 +56,7 @@ const readySet = new Set();
       box.innerHTML = `
         <div class="question-number">#${count}.</div>
         <input type="text" name="questions[]" maxlength="60" placeholder="질문 입력" required />
-        <button type="button" class="remove-btn" id="remove-btn-${player}">
+        <button type="button" class="remove-btn" id="remove-btn-${zone}">
           <span class="custom-remove-line"></span>
         </button>
       `;
@@ -88,39 +88,36 @@ const readySet = new Set();
 
       if (isActivating) {
         readyBtn.classList.add("active");
-        readySet.add(player);
+        readySet.add(zone);
       } else {
         readyBtn.classList.remove("active");
-        readySet.delete(player);
+        readySet.delete(zone);
       }
 
       // 구역 4개 모두 ready 되면 서버에 저장 + 이동
-      if (readySet.size === 4) {
+      if (readySet.size == 4) {
         document.querySelectorAll(".question-form").forEach(async form => {
           const inputs = form.querySelectorAll('input[name="questions[]"]');
 
           // input 값이 공백이면 db에 저장하지 않음
           inputs.forEach(input => {
-            if (input.value.trim() === "") {
+            if (input.value.trim() == "") {
               input.remove();  // 실제 DOM에서도 제거됨
             }
           });
 
           const formData = new FormData(form);
-          const player = form.dataset.player;
           const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
 
-          const res = await fetch(`/submit_ready/${player}/`, {
+          console.log(formData);
+
+          fetch(`/submit_ready/`, {
             method: "POST",
             headers: {
               "X-CSRFToken": csrfToken,
             },
             body: formData,
           });
-
-          if (!res.ok) {
-            alert(`${player} 구역 질문 저장 실패`);
-          }
         });
 
         setTimeout(() => {

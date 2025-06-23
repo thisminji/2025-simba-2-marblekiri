@@ -101,16 +101,26 @@ def game_page(request):
     # 타일 미션 질문 리스트
     tiles = Tile.objects.filter(room=room).order_by('index')
 
+    # custom - zone별 질문 목록 전달
+    zone_questions = {}
+    if room.theme == "custom":
+        for zone in ['A', 'B', 'C', 'D']:
+            zone_questions[zone] = Question.objects.filter(theme="custom", zone=zone).values_list('content', flat=True)
+
     return render(request, 'main/game.html', {
         'tiles': tiles,
         'players': players,
         'theme' : theme,
+        'zone_questions': zone_questions,
+
         'current_player': current_player,
         'prev_player': prev_player,
         'next_player': next_player,
         'current_round': room.current_round,
+
         'ranking': ranking,
         'show_ranking': show_ranking,
+
         'current_tile_index': current_tile_index,
         'current_question': current_question,
     })
@@ -271,10 +281,10 @@ def custom_questions(request):
 
     # POST로 받은 플레이어, 랭킹 정보 처리
     if request.method == "POST":
-        players = request.POST.getlist('players')
+        players = request.POST.getlist('players[]')
         show_ranking = request.POST.get('show_ranking') == 'on'
 
-        request.session['players'] = players
+        request.session['players'] = players 
         request.session['show_ranking'] = show_ranking
 
 
@@ -287,24 +297,30 @@ def custom_questions(request):
     )
 
 ### 커스텀 질문 등록 + 세션에 인원 저장
-def submit_ready(request, zone_code):
-    if request.method == "POST":
-        questions = request.POST.getlist('questions[]')
-        # 이름 하나만 받기
-        player = request.POST.get('player', '').strip()
-        if not player:
-            return JsonResponse({'error': '플레이어 이름이 없습니다.'}, status=400)
+def submit_ready(request):
+    try:
+        if request.method == "POST":
+            print("▶️ POST 수신됨")
+            print("📦 zone:", request.POST.get('zone'))
+            print("📦 질문들:", request.POST.getlist('questions[]'))
 
-        for q in questions:
-            Question.objects.create(theme="custom", content=q)
+            questions = request.POST.getlist('questions[]')
+            zone = request.POST.get('zone', '').strip()
 
-        # 처음 한 명은 빈리스트에서 시작하여 name 저장
-        player_names = request.session.get('players', [])
-        player_names.append(player)
-        request.session['players'] = player_names
-        request.session['theme'] = 'custom'
+            if not zone:
+                return JsonResponse({'error': '존 정보 없음'}, status=400)
 
-        return JsonResponse({})
+            for q in questions:
+                Question.objects.create(theme="custom", content=q, zone=zone)
+
+            return JsonResponse({'message': 'Saved successfully'})
+        
+        else:
+            return JsonResponse({'error': '잘못된 요청입니다.'}, status=405)
+        
+    except Exception as e:
+        print("❌ submit_ready 에러 발생:", e)
+        return JsonResponse({'error': str(e)}, status=500)
 
 ########################### 🔹 게임 종료 처리 ############################
 ### 결과 요약 화면 (데이터 없이 접근 시 예비용)
