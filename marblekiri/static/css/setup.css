@@ -36,6 +36,22 @@
   gap: 32px;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #ffa600, #fe7f00);
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
 /* 전체 배경 */
 body {
   background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
@@ -78,11 +94,18 @@ body.selected-custom {
   justify-content: center;
 }
 
+.them-options,
+.player-options,
+.game-options {
+  width: 370px;
+}
+
 /* 테마 선택 박스 */
 .theme-select {
+  width: 370px;
   display: flex;
   height: 540px;
-  padding: 15px 25px;
+  padding: 15px 1px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -304,23 +327,22 @@ body.selected-custom {
 
 .game-options3 {
   display: flex;
-  width: 352px;
+  width: 370px;
   height: 482px;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   flex-shrink: 0;
 }
-
 /* 게임 설정 */
 .toggle-label {
   display: flex;
-  width: 352px;
-  height: 84px;
-  padding: 24px 25px;
+  width: 365px;
+  height: 30px;
+  padding: 24px 1px;
   flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: space-around;
+
   gap: 10px;
   flex-shrink: 0;
   align-self: stretch;
@@ -370,7 +392,75 @@ body.selected-custom {
 .toggle-label input:checked + .slider::before {
   transform: translateX(20px);
 }
-
 /*게임 턴 수  박스 레이아웃*/
 .turn-setting {
+  display: flex;
+
+  padding: 24px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  border: 2px solid var(--Main-Disabled-2, #e8e8e8);
+  background: #fff;
+}
+
+.turn-container {
+  display: flex;
+  width: 301px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.turn-number {
+  align-self: stretch;
+  color: #000;
+  font-family: Paperlogy;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.unlimited {
+  color: var(--Main-Gray, #939393);
+  text-align: center;
+  align-items: flex-start;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.limited {
+  color: var(--Main-Black, #2a2a2a);
+  text-align: center;
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.game-start-btn {
+  display: flex;
+  height: 76px;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 20px;
+  border: none;
+  background: #f4f4f4;
+  color: var(--Main-Disabled-2, #e8e8e8);
+  font-family: Paperlogy;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
 }
