@@ -14,31 +14,28 @@
       <div class="left-panel">
         <div class="review-image-{{ show_ranking|yesno:'true,false' }}">
           <div class="review-imagebox review-imagebox-{{ theme }}">
-            <input type="file" id="image-upload" hidden name="image" accept="image/*" />
+            
             <label for="image-upload" class="image-label">
               <!-- 미리보기 이미지 -->
-              <img
-              id="preview"
-              alt="업로드 이미지"
-              class="image-preview"
-              />
+              <img id="preview" alt="업로드 이미지" class="image-preview"/>
               <!-- 텍스트 플레이스홀더 -->
-              <p id="placeholder-text" class="image-placeholder">📷 사진 업로드</p>
+              <div class="placeholder-box" id="placeholder-box">
+                <img id="image-placeholder" src="{% static 'assets/images/frame_add.svg' %}" alt="사진 추가하기" />
+                <div class="placeholder-text">사진 추가하기</div>
+              </div>
+              <!-- 이미지 파일 추가 -->
+              <input type="file" id="image-upload" hidden name="image" accept="image/*" />
+              <!-- 삭제 버튼 -->
+              <img id="remove-image" class="remove-image-button" src="{% static 'assets/images/frame_delete.svg' %}" alt="삭제" style="display:none"/>
+
             </label>
+
             
             <!-- 하단 바: 로고 + 날짜 -->
             <div class="bottom-bar">
-            <!-- 삭제 버튼 -->
-            <button
-            type="button"
-            id="remove-image"
-            class="remove-image-button"
-            style="display: none">
-            삭제
-            </button>
-            <img class="logo-frame" src="/static/assets/images/frame_logo.svg" alt="마블끼리 프레임 로고"/>
-            <div class="date-frame">{{ date_frame }}</div>
-          </div>
+              <img class="logo-frame" src="/static/assets/images/frame_logo.svg" alt="마블끼리 프레임 로고"/>
+              <div class="date-frame">{{ date_frame }}</div>
+            </div>
         </div>
       </div>
     </div>
@@ -103,82 +100,3 @@
     </div>
   </body>
 </html>
-
-  <!----
-    <body class="result-page">
-    <div class="result-container">
-      <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-
-        <div class="review-image">
-          <label for="image-upload" class="image-label">
-            {% if room.image %}
-            <img
-              id="preview"
-              src="{{ room.image.url }}"
-              alt="업로드 이미지"
-              class="image-preview"
-              style="display: block"
-            />
-            {% else %}
-            <img
-              id="preview"
-              alt="업로드 이미지"
-              class="image-preview"
-              style="display: none"
-            />
-            <p id="placeholder-text" class="image-placeholder">
-              📷 사진 업로드
-            </p>
-            {% endif %}
-          </label>
-        </div>
-
-        <input
-          type="file"
-          id="image-upload"
-          name="image"
-          accept="image/*"
-          required
-          style="display: none"
-        />
-
-        <button
-          type="button"
-          id="remove-image"
-          style="display: none; margin-top: 0.5rem"
-        >
-          ❌ 사진 삭제
-        </button>
-      </form>
-
-      <div class="summary">
-        <h2>결과 요약</h2>
-
-        <div class="summary-box">
-          <h3>우리가 뭘 했더라...</h3>
-          <p>플레이타임: <strong>{{ play_time }}</strong></p>
-          <p>전체 턴수: <strong>{{ round_count }} 바퀴</strong></p>
-        </div>
-
-        <div class="summary-box">
-          <h3>가장 많이 마신 사람</h3>
-          <div class="drinkers">
-            {% for name, count in ranking %} {% if forloop.counter == 1 %}
-            <span>🥇 {{ name }}</span>
-            {% elif forloop.counter == 2 %}
-            <span>🥈 {{ name }}</span>
-            {% elif forloop.counter == 3 %}
-            <span>🥉 {{ name }}</span>
-            {% endif %} {% endfor %}
-          </div>
-        </div>
-
-        <a href="{% url 'start' %}">
-          <button class="home-btn">🏠 홈으로 돌아가기</button>
-        </a>
-      </div>
-    </div>
-  </body>
-  
-  -->
