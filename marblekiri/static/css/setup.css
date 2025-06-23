@@ -148,53 +148,6 @@ body.selected-custom {
   pointer-events: none;
 }
 
-/*
-
-/* hover 상태 전환 - college 
-.theme-category-container[data-value="college"]:hover .default-image,
-.theme-category-container.selected[data-value="college"] .default-image {
-  display: none;
-}
-
-.theme-category-container[data-value="college"]:hover .hover-image,
-.theme-category-container.selected[data-value="college"] .hover-image {
-  display: block;
-}
-
-/* hover 상태 전환 - sports 
-.theme-category-container[data-value="sports"]:hover .default-image,
-.theme-category-container.selected[data-value="sports"] .default-image {
-  display: none;
-}
-
-.theme-category-container[data-value="sports"]:hover .hover-image,
-.theme-category-container.selected[data-value="sports"] .hover-image {
-  display: block;
-}
-
-/* hover 상태 전환 - idol *
-.theme-category-container[data-value="idol"]:hover .default-image,
-.theme-category-container.selected[data-value="idol"] .default-image {
-  display: none;
-}
-
-.theme-category-container[data-value="idol"]:hover .hover-image,
-.theme-category-container.selected[data-value="idol"] .hover-image {
-  display: block;
-}
-
-/* hover 상태 전환 - custom *
-.theme-category-container[data-value="custom"]:hover .default-image,
-.theme-category-container.selected[data-value="custom"] .default-image {
-  display: none;
-}
-
-.theme-category-container[data-value="custom"]:hover .hover-image,
-.theme-category-container.selected[data-value="custom"] .hover-image {
-  display: block;
-}
-*/
-
 /* 텍스트형 버튼 내 텍스트 */
 .theme-category {
   color: #fff;
