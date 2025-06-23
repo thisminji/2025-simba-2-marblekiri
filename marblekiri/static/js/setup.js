@@ -5,14 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
   const selectedTheme = document.getElementById("selected-theme");
   const gameForm = document.getElementById("gameForm");
 
-  // ▶ 테마 관련 클래스 제거
+  // 테마 관련 클래스 제거
   function clearTheme() {
     themes.forEach((t) => {
       body.classList.remove(`hover-${t}`, `selected-${t}`);
     });
   }
 
-  // ▶ 테마 hover / click 이벤트 등록
+  //테마 hover / click 이벤트 등록
   containers.forEach((el) => {
     const theme = el.dataset.value;
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ▶ 게임 설정 form 제출 처리
+  // 게임 설정 form 제출 처리
   gameForm.addEventListener("submit", function (event) {
     const unlimitedRadio = document.getElementById("unlimited");
     const slider = document.getElementById("turn-slider");
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ▶ 슬라이더 및 턴 수 토글
+// 슬라이더 및 턴 수 토글
 document.addEventListener("DOMContentLoaded", function () {
   const unlimitedRadio = document.getElementById("unlimited");
   const limitedRadio = document.getElementById("limited");
@@ -90,12 +90,22 @@ document.addEventListener("DOMContentLoaded", function () {
   const slider = document.getElementById("turn-slider");
   const turnCount = document.getElementById("turn-count");
 
+  // 슬라이더는 항상 보이지만 기본은 비활성화
+  slider.disabled = true; // 회색, 비활성화 상태로 시작
+  sliderContainer.style.opacity = "0.5";
+
   unlimitedRadio.addEventListener("change", () => {
-    if (unlimitedRadio.checked) sliderContainer.style.display = "none";
+    if (unlimitedRadio.checked) {
+      slider.disabled = true;
+      sliderContainer.style.opacity = "0.5";
+    }
   });
 
   limitedRadio.addEventListener("change", () => {
-    if (limitedRadio.checked) sliderContainer.style.display = "block";
+    if (limitedRadio.checked) {
+      slider.disabled = false;
+      sliderContainer.style.opacity = "1";
+    }
   });
 
   slider.addEventListener("input", () => {
@@ -103,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// ▶ 인원 추가/삭제 로직
+// 인원 추가/삭제 로직
 function addPlayer() {
   const list = document.getElementById("player-list");
   const count = list.children.length + 1;
@@ -138,3 +148,38 @@ function removePlayer(button) {
     alert("최소 1명의 플레이어는 필요합니다!");
   }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const gameStartBtn = document.querySelector(".game-start-btn");
+  const playerList = document.getElementById("player-list");
+  const selectedThemeInput = document.getElementById("selected-theme");
+
+  // 버튼 활성화 조건 체크 함수
+  function checkGameStartEnable() {
+    const themeSelected = selectedThemeInput.value !== "";
+    const players = playerList.querySelectorAll("input[name='players[]']");
+    const hasValidPlayer = Array.from(players).some(
+      (p) => p.value.trim() !== ""
+    );
+
+    if (themeSelected && hasValidPlayer) {
+      gameStartBtn.classList.add("active");
+    } else {
+      gameStartBtn.classList.remove("active");
+    }
+  }
+
+  // 테마 클릭 시
+  const themeButtons = document.querySelectorAll(".theme-category-container");
+  themeButtons.forEach((btn) => {
+    btn.addEventListener("click", checkGameStartEnable);
+  });
+
+  // 플레이어 이름 입력 시
+  playerList.addEventListener("input", checkGameStartEnable);
+
+  // 인원 추가 버튼 클릭 시 (새 input 생기므로 체크 재실행 필요)
+  document.querySelector(".add-btn").addEventListener("click", () => {
+    setTimeout(checkGameStartEnable, 0); // DOM 업데이트 후 실행
+  });
+});

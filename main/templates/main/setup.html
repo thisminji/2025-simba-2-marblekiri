@@ -96,10 +96,7 @@
                   name="theme"
                   id="selected-theme"
                   value=""
-
-              
                 />
-                
               </div>
             </div>
           </div>
@@ -158,7 +155,7 @@
 
               <div class="turn-setting">
                 <div class="turn-container">
-                  <label class="turn-number">턴 수 설정</label><br />
+                  <label class="turn-number">턴 수 설정</label>
                   <div class="radio-wrap">
                     <input
                       type="radio"
@@ -184,11 +181,13 @@
                     >
                   </div>
 
-                  <div
-                    id="slider-container"
-                    style="display: none; margin-top: 10px"
-                  >
-                    <p>진행할 바퀴 수: <span id="turn-count">2</span></p>
+                  <div id="slider-container">
+                    <div class="turn">
+                      <p class="turn-comment">
+                        진행할 바퀴 수: <span id="turn-count">2</span>
+                      </p>
+                    </div>
+
                     <input
                       type="range"
                       min="2"
