@@ -228,6 +228,10 @@ body.selected-custom {
   display: flex;
   flex-direction: column;
   gap: 7px;
+  
+  /* ✅ 스크롤바 숨기기 */
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE 10+ */
 }
 
 /* 개별 플레이어 항목 */
