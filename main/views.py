@@ -109,9 +109,9 @@ def game_page(request):
         'next_player': next_player,
         'current_round': room.current_round,
         'ranking': ranking,
+        'show_ranking': show_ranking,
         'current_tile_index': current_tile_index,
         'current_question': current_question,
-        'show_ranking': show_ranking,
     })
 
 
@@ -323,9 +323,12 @@ def end_game(request):
 
     # 랭킹 계산
     players = PlayerInRoom.objects.filter(room=room).order_by('-drink_count')[:3]
+    ranking = [(p.nickname, p.drink_count) for p in players]
 
-    # 삭제 전에 정보 보관
-    ranking_data = [(p.nickname, p.drink_count) for p in players]
+    #랭킹 도출 여부
+    show_ranking = request.session.get('show_ranking', True)
+
+    # 라운드
     round_count = room.current_round
 
     #테마
@@ -343,9 +346,12 @@ def end_game(request):
     return render(request, 'main/result.html', {
         'room': room,
         'theme' : theme,
-        'ranking': ranking_data,
+        'players' : players,
+        'ranking': ranking,
+        'show_ranking' : show_ranking,
         'play_time': play_time_text,
         'round_count': round_count,
+
     })
 
 ###############################################################################
