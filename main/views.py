@@ -339,6 +339,10 @@ def end_game(request):
     #테마
     theme = request.session.get('theme')
 
+    # 전체 미션 불러오기
+    all_missions = Tile.objects.filter(room=room).order_by('index')
+    mission_texts = [tile.question.content for tile in all_missions]
+
     # DB 삭제
     Tile.objects.filter(room=room).delete()
     PlayerInRoom.objects.filter(room=room).delete()
@@ -356,7 +360,7 @@ def end_game(request):
         'show_ranking' : show_ranking,
         'play_time': play_time_text,
         'round_count': round_count,
-
+        'mission_texts' : mission_texts,
     })
 
 ###############################################################################
