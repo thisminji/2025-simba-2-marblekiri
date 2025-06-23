@@ -350,6 +350,9 @@ def end_game(request):
     play_time = now() - room.started_at
     total_minutes = int(play_time.total_seconds() // 60)
     play_time_text = f"{total_minutes // 60}시간 {total_minutes % 60}분"
+    
+    # 프레임 날짜
+    date_frame = now().strftime("%Y-%m-%d")
 
     # 랭킹 계산
     players = PlayerInRoom.objects.filter(room=room).order_by('-drink_count')[:3]
@@ -384,6 +387,7 @@ def end_game(request):
         'ranking': ranking,
         'show_ranking' : show_ranking,
         'play_time': play_time_text,
+        'date_frame' : date_frame,
         'round_count': round_count,
         'mission_texts' : mission_texts,
     })

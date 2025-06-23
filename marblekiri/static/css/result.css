@@ -68,6 +68,14 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url("/static/fonts/AnonymousPro-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 /* 기본 테마 */
 body.theme-college {
   margin: 0;
@@ -131,7 +139,7 @@ body.theme-custom {
   max-width: 810px;
   min-height: 810px;
   max-height: 810px;
-  background-color: #999;
+  background-color: white;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
@@ -148,15 +156,53 @@ body.theme-custom {
   max-width: 660px;
   min-height: 660px;
   max-height: 660px;
-  background-color: #999;
+  background-color: white;
   border-radius: 20px;
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 
   transform: translateX(-25px);
+}
+
+.review-imagebox {
+  border-radius: 20px;
+  width: 100%;
+  height: calc(100% - 115px); /* 위 25px + 아래 90px 마진 빼기 */
+  margin: 25px 24px 90px 24px;
+}
+.review-imagebox-college {background: linear-gradient(to right, #FF6A00, #FF8801);}
+.review-imagebox-sports {background: linear-gradient(to right, #1FB230, #4CC85A);}
+.review-imagebox-idol {background: linear-gradient(to right, #812FA7, #8A49D5);}
+.review-imagebox-custom {background: linear-gradient(to right, #E22D2D, #DB3445);}
+
+
+/* 하단 바: 로고 + 날짜 */
+.bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 0 0 16px 16px;
+  margin-top: 25.35px;
+}
+
+.logo-frame {
+  width: 140.4px;
+  height: 37.8px;
+  flex-shrink: 0;
+}
+
+.date-frame {
+  color: #2A2A2A;
+  font-family: "Anonymous Pro";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.8px;
 }
 
 .image-label {
@@ -164,8 +210,7 @@ body.theme-custom {
   height: 100%;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
 }
 
@@ -181,14 +226,15 @@ body.theme-custom {
 .image-placeholder {
   color: #333;
   font-size: 1.2rem;
+  font-family: "Anonymous Pro";
   pointer-events: none;
   text-align: center;
 }
 
 .remove-image-button {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+  bottom: 50px;
+  right: 25px;
   padding: 5px 10px;
   background-color: rgba(255, 0, 0, 0.7);
   color: white;
@@ -256,6 +302,8 @@ body.theme-custom {
   flex: 1;
   width: 1000;
   min-width: 300px;
+  height: 100%;
+  display: flex;
 }
 
 /*.right-panel {
