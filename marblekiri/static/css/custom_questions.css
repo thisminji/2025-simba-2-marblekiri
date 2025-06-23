@@ -1,0 +1,239 @@
+/* 폰트 설정 */
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-4Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-8ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/static/fonts/Paperlogy-9Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Partial Sans KR";
+  src: url("/static/fonts/PartialSansKR-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 질문 입력 텍스트 박스 */
+h1 {
+  color: var(--Main-Black, #2A2A2A);
+  /* Header 2 */
+  font-family: Paperlogy;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  padding-top: 100px;
+  text-align: center;
+}
+
+p {
+  color: var(--Main-Black, #2A2A2A);
+  text-align: center;
+
+  /* Text 1 */
+  font-family: Paperlogy;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+/* 전체 컨테이너 정렬용 */
+.container {
+  display: flex;
+  max-width: 1281px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0px 30px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* 각 패널 박스 */
+.panel {
+  display: flex;
+  width: 281px;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  flex-shrink: 0;
+}
+
+/* 패널 제목 (A, B, C, D) */
+.panel h2 {
+  align-self: stretch;
+  color: #F00;
+  text-align: center;
+  font-family: "Partial Sans KR";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+#panel-B h2 { color: #FF6347; }
+#panel-C h2 { color: #FF6B6B; }
+#panel-D h2 { color: #FF8A65; }
+
+/* 질문 박스 */
+.question-list {
+  display: flex;
+  width: 281px;
+  padding: 10px 8px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  border-radius: 20px;
+  background: #F00;
+  height: 240px; /* 질문 4개만 보이도록 */
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+}
+
+.question-list::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera, 스크롤 안보이도록 */
+}
+
+#question-list-B { background: #FF6347; }
+#question-list-C { background: #FF6B6B; }
+#question-list-D { background: #FF8A65; }
+
+/* 질문 항목 */
+.question-number {
+  color: var(--Main-Black, #2A2A2A);
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
+}
+
+.question-box {
+  display: flex;
+  padding: 14px 16px;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 20px;
+  border: 2px solid var(--Main-Disabled-2, #E8E8E8);
+  background: #FFF;
+  height: 80px;
+}
+.question-box input {
+  color: var(--Main-Black, #2A2A2A);
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* 질문 삭제 버튼 */
+.remove-btn {
+  display: flex;
+  width: 18px;
+  height: 18px;
+  padding: 8px 3px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 9px;
+  border: none;
+  background: #F00;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.remove-btn:hover {
+  background-color: #cc0000;
+}
+.custom-remove-line {
+  display: block;
+  width: 12px;
+  height: 1px;
+  background-color: #fff;
+}
+
+#remove-btn-B { background: #FF6347; }
+#remove-btn-C { background: #FF6B6B; }
+#remove-btn-D { background: #FF8A65; }
+
+#remove-btn-B:hover { background: #e35239; }
+#remove-btn-C:hover { background: #e75a5a; }
+#remove-btn-D:hover { background: #e67850; }
+
+/* 질문 추가 버튼 */
+.add-btn {
+  color: var(--Main-Gray, #939393);
+  font-family: Paperlogy;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 160%; /* 25.6px */
+  display: flex;
+  padding: 14px 16px;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 20px;
+  border: 2px solid var(--Main-Disabled-2, #E8E8E8);
+  background: #FFF;
+  height: 80px;
+}
+
+/* READY 버튼 */
+.ready-btn {
+  display: flex;
+  width: 100%;
+  height: 76px;
+  padding: 10px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border: none;
+  border-radius: 20px;
+  background: var(--Main-Black, #2A2A2A);
+  color: #FFF;
+  font-family: Paperlogy;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  margin-top: 18px;
+}
+
+.ready-btn.enabled {
+  cursor: pointer;
+} 
+
+#ready-btn-A.active { background: #F00 !important; }
+#ready-btn-B.active { background: #e35239 !important; }
+#ready-btn-C.active { background: #e75a5a !important; }
+#ready-btn-D.active { background: #e67850 !important; }
+
+#ready-btn-A:hover { background: #F00; }
+#ready-btn-B:hover { background: #e35239; }
+#ready-btn-C:hover { background: #e75a5a; }
+#ready-btn-D:hover { background: #e67850; }

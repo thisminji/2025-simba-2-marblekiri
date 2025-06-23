@@ -58,6 +58,7 @@ def game_start(request):
         # 플레이어 생성 및 방에 배정
         for i, name in enumerate(player_names):
                 PlayerInRoom.objects.create(nickname=name, room=room, turn=i)
+        print("player 목록:", player_names)
 
         # room_id 세션에 저장 → 게임 상태 관리용
         request.session['room_id'] = room.id

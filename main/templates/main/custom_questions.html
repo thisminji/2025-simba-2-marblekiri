@@ -4,23 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <title>질문 입력</title>
-  <style>
-    .ready-btn {
-      background-color: gray;
-      color: white;
-      cursor: not-allowed;
-      transition: 0.3s;
-    }
-
-    .ready-btn.enabled {
-      cursor: pointer;
-    } 
-
-    .ready-btn.active {
-      background-color: green;
-    }
-
-  </style>
+  <link rel="stylesheet" href="{% static 'css/custom_questions.css' %}" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Gugi&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body class = "theme-custom">
   <h1>질문 입력</h1>
@@ -32,119 +20,31 @@
         <h2>{{ player }}</h2>
         <form class="question-form" data-player="{{ player }}" method="post" action="javascript:void(0)">
           {% csrf_token %}
-          <div class="question-list">
-            {% for i in "1234" %}
+          <div class="question-list" id="question-list-{{ player }}">
+            {% for i in "12345" %}
               <div class="question-box">
+                <div class="question-number">#{{ forloop.counter }}.</div>
                 <input type="text" name="questions[]" maxlength="60" placeholder="질문 입력" required />
-                <button type="button" class="remove-btn">-</button>
+                <button type="button" class="remove-btn" id="remove-btn-{{ player }}">
+                  <span class="custom-remove-line"></span>
+                </button>
               </div>
-            {% endfor %}
+              {% endfor %}
           </div>
           <button type="button" class="add-btn">+ 질문 추가</button><br><br>
           <input type="hidden" name="player" value="{{ player }}">
-          <button type="submit" class="ready-btn" disabled>READY!</button>
+          <button type="submit" class="ready-btn" id="ready-btn-{{ player }}"disabled>READY!</button>
         </form>
       </div>
     {% endfor %}
   </div>
-
-  <script>
-  const readySet = new Set();
-
-  document.querySelectorAll(".question-form").forEach(form => {
-    const questionList = form.querySelector(".question-list");
-    const addBtn = form.querySelector(".add-btn");
-    const readyBtn = form.querySelector(".ready-btn");
-    const player = form.dataset.player;
-
-    const updateReadyButtonState = () => {
-      const filledQuestions = [...form.querySelectorAll('input[name="questions[]"]')]
-        .map(input => input.value.trim())
-        .filter(q => q.length > 0);
-
-      if (filledQuestions.length >= 5) {
-        readyBtn.disabled = false;
-        readyBtn.classList.add('enabled');
-      } else {
-        readyBtn.disabled = true;
-        readyBtn.classList.remove('enabled');
-        readyBtn.classList.remove('active');
-        readySet.delete(player);
-      }
-    };
-
-    form.addEventListener("input", updateReadyButtonState);
-
-    addBtn.addEventListener("click", () => {
-      const box = document.createElement("div");
-      box.className = "question-box";
-      box.innerHTML = `
-        <input type="text" name="questions[]" maxlength="60" placeholder="질문 입력" required />
-        <button type="button" class="remove-btn">-</button>
-      `;
-      questionList.appendChild(box);
-      updateReadyButtonState();
-    });
-
-    questionList.addEventListener("click", (e) => {
-      if (e.target.classList.contains("remove-btn")) {
-        e.target.closest(".question-box").remove();
-        updateReadyButtonState();
-      }
-    });
-
-    readyBtn.addEventListener("click", () => { //5개 이상 입력되면 활성화
-      const filledQuestions = [...form.querySelectorAll('input[name="questions[]"]')]
-        .map(input => input.value.trim())
-        .filter(q => q.length > 0);
-
-      if (filledQuestions.length < 5) return;
-
-      const isActivating = !readyBtn.classList.contains("active");
-
-      if (isActivating) {
-        readyBtn.classList.add("active");
-        readySet.add(player);
-      } else {
-        readyBtn.classList.remove("active");
-        readySet.delete(player);
-      }
-
-      // ✅ 조건 만족 시 서버에 저장 + 이동
-      if (readySet.size === 4) {
-        document.querySelectorAll(".question-form").forEach(async form => {
-          const formData = new FormData(form);
-          const player = form.dataset.player;
-          const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
-
-          const res = await fetch(`/submit_ready/${player}/`, {
-            method: "POST",
-            headers: {
-              "X-CSRFToken": csrfToken,
-            },
-            body: formData,
-          });
-
-          if (!res.ok) {
-            alert(`${player} 구역 질문 저장 실패`);
-          }
-        });
-
-        setTimeout(() => {
-          document.getElementById("gameForm").submit();
-        }, 500); //저장 딜레이 감안 
-      }
-    });
-  });
-  </script>
 
   <form id="gameForm" method="POST" action="{% url 'game_start' %}">
     {% csrf_token %}
     <input type="hidden" name="theme" value="custom">
   </form>
 
-
-
+  <script src="{% static 'js/custom.js' %}">  </script>
 
 </body>
 </html>
