@@ -43,8 +43,13 @@ continueButton?.addEventListener("click", () => {
 });
 
 // ✅ 모달에서 "게임 종료" 버튼 클릭 시 → 페이지 이동
+const endGameURL = endGameConfirmButton?.dataset.url;
 endGameConfirmButton?.addEventListener("click", () => {
-  window.location.href = "{% url 'end_game' %}";
+  // data-url로 값 넘길 수 있도록 {% url 'end_game' %} 수정
+  console.log("종료 버튼 클릭 됌")
+  if (endGameURL) {
+    window.location.href = endGameURL;
+  }
 });
 
 

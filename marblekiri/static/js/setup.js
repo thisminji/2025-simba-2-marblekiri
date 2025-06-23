@@ -1,93 +1,82 @@
-// 테마 선택 처리
-// document.querySelectorAll(".theme-category-container").forEach((el) => {
-//   el.addEventListener("click", () => {
-//     document.querySelectorAll(".theme-category-container").forEach((e) => {
-//       e.classList.remove("selected");
-//     });
-//     el.classList.add("selected");
-//     document.getElementById("selected-theme").value = el.dataset.value;
-//     // console.log("선택한 테마: ", el.dataset.value);
-//   });
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  const containers = document.querySelectorAll(".theme-category-container");
+  const body = document.body;
+  const themes = ["college", "sports", "idol", "custom"];
+  const selectedTheme = document.getElementById("selected-theme");
+  const gameForm = document.getElementById("gameForm");
 
-const containers = document.querySelectorAll(".theme-category-container");
-const body = document.body;
+  // ▶ 테마 관련 클래스 제거
+  function clearTheme() {
+    themes.forEach((t) => {
+      body.classList.remove(`hover-${t}`, `selected-${t}`);
+    });
+  }
 
-// 테마 이름 배열 (for cleanup)
-const themes = ["college", "sports", "idol", "custom"];
+  // ▶ 테마 hover / click 이벤트 등록
+  containers.forEach((el) => {
+    const theme = el.dataset.value;
 
-containers.forEach((el) => {
-  const theme = el.dataset.value;
+    // 호버 시
+    el.addEventListener("mouseenter", () => {
+      if (!el.classList.contains("selected")) {
+        clearTheme();
+        body.classList.add(`hover-${theme}`);
+      }
+    });
 
-  // hover 시 배경 변경
-  el.addEventListener("mouseenter", () => {
-    if (!el.classList.contains("selected")) {
-      clearThemeClasses();  // 기존 hover/selected 클래스 제거
-      body.classList.add(`hover-${theme}`);
-    }
+    // 커서 이동 시
+    el.addEventListener("mouseleave", () => {
+      clearTheme();
+      const selected = document.querySelector(".theme-category-container.selected");
+      if (selected) {
+        body.classList.add(`selected-${selected.dataset.value}`);
+      }
+    });
+
+    // 마우스 클릭 시
+    el.addEventListener("click", () => {
+      containers.forEach((e) => e.classList.remove("selected"));
+      el.classList.add("selected");
+
+      selectedTheme.value = theme; // 선택한 테마 저장
+      clearTheme();
+      body.classList.add(`selected-${theme}`);
+
+      console.log("선택한 테마:", theme);
+    });
   });
 
-  // hover 해제 시 원상 복귀
-  el.addEventListener("mouseleave", () => {
-    clearThemeClasses();
-    // 선택된 테마가 있으면 다시 적용
-    const selected = document.querySelector(".theme-category-container.selected");
-    if (selected) {
-      const selectedTheme = selected.dataset.value;
-      body.classList.add(`selected-${selectedTheme}`);
-    }
-  });
-
-  // 클릭 시 선택 확정
-  el.addEventListener("click", () => {
-    containers.forEach((e) => e.classList.remove("selected"));
-    el.classList.add("selected");
-
-    clearThemeClasses();
-    body.classList.add(`selected-${theme}`);
-  });
-});
-
-
-// 테마 이동
-function clearThemeClasses() {
-  themes.forEach((t) => {
-    body.classList.remove(`hover-${t}`, `selected-${t}`);
-  });
-}
-
-
-// 커스텀 테마 이동
-document
-  .getElementById("gameForm")
-  .addEventListener("submit", function (event) {
+  // ▶ 게임 설정 form 제출 처리
+  gameForm.addEventListener("submit", function (event) {
     const unlimitedRadio = document.getElementById("unlimited");
     const slider = document.getElementById("turn-slider");
-    const theme = document.getElementById("selected-theme").value;
+    const theme = selectedTheme.value;
 
     // max_turns 값 name 제거 or 유지
     if (unlimitedRadio.checked) {
-      slider.removeAttribute("name"); // max_turns 전송 안 되게
-      console.log("무제한 턴 → max_turns 안 보냄");
+      slider.removeAttribute("name");
+      console.log("무제한 턴 → max_turns 안 보냄"); // max_turns 전송 안 되게
     } else {
-      slider.setAttribute("name", "max_turns"); // 제한 모드일 땐 name 유지
-      console.log("지정 턴 수 → max_turns =", slider.value);
+      slider.setAttribute("name", "max_turns");
+      console.log("지정 턴 수 → max_turns =", slider.value); // 제한 모드일 땐 name 유지
     }
 
-    // 테마 미선택 시 alert 띄움
+    // 테마 미선택 시 제출 막기
     if (!theme) {
       alert("테마를 선택해주세요!");
-      e.preventDefault(); // 제출 막기
+      event.preventDefault();
+      return;
     }
 
-    // 커스텀 테마면 redirect
-    if (theme == "custom") {
+    // 커스텀 테마일 경우 페이지 이동
+    if (theme === "custom") {
       event.preventDefault();
       window.location.href = "/custom_questions/";
     }
   });
+});
 
-// 슬라이더 및 턴 수 토글
+// ▶ 슬라이더 및 턴 수 토글
 document.addEventListener("DOMContentLoaded", function () {
   const unlimitedRadio = document.getElementById("unlimited");
   const limitedRadio = document.getElementById("limited");
@@ -108,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// 인원 추가/삭제 로직
+// ▶ 인원 추가/삭제 로직
 function addPlayer() {
   const list = document.getElementById("player-list");
   const count = list.children.length + 1;
@@ -142,4 +131,4 @@ function removePlayer(button) {
     } else {
       alert("최소 1명의 플레이어는 필요합니다!");
     }
-}
+};
