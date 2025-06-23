@@ -119,17 +119,38 @@ body.selected-custom {
   object-fit: cover;
 }
 
-/* 기본 이미지 보이기 */
-.theme-category-container .default-image {
-  display: block;
+
+/* 기본 이미지 항상 보이게 */
+.default-image {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
 }
 
-/* hover 이미지 숨기기 */
-.theme-category-container .hover-image {
-  display: none;
+/* 호버 이미지는 기본적으로 숨김 */
+.hover-image {
+  opacity: 0;
+  pointer-events: none; 
+  z-index: 3;
 }
 
-/* hover 상태 전환 - college */
+/* Hover 또는 selected 상태일 때: hover 보이고 default 숨김 */
+.theme-category-container:hover .default-image,
+.theme-category-container.selected .default-image {
+  display: none ;
+  opacity: 1;
+  pointer-events: auto;
+}
+.theme-category-container:hover .hover-image,
+.theme-category-container.selected .hover-image {
+  display: block ;
+  opacity: 1;
+  pointer-events: none;
+}
+
+/*
+
+/* hover 상태 전환 - college 
 .theme-category-container[data-value="college"]:hover .default-image,
 .theme-category-container.selected[data-value="college"] .default-image {
   display: none;
@@ -140,7 +161,7 @@ body.selected-custom {
   display: block;
 }
 
-/* hover 상태 전환 - sports */
+/* hover 상태 전환 - sports 
 .theme-category-container[data-value="sports"]:hover .default-image,
 .theme-category-container.selected[data-value="sports"] .default-image {
   display: none;
@@ -151,7 +172,7 @@ body.selected-custom {
   display: block;
 }
 
-/* hover 상태 전환 - idol */
+/* hover 상태 전환 - idol *
 .theme-category-container[data-value="idol"]:hover .default-image,
 .theme-category-container.selected[data-value="idol"] .default-image {
   display: none;
@@ -162,7 +183,7 @@ body.selected-custom {
   display: block;
 }
 
-/* hover 상태 전환 - custom */
+/* hover 상태 전환 - custom *
 .theme-category-container[data-value="custom"]:hover .default-image,
 .theme-category-container.selected[data-value="custom"] .default-image {
   display: none;
@@ -172,6 +193,7 @@ body.selected-custom {
 .theme-category-container.selected[data-value="custom"] .hover-image {
   display: block;
 }
+*/
 
 /* 텍스트형 버튼 내 텍스트 */
 .theme-category {
