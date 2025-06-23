@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  //===================1️⃣ 변수 설정==========================
+  //===================1⃣ 빛수 설정==========================
   const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
   //<<주사위 >> //
@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //===================⏩ 모달 ===============================
 
-  // 🧩 상단 "게임 종료" 버튼 클릭 시 → 모달 열기
+  // 🧙 상단 "게임 종료" 버튼 클릭 시 → 모달 열기
   endButton?.addEventListener("click", (e) => {
     e.preventDefault();
     modal?.classList.remove("hidden");
   });
 
-  // 🧩 모달에서 "이어서 진행" 클릭 시 → 모달 닫기
+  // 🧙 모달에서 "이어서 진행" 클릭 시 → 모달 닫기
   continueButton?.addEventListener("click", () => {
     modal?.classList.add("hidden");
   });
@@ -48,19 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
   // ✅ 모달에서 "게임 종료" 버튼 클릭 시 → 페이지 이동
   const endGameURL = endGameConfirmButton?.dataset.url;
   endGameConfirmButton?.addEventListener("click", () => {
-    console.log("종료 버튼 클릭 됌")
+    console.log("종료 버튼 클릭 된")
     if (endGameURL) {
       window.location.href = endGameURL;
     }
   });
 
   //===================⏩ 마셔 / 통과 ==========================
-  // 1) 버튼 눌렀을 때 함수 호출
   passBtn?.addEventListener("click", () => handleAction("pass"));
   drinkBtn?.addEventListener("click", () => handleAction("drink"));
 
   /////----------drink 카운트------------------
-  //2) 마셔 / 통과 함수
   function handleAction(actionType) {
     fetch("/handle_action/", {
       method: "POST",
@@ -72,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then(res => {
       if (!res.ok) throw new Error("❌ 서버 응답 오류");
-
       return res.json();
     })
     .then(data => {
@@ -80,40 +77,46 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/end_game/";
       } else {
         const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
-        console.log("✅ show_ranking:", show_ranking);
         if (show_ranking){
           updateRanking(data.ranking);
         }
-        //round
         updateRound(data.round);
-        //player
         updatePlayers(data.prev_player, data.current_player, data.next_player);
 
-        // 말 위치 다시 요청 (index 유지용)
-        fetch("/move_player/?steps=0") // 0칸 이동 → 위치 정보만 받아오기
+        fetch("/move_player/?steps=0")
           .then(res => res.json())
           .then(data => { 
-            // 말 이동 (한 칸씩 애니메이션)
             moveHorseStepByStep(data.prev_index, data.index); 
             missionBox.innerHTML = `<h3>${data.mission}</h3>`;
           });
 
-        // 마셔 / 통과 누른 후 다시 비활성화
         passBtn.disabled = true;
         drinkBtn.disabled = true;
-
-        //주사위 활성화
         rollButton.disabled = false;
       }
     })
     .catch(error => console.error("에러 발생:", error));
   }
 
-  //===================⏩ 랭킹 / 라운드 / 턴 ==========================
-  /////1) ----------랭킹------------------
+  //===================⏩ 최종 로딩시 라링 표시 ==========================
+  const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
+  if (show_ranking) {
+    fetch("/move_player/?steps=0")
+      .then(res => res.json())
+      .then(data => {
+        if (data.ranking) {
+          updateRanking(data.ranking);
+        }
+      })
+      .catch(error => {
+        console.error("최고 라링 로딩 실패:", error);
+      });
+  }
+
+  //===================⏩ 랭킹 / 라운드 / 터널 ==========================
   function updateRanking(ranking) {
     const list = document.getElementById("ranking-list");
-    list.innerHTML = "";  // 기존 삭제
+    list.innerHTML = "";
 
     ranking.forEach((player, i) => {
       const li = document.createElement("li");
@@ -135,15 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /////2) ----------라운드------------------
   function updateRound(round) {
-    console.log("👉 Round update:", round);
     document.getElementById("turn-number").textContent = round;
   }
 
-  /////3) ----------턴 플레이어------------------
   function updatePlayers(prev, current, next) {
-    console.log("👉 Player update:", prev, " / ", current, " / ", next);
     document.getElementById("prev-player").textContent = prev;
     document.getElementById("current-player").textContent = current;
     document.getElementById("next-player").textContent = next;
@@ -157,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (rollButton.disabled) return;
 
     isRolling = true;
-    console.log("🎲 주사위 시작");
     rollButton.disabled = true;
 
     let count = 0;
@@ -177,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
           })
           .then(data => { 
-            moveHorseStepByStep(data.prev_index, data.index); // ✅ 수정: moveHorseTo → moveHorseStepByStep로 통일
+            moveHorseStepByStep(data.prev_index, data.index);
 
             missionBox.innerHTML = `
               <h3>${data.mission ? data.mission : "에러"}</h3>
@@ -192,20 +190,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             passBtn.disabled = false;
             drinkBtn.disabled = false;
+
+            const show_ranking = document.getElementById("show-ranking-hidden")?.value === "true";
+            if (show_ranking && data.ranking) {
+              updateRanking(data.ranking);
+            }
           })
           .catch(error => {
             console.error("에러:", error);
             missionBox.innerHTML = `<p>에러</p>`;
           })
           .finally(() => {
-            console.log("✅ 주사위 끝");
             isRolling = false;
           });
       }
     }, 80);
   });
 
-  //===================⏩ 말 이동 ==========================
+  //===================⏩ 마루 이동 ==========================
   function moveHorseStepByStep(startIndex, endIndex) {
     console.log("🐴 말 이동 시작");
     const totalTiles = 20;
