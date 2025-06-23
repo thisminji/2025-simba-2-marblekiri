@@ -23,7 +23,7 @@ urlpatterns = [
     #######################################################
     #custom
     path('custom_questions/', custom_questions, name="custom_questions"),
-    path("submit_ready/<str:zone_code>/", submit_ready, name="submit_ready"),
+    path("submit_ready/", submit_ready, name="submit_ready"),
 
     #######################################################
     #result

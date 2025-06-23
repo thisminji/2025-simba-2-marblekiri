@@ -28,6 +28,9 @@ class Question(models.Model):
     theme = models.CharField(max_length=20, choices=THEME_CHOICES)
     content = models.TextField()
 
+    # Zone 구역 추가 (null=True는 custom일 때만 쓰기 때문)
+    zone = models.CharField(max_length=1, null=True, blank=True)
+
 class Tile(models.Model):
     room = models.ForeignKey(GameRoom, on_delete=models.CASCADE)
     index = models.IntegerField()  # 칸 번호 (0~19)
