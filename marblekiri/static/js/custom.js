@@ -56,7 +56,7 @@ const readySet = new Set();
       box.innerHTML = `
         <div class="question-number">#${count}.</div>
         <input type="text" name="questions[]" maxlength="60" placeholder="질문 입력" required />
-        <button type="button" class="remove-btn">
+        <button type="button" class="remove-btn" id="remove-btn-${player}">
           <span class="custom-remove-line"></span>
         </button>
       `;
@@ -105,7 +105,7 @@ const readySet = new Set();
               input.remove();  // 실제 DOM에서도 제거됨
             }
           });
-          
+
           const formData = new FormData(form);
           const player = form.dataset.player;
           const csrfToken = form.querySelector('[name=csrfmiddlewaretoken]').value;
