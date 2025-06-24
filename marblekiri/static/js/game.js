@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("🛑 게임 종료 버튼 클릭");
 
     const gameoverSound = new Audio("/static/assets/sounds/gameover.mp3");
-    gameoverSound.volume = 0.3;
+    gameoverSound.volume = 0.1;
 
     try {
       gameoverSound
@@ -262,12 +262,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //===================⏩ 말 이동 ==========================
-  // 전역 또는 상단에서 템플릿 사운드 객체 생성 
+  //===================⏩ 말 이동 ==========================
+  // 전역에서 한 번만 생성
   const moveSoundTemplate = new Audio("/static/assets/sounds/move.mp3");
   moveSoundTemplate.volume = 0.7;
 
   function moveHorseStepByStep(startIndex, endIndex) {
     console.log("🐴 말 이동 시작");
+
+    // ✅ 이동 안 해도 되는 경우 (같은 칸) → 소리/이동 둘 다 생략
+    if (startIndex === endIndex) {
+      console.log("⚠️ 말 위치 동일 → 이동/사운드 생략");
+      return;
+    }
+
     const totalTiles = 20;
     const steps = [];
     let current = startIndex;
@@ -279,6 +287,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let i = 0;
     const horse = document.getElementById("horse-icon");
+
+    // ✅ 이동 시작할 때 한 번만 사운드 재생
+    try {
+      const moveSound = moveSoundTemplate.cloneNode();
+      moveSound.volume = 0.7;
+      moveSound.play().catch((err) => {
+        console.warn("❌ move.mp3 재생 실패:", err);
+      });
+    } catch (e) {
+      console.warn("🎵 예외로 인한 사운드 실패:", e);
+    }
 
     function moveStep() {
       if (i >= steps.length) return;
@@ -294,17 +313,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       horse.style.left = `${offsetX + 10}px`;
       horse.style.top = `${offsetY - 50}px`;
-
-      // ✅ cloneNode()로 빠르게 재생
-      try {
-        const moveSound = moveSoundTemplate.cloneNode();
-        moveSound.volume = 0.7; // 복제에도 볼륨 설정 필요
-        moveSound.play().catch((err) => {
-          console.warn("❌ move.mp3 재생 실패:", err);
-        });
-      } catch (e) {
-        console.warn("🎵 예외로 인한 사운드 실패:", e);
-      }
 
       i++;
       setTimeout(moveStep, 180);
