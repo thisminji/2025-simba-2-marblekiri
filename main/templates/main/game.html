@@ -118,12 +118,22 @@
       {% endif %}
 
       <!--세인 수정, 도착한 칸의 미션 목록을 누적해서 띄우기-->
+      <!-- 민지 수정, css 수정 위한 구조 수정 -->
       <div class="missions">
         <h3>미션 목록</h3>
         <ol class="mission-list">
+          <li class="mission-spacer"></li>
+          <!-- 위쪽 여백용 -->
+
           {% for i in "01234567890123456789" %}
-          <li class="mission-item" data-index="{{ forloop.counter0 }}"></li>
+          <li class="mission-item" data-index="{{ forloop.counter0 }}">
+            <span class="mission-number">{{ forloop.counter }}.</span>
+            <span class="mission-text"> </span>
+          </li>
           {% endfor %}
+
+          <li class="mission-spacer"></li>
+          <!-- 아래쪽 여백용 -->
         </ol>
       </div>
 
