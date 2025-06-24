@@ -14,31 +14,49 @@
       <div class="left-panel">
         <div class="review-image-{{ show_ranking|yesno:'true,false' }}">
           <div class="review-imagebox review-imagebox-{{ theme }}">
-            
             <label for="image-upload" class="image-label">
               <!-- 미리보기 이미지 -->
-              <img id="preview" alt="업로드 이미지" class="image-preview"/>
+              <img id="preview" alt="업로드 이미지" class="image-preview" />
               <!-- 텍스트 플레이스홀더 -->
               <div class="placeholder-box" id="placeholder-box">
-                <img id="image-placeholder" src="{% static 'assets/images/frame_add.svg' %}" alt="사진 추가하기" />
+                <img
+                  id="image-placeholder"
+                  src="{% static 'assets/images/frame_add.svg' %}"
+                  alt="사진 추가하기"
+                />
                 <div class="placeholder-text">사진 추가하기</div>
               </div>
               <!-- 이미지 파일 추가 -->
-              <input type="file" id="image-upload" hidden name="image" accept="image/*" />
-              <!-- 삭제 버튼 -->
-              <img id="remove-image" class="remove-image-button" src="{% static 'assets/images/frame_delete.svg' %}" alt="삭제" style="display:none"/>
-
+              <input
+                type="file"
+                id="image-upload"
+                hidden
+                name="image"
+                accept="image/*"
+              />
             </label>
 
-            
+            <!-- 삭제 버튼 -->
+            <img
+              id="remove-image"
+              class="remove-image-button"
+              src="{% static 'assets/images/frame_delete.svg' %}"
+              alt="삭제"
+              style="display: none"
+            />
+
             <!-- 하단 바: 로고 + 날짜 -->
             <div class="bottom-bar">
-              <img class="logo-frame" src="/static/assets/images/frame_logo.svg" alt="마블끼리 프레임 로고"/>
+              <img
+                class="logo-frame"
+                src="/static/assets/images/frame_logo.svg"
+                alt="마블끼리 프레임 로고"
+              />
               <div class="date-frame">{{ date_frame }}</div>
             </div>
+          </div>
         </div>
       </div>
-    </div>
 
       <!-- 오른쪽: 결과 정보 -->
       <div class="right-panel">
@@ -48,16 +66,23 @@
           <!-- 우리가 뭘 했더라 -->
           <div class="summary-section-{{ theme }}">
             <h2>우리가 뭘 했더라...</h2>
-            <div class = "summary-text">
-            <p>플레이타임: {{ play_time }}</p>
-            <p>진행 횟수: {{ round_count }}바퀴</p>
+            <div class="summary-text">
+              <p>플레이타임: {{ play_time }}</p>
+              <p>진행 횟수: {{ round_count }}바퀴</p>
             </div>
           </div>
 
           <!-- 가장 많이 마신 사람 -->
-          <input type="hidden" id="show-ranking-hidden" value="{{ show_ranking|yesno:'true,false' }}">
+          <input
+            type="hidden"
+            id="show-ranking-hidden"
+            value="{{ show_ranking|yesno:'true,false' }}"
+          />
           <script>
-            console.log("랭킹 도출 여부:", "{{ show_ranking|yesno:'true,false' }}");
+            console.log(
+              "랭킹 도출 여부:",
+              "{{ show_ranking|yesno:'true,false' }}"
+            );
           </script>
           {% if show_ranking %}
           <div class="summary-card-{{ theme }}">
@@ -65,10 +90,15 @@
               <h2>가장 많이 마신 사람</h2>
               <ul class="ranking-list" id="ranking-list">
                 {% for nickname, count in ranking %}
-                  <li class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}">
-                    <img src="/static/assets/icons/noto_{{ forloop.counter }}-place-medal.svg" alt="{{ forloop.counter }}등 메달">
-                    <span>{{ nickname }}</span>
-                  </li>
+                <li
+                  class="rank-card {% if forloop.counter == 1 %}first{% elif forloop.counter == 2 %}second{% elif forloop.counter == 3 %}third{% endif %}"
+                >
+                  <img
+                    src="/static/assets/icons/noto_{{ forloop.counter }}-place-medal.svg"
+                    alt="{{ forloop.counter }}등 메달"
+                  />
+                  <span>{{ nickname }}</span>
+                </li>
                 {% endfor %}
               </ul>
             </div>
@@ -80,23 +110,21 @@
           <h2>질문 리스트</h2>
           <ul class="mission-list">
             {% for mission in mission_texts %}
-              <li>{{ forloop.counter }}. {{ mission }}</li>
-              <script>
-                console.log("미션:", "{{ mission }}");
-              </script>
+            <li>{{ forloop.counter }}. {{ mission }}</li>
+            <script>
+              console.log("미션:", "{{ mission }}");
+            </script>
             {% endfor %}
           </ul>
         </div>
 
-
         <!-- 돌아가기 버튼 -->
         <div class="back-button-wrapper">
           <a href="{% url 'start' %}" class="button_click">
-            <button class="back-btn"> 홈으로 돌아가기</button>
+            <button class="back-btn">홈으로 돌아가기</button>
           </a>
         </div>
-
-      </div>  
+      </div>
     </div>
   </body>
 </html>
