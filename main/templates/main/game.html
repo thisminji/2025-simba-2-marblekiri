@@ -53,10 +53,16 @@
           </span>
         </p>
       </div>
-
       <!-- 게임 타일 그리드 -->
-      <div class="tiles-grid">
-        <!-- 타일 목록 생략 -->
+      <div class="tiles-grid" style="position: relative">
+        <!-- 💡 마블끼리 로고 배경 추가 -->
+        <img
+          src="{% static 'assets/icons/marblekiri.svg' %}"
+          alt="마블끼리 로고"
+          class="board-logo"
+        />
+
+        <!-- 🎯 기존 타일 구조 유지 -->
         <div class="tile" data-index="10">11</div>
         <div class="tile" data-index="9">10</div>
         <div class="tile" data-index="8">9</div>
