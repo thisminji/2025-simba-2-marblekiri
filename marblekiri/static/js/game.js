@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 80);
   });
 
-  //===================⏩ 마루 이동 ==========================
+  //===================⏩ 말 이동 ==========================
   function moveHorseStepByStep(startIndex, endIndex) {
     console.log("🐴 말 이동 시작");
     const totalTiles = 20;
@@ -233,6 +233,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let i = 0;
     const horse = document.getElementById("horse-icon");
+
+    // 🔊 사운드 객체 생성 (JS에서만)
+    const moveSound = new Audio("/static/assets/sounds/move.mp3");
+
+    moveSound.volume = 1; // (선택) 볼륨 조절: 0 ~ 1
 
     function moveStep() {
       if (i >= steps.length) return;
@@ -248,18 +253,33 @@ document.addEventListener("DOMContentLoaded", () => {
       horse.style.left = `${offsetX + 10}px`;
       horse.style.top = `${offsetY - 50}px`;
 
+      // 🔊 효과음 재생
+      try {
+        moveSound.currentTime = 0;
+        moveSound
+          .play()
+          .then(() => {
+            console.log("🔊 move.mp3 재생 성공");
+          })
+          .catch((err) => {
+            console.warn("❌ move.mp3 재생 실패:", err);
+          });
+      } catch (e) {
+        console.warn("🎵 예외로 인한 재생 실패:", e);
+      }
+
       i++;
-      setTimeout(moveStep, 180);
+      setTimeout(moveStep, 180); // 말 이동 간 시간
     }
 
     moveStep();
   }
 
-const showRanking = document.getElementById("show-ranking-hidden")?.value === "true";
-const missionsBox = document.querySelector(".missions");
+  const showRanking =
+    document.getElementById("show-ranking-hidden")?.value === "true";
+  const missionsBox = document.querySelector(".missions");
 
-if (!showRanking && missionsBox) {
-  missionsBox.classList.add("expanded");
-}
-
+  if (!showRanking && missionsBox) {
+    missionsBox.classList.add("expanded");
+  }
 });
