@@ -149,7 +149,12 @@ def move_player(request):
 
     # 보드판은 20칸이므로 나머지 계산으로 반복 가능하게 함
     new_pos = (current_pos + steps) % 20
-    request.session["index"] = new_pos                     # 세션에 새 위치 저장
+    request.session["index"] = new_pos  
+    
+    # ✅ 바퀴 증가 체크
+    if (current_pos + steps) >= 20:
+        room.current_round += 1
+        room.save()# 세션에 새 위치 저장
 
     # 이동한 칸의 미션 불러오기
     tile = Tile.objects.filter(room=room, index=new_pos).first()
@@ -175,9 +180,7 @@ def process_action(player, action):
 ### 턴 & 바퀴 증가 + 게임 종료 조건 체크
 def advance_turn(room, total_players):
     room.current_turn_index += 1
-    if room.current_turn_index % total_players == 0:
-        room.current_round += 1
-
+    
     # 게임 종료 조건
     if room.max_turns and room.current_round > room.max_turns:
         room.current_round -= 1
