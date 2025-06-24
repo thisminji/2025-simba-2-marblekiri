@@ -101,17 +101,10 @@ def game_page(request):
     # 타일 미션 질문 리스트
     tiles = Tile.objects.filter(room=room).order_by('index')
 
-    # custom - zone별 질문 목록 전달
-    zone_questions = {}
-    if room.theme == "custom":
-        for zone in ['A', 'B', 'C', 'D']:
-            zone_questions[zone] = Question.objects.filter(theme="custom", zone=zone).values_list('content', flat=True)
-
     return render(request, 'main/game.html', {
         'tiles': tiles,
         'players': players,
         'theme' : theme,
-        'zone_questions': zone_questions,
 
         'current_player': current_player,
         'prev_player': prev_player,
@@ -301,17 +294,12 @@ def submit_ready(request):
     try:
         if request.method == "POST":
             print("▶️ POST 수신됨")
-            print("📦 zone:", request.POST.get('zone'))
             print("📦 질문들:", request.POST.getlist('questions[]'))
 
             questions = request.POST.getlist('questions[]')
-            zone = request.POST.get('zone', '').strip()
-
-            if not zone:
-                return JsonResponse({'error': '존 정보 없음'}, status=400)
-
+            
             for q in questions:
-                Question.objects.create(theme="custom", content=q, zone=zone)
+                Question.objects.create(theme="custom", content=q)
 
             return JsonResponse({'message': 'Saved successfully'})
         
