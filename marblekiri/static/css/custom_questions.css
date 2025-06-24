@@ -14,6 +14,7 @@ h1 {
   line-height: normal;
   padding-top: 75px;
   text-align: center;
+  margin: 31px 0px 10px 0px;
 }
 
 p {
@@ -23,7 +24,8 @@ p {
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 30px;
+  margin: 10px;
 }
 
 /* 전체 컨테이너 정렬용 */
@@ -45,7 +47,7 @@ p {
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  margin-top: 15px;
+  margin-top: 0px;
 }
 
 /* 패널 제목 (A, B, C, D) */
