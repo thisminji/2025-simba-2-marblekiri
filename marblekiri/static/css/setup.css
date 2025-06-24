@@ -1,31 +1,4 @@
-/* 폰트 선언 */
-@font-face {
-  font-family: "Paperlogy";
-  src: url("/static/fonts/Paperlogy-2ExtraLight.woff2") format("woff2");
-  font-weight: 200;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Paperlogy";
-  src: url("/static/fonts/Paperlogy-6SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Paperlogy";
-  src: url("/static/fonts/Paperlogy-8ExtraBold.woff2") format("woff2");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Paperlogy4";
-  src: url("/static/fonts/Paperlogy-4Regular.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url('./base/fonts.css');
 
 html,
 body {
