@@ -1,31 +1,4 @@
-/* 폰트 설정 */
-@font-face {
-  font-family: "Paperlogy";
-  src: url("/static/fonts/Paperlogy-4Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Paperlogy";
-  src: url("/static/fonts/Paperlogy-8ExtraBold.woff2") format("woff2");
-  font-weight: 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Paperlogy";
-  src: url("/static/fonts/Paperlogy-9Black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Partial Sans KR";
-  src: url("/static/fonts/PartialSansKR-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-}
+@import url('./base/fonts.css');
 
 /* 질문 입력 텍스트 박스 */
 h1 {
