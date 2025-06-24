@@ -139,7 +139,7 @@ body.theme-custom {
   flex-shrink: 0;
   background-color: white;
   border-radius: 20px;
-      padding-top: 25px;
+  padding-top: 25px;
   padding: 20px;
   box-sizing: border-box;
   flex: 2;
@@ -148,7 +148,6 @@ body.theme-custom {
   flex-direction: column;
   justify-content: space-between;
   margin-top: 10px;
-  
 }
 
 .board-logo {
@@ -161,7 +160,6 @@ body.theme-custom {
   z-index: 0;
   pointer-events: none;
 }
-
 
 /* turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
 .turn-info {
@@ -529,12 +527,18 @@ body.theme-custom .tile[data-index="16"] {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;           /* ✅ 자식(.mission-list) 가운데 정렬 */
+  align-items: center; /* ✅ 자식(.mission-list) 가운데 정렬 */
   padding: 10px;
   background-color: #fff;
   border-radius: 16px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
+.missions.expanded {
+  flex: 1;
+  transition: flex 0.3s ease;
+}
+
+
 
 
 .missions h3 {
@@ -589,23 +593,35 @@ body.theme-custom .tile[data-index="16"] {
 .mission-box {
   grid-column: 2 / span 5; /* 가운데 위치 잡기 (3번째 칸부터 3칸 차지) */
   grid-row: 2 / span 3; /* 3번째 행에 위치 */
-background-color: transparent;
+  background-color: transparent;
   border-radius: 0px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   text-align: center;
   padding: 0px;
   font-size: 18px;
   font-family: "Paperlogy";
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
+
   align-items: center;
-  z-index: 10;
+
   word-break: keep-all;
   line-height: 1.6;
   max-height: 150px;
-      width: 500px;
-    height: 50px;
+  width: 500px;
+  height: 50px;
+
+  position: relative;
+  z-index: 5;
+
+  /* 
+  #####민지 수정
+  원래 position: absolute 방식이 겹침 방지에는 더 적합하지만, 
+  기존 grid 구조가 깨져서 유지가 어려움.
+  그래서 위치를 맞추기 위해 margin-top으로 수동 조정함.
+  미션지 위치 조정할 떄 숫자 바꿔서 조정하면 됨.
+*/
+  margin-top: 130px;
 }
 
 .mission-list {
@@ -614,7 +630,7 @@ background-color: transparent;
   height: 22rem;
   padding: 1rem 0.75rem;
   border-radius: 1.25rem;
-  background: #E8E8E8;
+  background: #e8e8e8;
 
   border: 3px solid #ccc;
 
@@ -624,16 +640,16 @@ background-color: transparent;
   gap: 0.75rem;
 
   margin-left: auto;
-  margin-right: auto;     /* ✅ 가운데 정렬 핵심 */
+  margin-right: auto; /* ✅ 가운데 정렬 핵심 */
   box-sizing: border-box;
 
   /* ✅ 스크롤바 숨기기 */
-  scrollbar-width: none;       /* Firefox */
-  -ms-overflow-style: none;    /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 }
 
 .mission-list::-webkit-scrollbar {
-  display: none;                 /* Chrome, Safari, Edge */
+  display: none; /* Chrome, Safari, Edge */
 }
 
 .mission-item {
@@ -662,8 +678,6 @@ background-color: transparent;
   word-break: break-word;
   white-space: normal;
 }
-
-
 
 /****************************
          주사위
