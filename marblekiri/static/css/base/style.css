@@ -607,6 +607,10 @@ body.theme-custom .tile[data-index="16"] {
   margin-left: auto;
   margin-right: auto;     /* ✅ 가운데 정렬 핵심 */
   box-sizing: border-box;
+
+  /* ✅ 스크롤바 숨기기 */
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE 10+ */
 }
 
 .mission-item {
