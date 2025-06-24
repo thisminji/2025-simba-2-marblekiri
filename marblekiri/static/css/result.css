@@ -178,7 +178,7 @@ body.theme-custom {
   background: white;
   padding: 10px 16px;
   border-radius: 0 0 16px 16px;
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 .logo-frame {
@@ -499,13 +499,9 @@ body.theme-custom {
   line-height: normal;
 }
 
-
-
-
-
 .ranking-list {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 30px;
   padding: 0;
   margin: 0;
