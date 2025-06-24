@@ -1,5 +1,9 @@
 @import url('./base/fonts.css');
 
+.theme-custom { 
+  overflow: hidden;
+}
+
 /* 질문 입력 텍스트 박스 */
 h1 {
   color: var(--Main-Black, #2A2A2A);
