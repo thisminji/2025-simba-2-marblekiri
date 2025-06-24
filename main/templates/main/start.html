@@ -5,13 +5,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- css 뒤에 ?v=2 -> 캐쉬 너무 많이 쌓여서 새로운 캐시페이지로.. 설정한거임 지워도 됨-->
-    <link rel="stylesheet" type="text/css" href="{% static 'css/start.css'%}?v=2" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/start.css'%}?v=2"
+    />
     <title>게임 메인화면</title>
   </head>
   <body>
-    <img src="{% static 'assets/images/bottle.svg' %}" alt="bottle" class="start-img bottle">
-    <img src="{% static 'assets/images/liquid.svg' %}" alt="liquid" class="start-img liquid">
-    <img src="{% static 'assets/images/dice.svg' %}" alt="dice" class="start-img dice">
+    <img
+      src="{% static 'assets/images/bottle.svg' %}"
+      alt="bottle"
+      class="start-img bottle"
+    />
+    <img
+      src="{% static 'assets/images/liquid.svg' %}"
+      alt="liquid"
+      class="start-img liquid"
+    />
+    <img
+      src="{% static 'assets/images/dice.svg' %}"
+      alt="dice"
+      class="start-img dice"
+    />
 
     <div class="container">
       <img
@@ -22,6 +38,7 @@
       <h2 class="opening_comment">
         술자리에서 우리끼리 즐기는 온라인 보드게임
       </h2>
+
       <a href="{% url 'setup' %}" class="button_click">
         <button class="start_button">시작하기</button>
       </a>
