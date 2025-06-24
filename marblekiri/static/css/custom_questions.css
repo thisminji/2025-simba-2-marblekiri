@@ -9,7 +9,7 @@ h1 {
   font-style: normal;
   font-weight: 800;
   line-height: normal;
-  padding-top: 100px;
+  padding-top: 50px;
   text-align: center;
 }
 
@@ -73,19 +73,18 @@ p {
   align-items: stretch;
   border-radius: 20px;
   background: #F00;
-  height: 240px; /* 질문 4개만 보이도록 */
-  overflow-y: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE & Edge */
+  border: 4px solid #F00;
+  height: 340px;
+  overflow: auto;
 }
 
 .question-list::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera, 스크롤 안보이도록 */
 }
 
-#question-list-B { background: #FF6347; }
-#question-list-C { background: #FF6B6B; }
-#question-list-D { background: #FF8A65; }
+#question-list-B { background: #FF6347; border: 4px solid #FF6347;}
+#question-list-C { background: #FF6B6B; border: 4px solid #FF6B6B;}
+#question-list-D { background: #FF8A65; border: 4px solid #FF8A65;}
 
 /* 질문 항목 */
 .question-number {
@@ -107,7 +106,7 @@ p {
   border-radius: 20px;
   border: 2px solid var(--Main-Disabled-2, #E8E8E8);
   background: #FFF;
-  height: 80px;
+  flex-shrink: 0;
 }
 .question-box input {
   color: var(--Main-Black, #2A2A2A);
@@ -172,7 +171,7 @@ p {
   border-radius: 20px;
   border: 2px solid var(--Main-Disabled-2, #E8E8E8);
   background: #FFF;
-  height: 80px;
+  flex-shrink: 0;
 }
 
 /* READY 버튼 */
