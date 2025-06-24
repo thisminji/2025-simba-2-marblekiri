@@ -254,4 +254,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     moveStep();
   }
+
+const showRanking = document.getElementById("show-ranking-hidden")?.value === "true";
+const missionsBox = document.querySelector(".missions");
+
+if (!showRanking && missionsBox) {
+  missionsBox.classList.add("expanded");
+}
+
 });
