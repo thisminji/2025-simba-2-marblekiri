@@ -1,4 +1,4 @@
-@import url('./base/fonts.css');
+@import url("./base/fonts.css");
 
 html,
 body {
@@ -198,10 +198,8 @@ body.selected-custom {
   display: flex;
   flex-direction: column;
   gap: 7px;
-
-  /* ✅ 스크롤바 숨기기 */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* 개별 플레이어 항목 */
@@ -214,6 +212,7 @@ body.selected-custom {
   padding: 8px 12px;
   font-size: 16px;
   color: black;
+  flex-shrink: 0;
 }
 
 /* 번호 */
@@ -255,6 +254,47 @@ body.selected-custom {
   background-color: #f57c00;
 }
 
+body.hover-college .remove-btn {
+  background-color: #ff9800;
+}
+body.hover-sports .remove-btn {
+  background-color: #2bb73b;
+}
+body.hover-idol .remove-btn {
+  background-color: #812fa7;
+}
+body.hover-custom .remove-btn {
+  background-color: #f00;
+}
+
+/* 테마 hover*/
+body.selected-college .remove-btn {
+  background-color: #ff9800; /* 기존 주황 유지 */
+}
+body.selected-sports .remove-btn {
+  background-color: #2bb73b; /* 초록 */
+}
+body.selected-idol .remove-btn {
+  background-color: #812fa7; /* 보라 */
+}
+body.selected-custom .remove-btn {
+  background-color: #f00; /* 빨강 */
+}
+
+/* hover 시 진한 색으로 */
+body.selected-sports .remove-btn:hover,
+body.hover-sports .remove-btn:hover {
+  background-color: #239c30;
+}
+body.selected-idol .remove-btn:hover,
+body.hover-idol .remove-btn:hover {
+  background-color: #69218f;
+}
+body.selected-custom .remove-btn:hover,
+body.hover-custom .remove-btn:hover {
+  background-color: #cc0000;
+}
+
 /* 인원 추가 버튼 */
 .add-btn {
   font-family: Paperlogy;
@@ -282,64 +322,62 @@ body.selected-custom {
   /* align-items: center; */
   flex-shrink: 0;
 }
-/* 게임 설정 */
+/* toggle-label 기본 스타일 */
 .toggle-label {
   display: flex;
-  width: 365px;
-  height: 30px;
-  padding: 24px 1px;
-  flex-direction: row;
-  justify-content: space-around;
-
-  gap: 10px;
-  flex-shrink: 0;
-  align-self: stretch;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 20px;
   border-radius: 20px;
-  border: 2px solid var(--Main-Disabled-2, #e8e8e8);
+  border: 2px solid #e8e8e8;
   background: #fff;
   color: #000;
-  text-align: center;
   font-family: Paperlogy;
   font-size: 24px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
 }
 
-/* 토글 스위치 커스텀 */
+/* 체크박스 숨기기 */
 .toggle-label input[type="checkbox"] {
   display: none;
 }
 
-.toggle-label .slider {
-  width: 70px;
-  height: 36px;
-  background-color: #ccc;
-  border-radius: 50px;
+/* 토글 버튼 외형 */
+.toggleButton {
   position: relative;
-  transition: background 0.3s;
+  width: 60px;
+  height: 32px;
+  background-color: #ccc;
+  border-radius: 32px;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 
-.toggle-label .slider::before {
+/* 내부 동그라미 (왼쪽 정렬 기본) */
+.toggleButton::before {
   content: "";
   position: absolute;
-  width: 18px;
-  height: 18px;
-  left: 1px;
-  top: 1px;
+  left: 4px;
+  top: 4px;
+  width: 24px;
+  height: 24px;
   background-color: white;
   border-radius: 50%;
-  transition: 0.3s;
+  transition: transform 0.3s;
 }
 
-/* 체크됐을 때 토글 애니메이션 */
-.toggle-label input:checked + .slider {
+/* 체크 시: 초록색 배경 + 동그라미 오른쪽 이동 */
+.toggle-label input:checked + .toggleButton {
   background-color: #21cf71;
 }
 
-.toggle-label input:checked + .slider::before {
-  transform: translateX(20px);
+.toggle-label input:checked + .toggleButton::before {
+  transform: translateX(28px);
 }
+.toggleButton {
+}
+
 /*게임 턴 수  박스 레이아웃*/
 .turn-setting {
   display: flex;
