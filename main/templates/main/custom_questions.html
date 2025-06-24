@@ -1,50 +1,77 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <title>질문 입력</title>
-  <link rel="stylesheet" href="{% static 'css/custom_questions.css' %}?v=2" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Gugi&display=swap"
-    rel="stylesheet"
-  />
-</head>
-<body class = "theme-custom">
-  <h1>질문 입력</h1>
-  <p>질문은 60자 이내로 자유롭게 적어주세요.<br>4구역의 준비가 모두 완료되면 자동으로 게임이 시작됩니다.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>질문 입력</title>
+    <link rel="stylesheet" href="{% static 'css/custom_questions.css' %}?v=2" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gugi&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="theme-custom">
+    <h1>질문 입력</h1>
+    <p>
+      60자 이내 질문을 각 구역에 <b>5개 이상</b> 작성하세요.<br /><b
+        >4개 구역</b
+      >
+      완료 시 자동 시작됩니다.
+    </p>
 
-  <div class="container">
-    {% for zone in "ABCD" %}
+    <div class="container">
+      {% for zone in "ABCD" %}
       <div class="panel" id="panel-{{ zone }}">
         <h2>{{ zone }}</h2>
-        <form class="question-form" data-zone="{{ zone }}" method="post" action="javascript:void(0)">
+        <form
+          class="question-form"
+          data-zone="{{ zone }}"
+          method="post"
+          action="javascript:void(0)"
+        >
           {% csrf_token %}
           <div class="question-list" id="question-list-{{ zone }}">
             {% for i in "12345" %}
-              <div class="question-box">
-                <div class="question-number">#{{ forloop.counter }}.</div>
-                <input type="text" name="questions[]" maxlength="60" placeholder="질문 입력" required />
-                <button type="button" class="remove-btn" id="remove-btn-{{ zone }}">
-                  <span class="custom-remove-line"></span>
-                </button>
-              </div>
-              {% endfor %}
-              <button type="button" class="add-btn">+ 질문 추가</button><br><br>
+            <div class="question-box">
+              <div class="question-number">#{{ forloop.counter }}.</div>
+              <input
+                type="text"
+                name="questions[]"
+                maxlength="60"
+                placeholder="질문 입력"
+                required
+              />
+              <button
+                type="button"
+                class="remove-btn"
+                id="remove-btn-{{ zone }}"
+              >
+                <span class="custom-remove-line"></span>
+              </button>
+            </div>
+            {% endfor %}
+            <button type="button" class="add-btn">+ 질문 추가</button
+            ><br /><br />
           </div>
-          <input type="hidden" name="zone" value="{{ zone }}">
-          <button type="submit" class="ready-btn" id="ready-btn-{{ zone }}"disabled>READY!</button>
+          <input type="hidden" name="zone" value="{{ zone }}" />
+          <button
+            type="submit"
+            class="ready-btn"
+            id="ready-btn-{{ zone }}"
+            disabled
+          >
+            READY!
+          </button>
         </form>
       </div>
-    {% endfor %}
-  </div>
+      {% endfor %}
+    </div>
 
-  <form id="gameForm" method="POST" action="{% url 'game_start' %}">
-    {% csrf_token %}
-    <input type="hidden" name="theme" value="custom">
-  </form>
+    <form id="gameForm" method="POST" action="{% url 'game_start' %}">
+      {% csrf_token %}
+      <input type="hidden" name="theme" value="custom" />
+    </form>
 
-  <script src="{% static 'js/custom.js' %}">  </script>
-
-</body>
+    <script src="{% static 'js/custom.js' %}"></script>
+  </body>
 </html>
