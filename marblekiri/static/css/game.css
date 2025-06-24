@@ -1,4 +1,4 @@
-@import url('./base/fonts.css');
+@import url("./base/fonts.css");
 
 /* 공통 body 스타일 (모든 테마 공통 레이아웃) */
 body[class^="theme-"] {
@@ -470,9 +470,6 @@ body.theme-custom .tile[data-index="16"] {
   transition: flex 0.3s ease;
 }
 
-
-
-
 .missions h3 {
   color: var(--Theme-00, #2a2a2a);
   text-align: center;
@@ -588,7 +585,6 @@ body.theme-custom .tile[data-index="16"] {
 .mission-item {
   width: 100%;
   max-width: 90%;
-  min-height: 40px;
   height: auto;
   padding: 10px 18px;
 
