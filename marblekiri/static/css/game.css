@@ -503,7 +503,6 @@ body.theme-custom .tile[data-index="16"] {
   color: #000;
   font-family: Paperlogy;
   font-size: 15px;
-  text-align: center;
   box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 }
@@ -554,6 +553,8 @@ body.theme-custom .tile[data-index="16"] {
   미션지 위치 조정할 떄 숫자 바꿔서 조정하면 됨.
 */
   margin-top: 130px;
+  white-space: normal;
+  word-break: break-all;
 }
 
 .mission-list {
@@ -588,6 +589,7 @@ body.theme-custom .tile[data-index="16"] {
   width: 100%;
   max-width: 90%;
   min-height: 40px;
+  height: auto;
   padding: 10px 18px;
 
   font-family: Paperlogy;
