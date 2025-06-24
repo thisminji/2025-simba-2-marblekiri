@@ -476,6 +476,7 @@ body.theme-custom .tile[data-index="16"] {
   font-family: "Partial Sans KR";
   font-size: 32px;
   margin: 4px 0 12px 0; /* 제목 위아래 간격 */
+  font-weight: 100;
 }
 
 .missions ol {
