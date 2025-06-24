@@ -45,12 +45,39 @@ document.addEventListener("DOMContentLoaded", () => {
     modal?.classList.add("hidden");
   });
 
-  // ✅ 모달에서 "게임 종료" 버튼 클릭 시 → 페이지 이동
+  // ✅ 모달에서 "게임 종료" 버튼 클릭 시 → 사운드 재생 후 페이지 이동
   const endGameURL = endGameConfirmButton?.dataset.url;
   endGameConfirmButton?.addEventListener("click", () => {
-    console.log("종료 버튼 클릭 된");
-    if (endGameURL) {
-      window.location.href = endGameURL;
+    console.log("🛑 게임 종료 버튼 클릭");
+
+    const gameoverSound = new Audio("/static/assets/sounds/gameover.mp3");
+    gameoverSound.volume = 0.3;
+
+    try {
+      gameoverSound
+        .play()
+        .then(() => {
+          console.log("🔊 gameover.mp3 재생 시작");
+
+          // ✅ 사운드 끝나면 페이지 이동
+          gameoverSound.addEventListener("ended", () => {
+            console.log("✅ 사운드 재생 완료 → 페이지 이동");
+            if (endGameURL) {
+              window.location.href = endGameURL;
+            }
+          });
+        })
+        .catch((err) => {
+          console.warn("❌ gameover.mp3 재생 실패:", err);
+          if (endGameURL) {
+            window.location.href = endGameURL; // 실패 시 그냥 이동
+          }
+        });
+    } catch (e) {
+      console.warn("🎵 예외로 인한 재생 실패:", e);
+      if (endGameURL) {
+        window.location.href = endGameURL;
+      }
     }
   });
 
@@ -58,8 +85,23 @@ document.addEventListener("DOMContentLoaded", () => {
   passBtn?.addEventListener("click", () => handleAction("pass"));
   drinkBtn?.addEventListener("click", () => handleAction("drink"));
 
-  /////----------drink 카운트------------------
+  // 🔊 버튼 클릭 사운드 (통과/마셔 공용)
+  const clickSound = new Audio("/static/assets/sounds/click.mp3");
+  clickSound.volume = 1; // 필요하면 0.5 등으로 조정
+
   function handleAction(actionType) {
+    // ✅ 클릭 소리 먼저 재생
+    try {
+      clickSound.currentTime = 0;
+      clickSound
+        .play()
+        .then(() => console.log("🔊 click.mp3 재생 성공"))
+        .catch((err) => console.warn("❌ click.mp3 재생 실패:", err));
+    } catch (e) {
+      console.warn("🎵 예외로 인한 클릭 사운드 실패:", e);
+    }
+
+    // 원래의 fetch 처리
     fetch("/handle_action/", {
       method: "POST",
       headers: {
@@ -220,6 +262,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //===================⏩ 말 이동 ==========================
+  // 전역 또는 상단에서 템플릿 사운드 객체 생성 
+  const moveSoundTemplate = new Audio("/static/assets/sounds/move.mp3");
+  moveSoundTemplate.volume = 0.7;
+
   function moveHorseStepByStep(startIndex, endIndex) {
     console.log("🐴 말 이동 시작");
     const totalTiles = 20;
@@ -234,13 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let i = 0;
     const horse = document.getElementById("horse-icon");
 
-    // 🔊 사운드 객체 생성 (JS에서만)
-    const moveSound = new Audio("/static/assets/sounds/move.mp3");
-
-    moveSound.volume = 1; // (선택) 볼륨 조절: 0 ~ 1
-
     function moveStep() {
       if (i >= steps.length) return;
+
       const tile = document.querySelector(`.tile[data-index="${steps[i]}"]`);
       const tileRect = tile.getBoundingClientRect();
       const gridRect = document
@@ -253,23 +295,19 @@ document.addEventListener("DOMContentLoaded", () => {
       horse.style.left = `${offsetX + 10}px`;
       horse.style.top = `${offsetY - 50}px`;
 
-      // 🔊 효과음 재생
+      // ✅ cloneNode()로 빠르게 재생
       try {
-        moveSound.currentTime = 0;
-        moveSound
-          .play()
-          .then(() => {
-            console.log("🔊 move.mp3 재생 성공");
-          })
-          .catch((err) => {
-            console.warn("❌ move.mp3 재생 실패:", err);
-          });
+        const moveSound = moveSoundTemplate.cloneNode();
+        moveSound.volume = 0.7; // 복제에도 볼륨 설정 필요
+        moveSound.play().catch((err) => {
+          console.warn("❌ move.mp3 재생 실패:", err);
+        });
       } catch (e) {
-        console.warn("🎵 예외로 인한 재생 실패:", e);
+        console.warn("🎵 예외로 인한 사운드 실패:", e);
       }
 
       i++;
-      setTimeout(moveStep, 180); // 말 이동 간 시간
+      setTimeout(moveStep, 180);
     }
 
     moveStep();
