@@ -209,7 +209,6 @@ body.selected-custom {
   display: flex;
   height: 40px;
   align-items: center;
-  gap: 10px;
   background: white;
   border-radius: 20px;
   padding: 8px 12px;
