@@ -151,6 +151,18 @@ body.theme-custom {
   
 }
 
+.board-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
 /* turn-info 가운데 정렬 + 버튼 오른쪽 고정 */
 .turn-info {
   position: relative;
@@ -577,7 +589,7 @@ body.theme-custom .tile[data-index="16"] {
 .mission-box {
   grid-column: 2 / span 5; /* 가운데 위치 잡기 (3번째 칸부터 3칸 차지) */
   grid-row: 2 / span 3; /* 3번째 행에 위치 */
-  background-color: #fff;
+background-color: transparent;
   border-radius: 0px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
   text-align: center;
@@ -592,7 +604,8 @@ body.theme-custom .tile[data-index="16"] {
   word-break: keep-all;
   line-height: 1.6;
   max-height: 150px;
-  overflow-y: auto;
+      width: 500px;
+    height: 50px;
 }
 
 .mission-list {
