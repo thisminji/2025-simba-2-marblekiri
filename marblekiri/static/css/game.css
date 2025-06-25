@@ -19,12 +19,14 @@ body[class^="theme-"] {
 
 body.theme-college {
   background: var(
+    --Grad-Orange,
     linear-gradient(90deg, #ff850b 0%, #ffb200 100%)
   ); /* 주황 테마 */
 }
 
 body.theme-sports {
   background: var(
+    --Grad-Green,
     linear-gradient(90deg, #27a836 0%, #41d051 100%)
   ); /* 초록 테마 */
 }
