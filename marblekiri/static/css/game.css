@@ -145,7 +145,7 @@ body.theme-custom {
 }
 
 .players {
-  font-size: 16px;
+  font-size: 20px;
   margin: 0;
   margin-top: 4px;
   text-align: center;
@@ -474,7 +474,7 @@ body.theme-custom .tile[data-index="16"] {
   color: var(--Theme-00, #2a2a2a);
   text-align: center;
   font-family: "Partial Sans KR";
-  font-size: 32px;
+  font-size: 40px;
   margin: 4px 0 12px 0; /* 제목 위아래 간격 */
   font-weight: 100;
 }
