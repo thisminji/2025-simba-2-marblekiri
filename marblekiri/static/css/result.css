@@ -1,10 +1,10 @@
-@import url('./base/fonts.css');
+@import url("./base/fonts.css");
 
 /* 기본 테마 */
 body.theme-college {
   margin: 0;
   padding: 55px;
-  background: linear-gradient(to right, #FF6A00, #FF8801);
+  background: var(linear-gradient(90deg, #ff850b 0%, #ffb200 100%));
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -18,7 +18,7 @@ body.theme-college {
 body.theme-sports {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(to right, #1FB230, #4CC85A);
+  background: var(linear-gradient(90deg, #27a836 0%, #41d051 100%));
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -32,7 +32,7 @@ body.theme-sports {
 body.theme-idol {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(to right, #812FA7, #8A49D5);
+  background: linear-gradient(to right, #812fa7, #8a49d5);
   height: 100vh;
   overflow: hidden;
   display: flex;
@@ -45,14 +45,14 @@ body.theme-idol {
 body.theme-custom {
   margin: 0;
   padding: 40px;
-  background: linear-gradient(to right, #E22D2D, #DB3445);
+  background: linear-gradient(to right, #e22d2d, #db3445);
   height: 100vh;
   overflow: hidden;
   display: flex;
   gap: 24px;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 /*--- 이미지 ---*/
@@ -95,11 +95,18 @@ body.theme-custom {
   margin: 25px 24px 90px 24px;
   position: relative;
 }
-.review-imagebox-college {background: linear-gradient(to right, #FF6A00, #FF8801);}
-.review-imagebox-sports {background: linear-gradient(to right, #1FB230, #4CC85A);}
-.review-imagebox-idol {background: linear-gradient(to right, #812FA7, #8A49D5);}
-.review-imagebox-custom {background: linear-gradient(to right, #E22D2D, #DB3445);}
-
+.review-imagebox-college {
+  background: linear-gradient(to right, #ff6a00, #ff8801);
+}
+.review-imagebox-sports {
+  background: linear-gradient(to right, #1fb230, #4cc85a);
+}
+.review-imagebox-idol {
+  background: linear-gradient(to right, #812fa7, #8a49d5);
+}
+.review-imagebox-custom {
+  background: linear-gradient(to right, #e22d2d, #db3445);
+}
 
 /* 하단 바: 로고 + 날짜 */
 .bottom-bar {
@@ -119,7 +126,7 @@ body.theme-custom {
 }
 
 .date-frame {
-  color: #2A2A2A;
+  color: #2a2a2a;
   font-family: Paperlogy;
   font-size: 36px;
   font-style: normal;
@@ -154,7 +161,7 @@ body.theme-custom {
   align-items: center;
   gap: 10px;
   border-radius: 5px;
-  background: #FFF;
+  background: #fff;
   width: auto;
   height: 44px;
   justify-content: center;
@@ -166,14 +173,14 @@ body.theme-custom {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.image-placeholder{
+.image-placeholder {
   width: 24px;
   height: 24px;
   aspect-ratio: 1/1;
 }
 
-.placeholder-text{
-  color: var(--Main-Black, #2A2A2A);
+.placeholder-text {
+  color: var(--Main-Black, #2a2a2a);
   font-family: Paperlogy;
   font-size: 24px;
   font-style: normal;
@@ -198,7 +205,6 @@ body.theme-custom {
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
-
 
 /*--- 홈으로 돌아가기 ---*/
 
@@ -232,7 +238,6 @@ body.theme-custom {
   font-weight: 800;
   line-height: normal;
 }
-
 
 .back-btn:hover {
   background-color: #444;
@@ -269,7 +274,7 @@ body.theme-custom {
 
 /*오른쪽 사이드 바 */
 
-.summary-box{
+.summary-box {
   flex: 1;
   min-width: 300px;
   max-width: 400px;
@@ -299,7 +304,7 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #FF6A00, #FF8801);
+  background: linear-gradient(to right, #ff6a00, #ff8801);
   border-radius: 20px;
   padding: 0.1rem 2rem 0.5rem;
   margin-bottom: 1rem;
@@ -313,7 +318,7 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #1FB230, #4CC85A);
+  background: linear-gradient(to right, #1fb230, #4cc85a);
   border-radius: 20px;
   padding: 0.1rem 2rem 0.5rem;
   margin-bottom: 1rem;
@@ -327,7 +332,7 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #812FA7, #8A49D5);
+  background: linear-gradient(to right, #812fa7, #8a49d5);
   border-radius: 20px;
   padding: 0.1rem 2rem 0.5rem;
   margin-bottom: 1rem;
@@ -341,7 +346,7 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #E22D2D, #DB3445);
+  background: linear-gradient(to right, #e22d2d, #db3445);
   border-radius: 20px;
   padding: 0.1rem 2rem 0.5rem;
   margin-bottom: 1rem;
@@ -352,10 +357,7 @@ body.theme-custom {
 
 /*----------------------------------*/
 
-
-
-
-.summary-text{
+.summary-text {
   font-family: "Paperlogy";
   font-size: 17px;
   font-style: normal;
@@ -370,9 +372,9 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #FF6A00, #FF8801);
+  background: linear-gradient(to right, #ff6a00, #ff8801);
   border-radius: 20px;
-  padding: 0.1rem 2rem 1.3rem 2rem ;
+  padding: 0.1rem 2rem 1.3rem 2rem;
   margin-bottom: 1rem;
   color: white;
   font-weight: bold;
@@ -383,9 +385,9 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #1FB230, #4CC85A);
+  background: linear-gradient(to right, #1fb230, #4cc85a);
   border-radius: 20px;
-  padding: 0.1rem 2rem 1.3rem 2rem ;
+  padding: 0.1rem 2rem 1.3rem 2rem;
   margin-bottom: 1rem;
   color: white;
   font-weight: bold;
@@ -396,9 +398,9 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #812FA7, #8A49D5);
+  background: linear-gradient(to right, #812fa7, #8a49d5);
   border-radius: 20px;
-  padding: 0.1rem 2rem 1.3rem 2rem ;
+  padding: 0.1rem 2rem 1.3rem 2rem;
   margin-bottom: 1rem;
   color: white;
   font-weight: bold;
@@ -409,9 +411,9 @@ body.theme-custom {
   font-size: 20px;
   font-style: normal;
   font-weight: 300;
-  background: linear-gradient(to right, #E22D2D, #DB3445);
+  background: linear-gradient(to right, #e22d2d, #db3445);
   border-radius: 20px;
-  padding: 0.1rem 2.7rem 1.3rem 2.7rem ;
+  padding: 0.1rem 2.7rem 1.3rem 2.7rem;
   margin-bottom: 1rem;
   color: white;
   font-weight: bold;
@@ -420,7 +422,7 @@ body.theme-custom {
 
 /*---------------------------------------------------------------*/
 
-.summary-title{
+.summary-title {
   color: var(--Theme-00, #2a2a2a);
   text-align: center;
   font-family: "Partial Sans KR";
@@ -467,20 +469,20 @@ body.theme-custom {
 .all-mission-box {
   background-color: #ffffff;
   border-radius: 15px;
-  padding: 1rem 2.5rem 1rem 2.5rem ;
+  padding: 1rem 2.5rem 1rem 2.5rem;
   height: 200px;
   max-height: 200px;
   width: 360px;
   max-width: 360px;
 
   /* ✅ 스크롤바 숨기기 */
-  scrollbar-width: none;       /* Firefox */
-  -ms-overflow-style: none;    /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
 
   overflow-y: auto;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   margin-top: 1rem;
-  margin-bottom: 1rem ;
+  margin-bottom: 1rem;
   color: #2a2a2a;
 }
 
