@@ -44,5 +44,26 @@
       </a>
     </div>
   </body>
-<script src="{% static 'js/start.js' %}"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const bgMusic = new Audio(
+        "{% static 'assets/sounds/gamebackground.mp3' %}"
+      );
+      bgMusic.loop = true;
+      bgMusic.volume = 0.5;
+
+      document.body.addEventListener(
+        "click",
+        () => {
+          if (bgMusic.paused) {
+            bgMusic
+              .play()
+              .then(() => console.log("🎵 배경음 재생"))
+              .catch((e) => console.warn("❌ 재생 실패:", e));
+          }
+        },
+        { once: true }
+      );
+    });
+  </script>
 </html>
