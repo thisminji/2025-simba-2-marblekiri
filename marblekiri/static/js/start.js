@@ -1,22 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 배경 음악 설정
+  // 1. 오디오 객체 생성
   const bgMusic = new Audio("/static/assets/sounds/gamebackground.mp3");
-  bgMusic.loop = true;          // 반복 재생 설정
-  bgMusic.volume = 0.5;         // 볼륨 설정 (0.0 ~ 1.0)
 
-  // '시작하기' 버튼 클릭 시 배경 음악 정지 및 초기화
-  const startButton = document.querySelector(".start_button");
-  startButton.addEventListener("click", () => {
-    bgMusic.pause();
-    bgMusic.currentTime = 0;
-  });
+  // 2. 자동 재생을 위한 조건: muted 먼저 설정!
+  bgMusic.loop = true;
+  bgMusic.volume = 0.5;
+  bgMusic.muted = true;
 
-  // 사용자 최초 클릭 시 배경 음악 재생 (브라우저 자동 재생 제한 대응)
-  document.body.addEventListener("click", () => {
-    if (bgMusic.paused) {
-      bgMusic.play()
-        .then(() => console.log("배경음 재생 시작"))
-        .catch((e) => console.warn("배경음 재생 실패:", e));
-    }
-  }, { once: true }); // 최초 클릭 한 번만 적용
+  // 3. muted 상태로 재생 시도
+  bgMusic.play()
+    .then(() => {
+      console.log("✅ 자동재생 성공 (muted 상태)");
+
+      // 4. 소리 켜기 (지연 후 우회)
+      setTimeout(() => {
+        bgMusic.muted = false;
+        console.log("🔊 소리 켜짐");
+      }, 500); // 1초 후 unmute
+    })
+    .catch((e) => {
+      console.warn("❌ 자동재생 실패:", e);
+    });
 });
