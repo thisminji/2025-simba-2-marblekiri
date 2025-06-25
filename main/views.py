@@ -287,6 +287,9 @@ def custom_questions(request):
         if max_turns:
             request.session['max_turns'] = int(max_turns)
 
+        else:
+            request.session['max_turns'] = None  # ✅ 무제한 처리
+
 
     else:
         players = request.session.get('players', [])
