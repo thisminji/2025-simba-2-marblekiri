@@ -74,6 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
     if (theme == "custom") {
       event.preventDefault();
 
+      if (unlimitedRadio.checked) {
+        slider.removeAttribute("name");  // 이걸 안 하면 value가 같이 전송됨
+      } else {
+        slider.setAttribute("name", "max_turns");
+      }
+
       // 폼 제출 위치 변경해서 전송
       gameForm.action = "/custom_questions/";
       gameForm.method = "POST";
