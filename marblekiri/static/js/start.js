@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         bgMusic.muted = false;
         console.log("🔊 소리 켜짐");
-      }, 300); // 1초 후 unmute
+      },100); // 1초 후 unmute
     })
     .catch((e) => {
       console.warn("❌ 자동재생 실패:", e);
