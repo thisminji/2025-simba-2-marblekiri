@@ -30,11 +30,12 @@ def game_start(request):
         # custom이면 세션에 저장된 목록, 그 외는 폼에서 가져오기
         if theme == 'custom':
             player_names = request.session.get('players', [])
+            max_turns = request.session.get('max_turns')
         else:
             player_names = request.POST.getlist('players[]')
+            max_turns = request.POST.get('max_turns')  
         # 이름이 none이거나 공백인 값 제거하여 유효한 플레이어 이름만 남기기
         player_names = [name for name in player_names if name and name.strip()]
-        max_turns = request.POST.get('max_turns')
 
         # 랭킹 보기 체크여부 확인
         if theme != "custom":
@@ -178,7 +179,7 @@ def process_action(player, action):
         player.save()
 
 ### 턴 & 바퀴 증가 + 게임 종료 조건 체크
-def advance_turn(room, total_players):
+def advance_turn(room):
     room.current_turn_index += 1
     
     # 게임 종료 조건
@@ -222,7 +223,7 @@ def handle_action(request):
         ]
 
         #종료조건
-        is_game_over = advance_turn(room, total_players)
+        is_game_over = advance_turn(room)
         if is_game_over:
             print("🎉 게임 종료!")
             return JsonResponse({'end_game': True})
@@ -279,9 +280,12 @@ def custom_questions(request):
     if request.method == "POST":
         players = request.POST.getlist('players[]')
         show_ranking = request.POST.get('show_ranking') == 'on'
+        max_turns = request.POST.get('max_turns')
 
         request.session['players'] = players 
         request.session['show_ranking'] = show_ranking
+        if max_turns:
+            request.session['max_turns'] = int(max_turns)
 
 
     else:
@@ -289,7 +293,8 @@ def custom_questions(request):
 
     return render(request, 'main/custom_questions.html', 
     {'players': players,
-    'theme' : theme, }
+    'theme' : theme, 
+    'max_turns' : max_turns}
     )
 
 ### 커스텀 질문 등록 + 세션에 인원 저장
