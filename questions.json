@@ -1,731 +1,1642 @@
 [
-  {
-    "model": "main.question",
-    "pk": 0,
-    "fields": { "theme": "college", "content": "ì§€ê° ì œì¼ ë§ì´ í•œ ì‚¬ëŒ ë§ˆì‹œê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 1,
-    "fields": {
-      "theme": "college",
-      "content": "ë§ˆê° ì „ë‚  ë²¼ë½ì¹˜ê¸°í•œ ì‚¬ëŒ ë‹¤ê°™ì´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 2,
-    "fields": {
-      "theme": "college",
-      "content": "ì´ë²ˆ í•™ê¸° êµìˆ˜ë‹˜ ì´ë¦„ ê¸°ì–µ ëª» í•˜ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 3,
-    "fields": {
-      "theme": "college",
-      "content": "ì¡°ë³„ê³¼ì œì—ì„œ í­ë°œí•œ ì  ìˆëŠ” ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 4,
-    "fields": {
-      "theme": "college",
-      "content": "íŒ€í”Œì—ì„œ ì—°ë½ ì•ˆ ë°›ì€ ì  ìˆëŠ” ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 5,
-    "fields": {
-      "theme": "college",
-      "content": "CCì˜€ë‹¤ or ë¶€ëŸ¬ì›Œí•œ ì  ìˆë‹¤ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 6,
-    "fields": {
-      "theme": "college",
-      "content": "ì‹œí—˜ ì „ë‚  ë²”ìœ„ í™•ì¸í•œ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 7,
-    "fields": {
-      "theme": "college",
-      "content": "ê³¼ì‚¬ ì¶œì…í•  ë•Œ ê¸´ì¥í•œ ì  ìˆëŠ” ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 8,
-    "fields": { "theme": "college", "content": "MT ê°„ ì  ìˆìœ¼ë©´ ë‹¤ê°™ì´ ì›ìƒ·!" }
-  },
-  {
-    "model": "main.question",
-    "pk": 9,
-    "fields": {
-      "theme": "college",
-      "content": "ì•Œë°”í•˜ë©´ì„œ ìˆ˜ì—… ë“¤ì€ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 10,
-    "fields": {
-      "theme": "college",
-      "content": "ì›”í™”ìˆ˜ëª©ê¸ˆ ê½‰ ì°¬ ì‚¬ëŒ í•œ ì” ë”!"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 11,
-    "fields": {
-      "theme": "college",
-      "content": "ìˆ˜ê°•ì‹ ì²­ ì‹¤íŒ¨í•œ ì  ìˆëŠ” ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 12,
-    "fields": {
-      "theme": "college",
-      "content": "í•™ë²ˆ í—·ê°ˆë ¤ì„œ ë§ ë†“ì€ ì  ìˆìœ¼ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 13,
-    "fields": {
-      "theme": "college",
-      "content": "ì§€ê¸ˆë¶€í„° 3í„´ ë™ì•ˆ í• ë¨¸ë‹ˆ ê²Œì„ ì‹œì‘ ì›ƒëŠ” ì‚¬ëŒ ë²Œì¹™"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 14,
-    "fields": { "theme": "college", "content": "ì• êµ ë€¨?" }
-  },
-  {
-    "model": "main.question",
-    "pk": 15,
-    "fields": {
-      "theme": "college",
-      "content": "ì˜¤ëŠ˜ ì¸ìŠ¤íƒ€ ìŠ¤í† ë¦¬ ì˜¬ë¦° ê±° ì ¤ ë§ì€ ì‚¬ëŒ ë§ˆì…”"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 16,
-    "fields": {
-      "theme": "college",
-      "content": "ëŒ€í•™ìƒí™œ ì¤‘ ê°€ì¥ ì›ƒê²¼ë˜ ìˆœê°„ ì° í’€ê¸° (ì¼ì˜ˆ)"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 17,
-    "fields": {
-      "theme": "college",
-      "content": "ëŒ€í•™ ìƒí™œ ì¤‘ ìˆì—ˆë˜ ë ˆì „ë“œ ì° í•˜ë‚˜ í’€ê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 18,
-    "fields": { "theme": "college", "content": "nëª… ì§€ëª©í•´ì„œ ìˆ  ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 19,
-    "fields": {
-      "theme": "college",
-      "content": "ëŒ€í•™êµ ìµœê³  / ìµœì•…ì˜ ê°•ì˜ ì° í•˜ë‚˜"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 20,
-    "fields": {
-      "theme": "college",
-      "content": "í˜„ì‹¤ì—ì„œ ê²ªì€ ì¸ or í™˜ìŠ¹ ì° ì¤‘ ê°€ì¥ ìˆ ê±° í•˜ë‚˜"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 21,
-    "fields": { "theme": "college", "content": "ì§€ê¸ˆ ìš°ë¦¬ í•™êµë¡œ Ní–‰ì‹œ" }
-  },
-  {
-    "model": "main.question",
-    "pk": 22,
-    "fields": { "theme": "college", "content": "ì§€ëª© ëŸ¬ë¸Œìƒ·" }
-  },
-  {
-    "model": "main.question",
-    "pk": 23,
-    "fields": { "theme": "college", "content": "ê±´ë°°ì‚¬ í•˜ê³  ë‹¤ ê°™ì´ í•œ ì”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 24,
-    "fields": {
-      "theme": "college",
-      "content": "ì˜¤ëŠ˜ ì´ ìë¦¬ì—ì„œ í•œ ëª…ê³¼ ë‹¨ë‘˜ì´ ìˆ  ë§ˆì‹ ë‹¤ë©´?"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 25,
-    "fields": { "theme": "college", "content": "ë³¸ì¸ í¬í•¨ 3ëª… ì§€ëª© í•¨ê»˜ ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 26,
-    "fields": {
-      "theme": "college",
-      "content": "ì´ë²ˆì£¼ ê³¼ì œ ì œì¼ ë§ì€ ì‚¬ëŒ í•œ ì”"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 27,
-    "fields": { "theme": "college", "content": "í•™ë…„ì´ ê°€ì¥ ë†’ì€ ì‚¬ëŒ ë§ˆì‹œê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 28,
-    "fields": { "theme": "college", "content": "ì†ë³‘í˜¸ ê²Œì„ ì‹œì‘" }
-  },
-  {
-    "model": "main.question",
-    "pk": 29,
-    "fields": { "theme": "college", "content": "ëœë¤ ê²Œì„ ì‹œì‘!" }
-  },
-  {
-    "model": "main.question",
-    "pk": 30,
-    "fields": { "theme": "college", "content": "ì¹¨ë¬µì˜ ê³µê³µì¹ ë¹µ ì‹œì‘!" }
-  },
-  {
-    "model": "main.question",
-    "pk": 31,
-    "fields": { "theme": "college", "content": "MBTI Të©´ ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 32,
-    "fields": { "theme": "college", "content": "ìˆ  ì¿¨íƒ€ì„ ì°¼ë‹¤. ë§ˆì‹œì!" }
-  },
-  {
-    "model": "main.question",
-    "pk": 33,
-    "fields": {
-      "theme": "college",
-      "content": "ì¸ìŠ¤íƒ€ íŒ”ë¡œì›Œ ì ¤ ë§ì€ ì‚¬ëŒ ë§ˆì…”!"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 34,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœê·¼ ì§ê´€ ê°„ ì‚¬ëŒ ì œì™¸, ë‚˜ë¨¸ì§€ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 35,
-    "fields": {
-      "theme": "sports",
-      "content": "ì‘ì›ë²• ë”°ë¼ ëª» í•˜ë©´ ë§ˆì‹œê¸° (ë°•ì í‹€ë¦¬ë©´ ì›ìƒ·)"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 36,
-    "fields": {
-      "theme": "sports",
-      "content": "ìœ ë‹ˆí¼ ì†Œì¥ ì¤‘ì¸ ì‚¬ëŒì€ í†µê³¼, ì—†ìœ¼ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 37,
-    "fields": {
-      "theme": "sports",
-      "content": "ë³¸ì¸ì´ ìŠ¹ë¦¬ ìš”ì¸ì´ë¼ê³  ì£¼ì¥í•œ ì  ìˆìœ¼ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 38,
-    "fields": {
-      "theme": "sports",
-      "content": "ì‹œì°¨ ë•Œë¬¸ì— ìƒˆë²½ ê²½ê¸° ë³¸ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 39,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœì•  ì´ì ì— ì¶©ê²© ë¨¹ì€ ì  ìˆë‹¤ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 40,
-    "fields": {
-      "theme": "sports",
-      "content": "í˜¼ì ì§ê´€ or ë‹¨ê´€í•´ë³¸ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 41,
-    "fields": {
-      "theme": "sports",
-      "content": "íŒ€ ì‘ì›ë„êµ¬ í•˜ë‚˜ë¼ë„ ìˆìœ¼ë©´ í†µê³¼, ì—†ìœ¼ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 42,
-    "fields": {
-      "theme": "sports",
-      "content": "ë„í•‘í…ŒìŠ¤íŠ¸! í¥ë¶„ ìƒíƒœ ìœ ì§€ ì¤‘ì¸ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 43,
-    "fields": {
-      "theme": "sports",
-      "content": "ì‘ì›íŒ€ ìš°ìŠ¹ ê²½í—˜ ë§ ëª»í•˜ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 44,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœì• /íŒ€ì´ ë¹„ë§¤ë„ˆ ë…¼ë€ ìˆì—ˆë˜ ì  ìˆë‹¤ë©´â€¦ ì‰´ë“œ ì¹˜ì§€ ë§ê³  ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 45,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœì•  ì„ ìˆ˜ ë°±ë„˜ë²„ ê¸°ì–µ ëª» í•˜ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 46,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœì• ê°€ ë²¤ì¹˜ë”±ì´ ë˜ì—ˆë‹¤. 1í„´ íœ´ì‹"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 47,
-    "fields": {
-      "theme": "sports",
-      "content": "ì§ê´€ì— ë„ì „í•˜ë˜ ë‚˜.. ê·¸ëŸ¬ë‚˜ ì´ì„ ì¢Œê°€ ëœ¨ê³ ì•¼ ë§Œë‹¤ ë’¤ë¡œ ë‘ì¹¸"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 48,
-    "fields": { "theme": "sports", "content": "í˜•ì€ ê·¸ëƒ¥ ë§ˆì…” ~" }
-  },
-  {
-    "model": "main.question",
-    "pk": 49,
-    "fields": { "theme": "sports", "content": "ê°€ì¥ ìµœê·¼ ê²½ê¸° ì´ê²¼ìœ¼ë©´ ë§ˆì…” ~" }
-  },
-  {
-    "model": "main.question",
-    "pk": 50,
-    "fields": {
-      "theme": "sports",
-      "content": "ì•„ ë¹„ê°€ ì˜¨ë‹¤.. ìˆ ì´ë‚˜ ë¨¹ìœ¼ëŸ¬ ê°€ì"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 51,
-    "fields": {
-      "theme": "sports",
-      "content": "ë‚´ ìµœì• ëŠ” ì£¼ì‚¬ìœ„ ë”œëŸ¬ë‹¤.. ì£¼ì‚¬ìœ„ 1~4 ëœ¨ë©´ ë§ˆì‹œì.."
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 52,
-    "fields": {
-      "theme": "sports",
-      "content": "ë‚´ ìµœì• ê°€ ê°€ì¥ ìµœê·¼ì— ì´ì í•œ ì‚¬ëŒ ë§ˆì…” (ê³µì‹ ê³µì§€ ê¸°ì¤€/ íŒ€ê°ˆì¼ ê²½ìš° íŒ€ ë‚´ ì´ì  ì˜¨ ì‚¬ëŒ)"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 53,
-    "fields": {
-      "theme": "sports",
-      "content": "ë‹¹ì‹ ì˜ íŒ€ì€ ë§¤ì¼ ì§€ê³  ìˆìŠµë‹ˆë‹¤. ë§ˆì‹œìâ€¦"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 54,
-    "fields": {
-      "theme": "sports",
-      "content": "ë‚´ íŒ€/ìµœì• ê°€ ê°€ì¥ ì˜í•œ ê²½ê¸° 3ê°œ 5ì´ˆ ì•ˆì— ëª» ë§í•˜ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 55,
-    "fields": { "theme": "sports", "content": "ìœ ë‹ˆí¼ ì œì¼ ë§ì´ ì‚° ì‚¬ëŒ ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 56,
-    "fields": { "theme": "sports", "content": "ë‚´ê°€ ê°€ì¥ ì—´ ë°›ì•˜ë˜ ê²½ê¸° ì°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 57,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœì•  ì„ ìˆ˜ë‘ ê°€ì¥ ë‹®ì€ ì‚¬ëŒ ì§€ëª© ëŸ¬ë¸Œìƒ·"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 58,
-    "fields": { "theme": "sports", "content": "ì§€ëª© íŒ€ íŒ¬ ì•„ë‹Œ ì‚¬ëŒ ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 59,
-    "fields": {
-      "theme": "sports",
-      "content": "ì œì¼ ì‹«ì–´í•˜ëŠ” ìƒëŒ€íŒ€ì€? ê·¸ íŒ€ íŒ¬ ë§ˆì…”."
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 60,
-    "fields": {
-      "theme": "sports",
-      "content": "ë‚´ê°€ ì¢‹ì•„í•˜ëŠ” íŒ€ ì´ë¦„ìœ¼ë¡œ ì‚¼í–‰ì‹œ"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 61,
-    "fields": { "theme": "sports", "content": "íŒ€ ì‘ì›ê°€ 1ì´ˆë¼ë„ ë”°ë¼í•˜ê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 62,
-    "fields": { "theme": "sports", "content": "ìµœì•  íŒ€ ì„ ìˆ˜ í–‰ë™ ë”°ë¼í•˜ê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 63,
-    "fields": { "theme": "sports", "content": "1ë¶„ ë™ì•ˆ ë‚´ íŒ€ ìë‘ë§Œ í•˜ê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 64,
-    "fields": { "theme": "sports", "content": "ë³‘ì‚´íƒ€. ë‘ ì” ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 65,
-    "fields": {
-      "theme": "sports",
-      "content": "ì…ë• ê³„ê¸° ì–˜ê¸°í•˜ë©´ì„œ ëª¨ë‘ í•œ ì”!"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 66,
-    "fields": { "theme": "sports", "content": "ìµœê·¼ ë³¸ ì˜ìƒì´ ìµœì• ë©´ í•œ ì”!" }
-  },
-  {
-    "model": "main.question",
-    "pk": 67,
-    "fields": { "theme": "sports", "content": "ìµœì•  ì´ë¦„ìœ¼ë¡œ ë”¸ê¸°ê²Œì„ ì‹œì‘" }
-  },
-  {
-    "model": "main.question",
-    "pk": 68,
-    "fields": {
-      "theme": "sports",
-      "content": "ë‚´ ìµœì•  ì„ ìˆ˜ê°€ ìºë¦¬í–ˆë‹¤. ë‚˜ ë¹¼ê³  ëª¨ë‘ í•œ ì”!"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 69,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœê·¼ ì§ê´€í•œ ì‚¬ëŒ ë‘ ì”! ëª» ê°”ë‹¤ë©´ ì•„ì‰¬ìš°ë‹ˆ í•œ ì”!"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 70,
-    "fields": {
-      "theme": "sports",
-      "content": "5ì´ˆ ì•ˆì— ë‚´ ìµœì•  ì„ ìˆ˜ ëª…ëŒ€ì‚¬ í•˜ë‚˜ ë§í•˜ê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 71,
-    "fields": {
-      "theme": "sports",
-      "content": "ë‚´ ì„ ìˆ˜ê°€ ì£¼ì „ì´ë‹¤! ë‚˜ ë¹¼ê³  ëª¨ë‘ í•œ ì”!"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 72,
-    "fields": {
-      "theme": "sports",
-      "content": "ìµœê·¼ ë•ì§ˆ ì†Œë¹„ê°€ ê°€ì¥ ë§ì€ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 73,
-    "fields": { "theme": "sports", "content": "ë‚´ ìµœì• ì˜ í‘ì—­ì‚¬ í•˜ë‚˜ì”© ë§í•˜ê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 74,
-    "fields": {
-      "theme": "idol",
-      "content": "ìµœì•  ì„±ëŒ€ëª¨ì‚¬ ì‹¤íŒ¨í•˜ë©´ ë§ˆì‹œê¸° (ì‹¬ì‚¬ëŠ” ì „ì› ë‹¤ìˆ˜ê²°)"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 75,
-    "fields": {
-      "theme": "idol",
-      "content": "ì…ë•í•œ ì§€ ì œì¼ ì–¼ë§ˆ ì•ˆ ëœ ì‚¬ëŒ, ì›ìƒ·"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 76,
-    "fields": {
-      "theme": "idol",
-      "content": "ì…ë• ì—°ì°¨ ì œì¼ ë†’ì€ ì‚¬ëŒâ€¦ ìì¡´ì‹¬ ì„¸ìš°ì§€ ë§ê³  ë§ˆì…”ìš”"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 77,
-    "fields": {
-      "theme": "idol",
-      "content": "ì§€ê¸ˆ ë‚´ ë°°ê²½í™”ë©´, ë ë¶€ì”°, í‚¤ë§ ì¤‘ ìµœì•  ê´€ë ¨ ìˆëŠ” ì‚¬ëŒ ë‹¤ê°™ì´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 78,
-    "fields": {
-      "theme": "idol",
-      "content": "10ì´ˆ ì•ˆì— ìµœì• ê°€ ì¢‹ì€ ì´ìœ  5ê°€ì§€ ë§í•˜ê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 79,
-    "fields": {
-      "theme": "idol",
-      "content": "ë¯¼ì²©í•œ í•˜ë£¨ ë³´ë‚´ì„¸ìš” â€œëˆˆì¹˜ê²Œì„ ì‹œì‘â€"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 80,
-    "fields": {
-      "theme": "idol",
-      "content": "ê°€ì¥ ìµœê·¼ì— ìµœì• ì—ê²Œ ë²„ë¸” ë°›ì€ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 81,
-    "fields": { "theme": "idol", "content": "ìµœì•  ìƒì¼ì´ ì§ìˆ˜ì¸ ì‚¬ëŒ ë§ˆì‹œê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 82,
-    "fields": {
-      "theme": "idol",
-      "content": "ê³µê³„ íŒ”ë¡œì›Œ ì œì¼ ë§ì€ ì‚¬ëŒ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 83,
-    "fields": { "theme": "idol", "content": "ì…ë• ê¸°ë… ë‹¤ê°™ì´ ì›ìƒ·" }
-  },
-  {
-    "model": "main.question",
-    "pk": 84,
-    "fields": { "theme": "idol", "content": "í¬ì¹´ ë½‘ì•„ì„œ ìµœì•  ì•„ë‹ˆë©´ ë§ˆì‹œê¸°" }
-  },
-  {
-    "model": "main.question",
-    "pk": 85,
-    "fields": { "theme": "idol", "content": "íƒˆë¹  ì‹¤íŒ¨ ìœ„ë¡œí•˜ë©° ë‹¤ê°™ì´ ì›ìƒ·" }
-  },
-  {
-    "model": "main.question",
-    "pk": 86,
-    "fields": {
-      "theme": "idol",
-      "content": "ì™¼ìª½ ì‚¬ëŒ ìµœì•  ì¥ì  10ì´ˆ ì•ˆì— 3ê°œ"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 87,
-    "fields": {
-      "theme": "idol",
-      "content": "ëŒ€ë¦¬í‹°ì¼“íŒ…! ì˜¤ë¥¸ìª½ ì‚¬ëŒì´ í•œ ì” ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 88,
-    "fields": {
-      "theme": "idol",
-      "content": "ê°€ì¥ ìµœê·¼ì— ì €ì¥í•œ ì‚¬ì§„ì´ ìµœì• ê°€ ì•„ë‹ˆë¼ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 89,
-    "fields": {
-      "theme": "idol",
-      "content": "ëŒì•„ê°€ë©´ì„œ Xì”¨ì„± ê°€ì§„ ì•„ì´ëŒ ë§í•˜ê¸° ( Xì”¨ëŠ” ì²« ì‚¬ëŒì´ ì •í•˜ê¸° !)"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 90,
-    "fields": {
-      "theme": "idol",
-      "content": "ì™¼ìª½ ì‚¬ëŒì´ ì •í•´ì¤€ ë‚ ì§œì— êµ¬ìµœì• ê²Œ ìŠ¤ì¼€ì¤„ ìˆì—ˆìœ¼ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 91,
-    "fields": {
-      "theme": "idol",
-      "content": "ì˜¤ë¥¸ìª½ ì‚¬ëŒ ìµœì• ì— ê´€í•œ í€´ì¦ˆ í‹€ë¦¬ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 92,
-    "fields": {
-      "theme": "idol",
-      "content": "ìŒë°© 1ê°œ í‹€ê³  ê³ ë¥¸ ì‹œê°„ì— ìµœì•  ë‚˜ì˜¤ë©´ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 93,
-    "fields": { "theme": "idol", "content": "ë­ë¼ë„ ë•ì§ˆí•œë‹¤ ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 94,
-    "fields": { "theme": "idol", "content": "ìµœì•  ì´ë¦„ìœ¼ë¡œ ì•„ì´ì— ê·¸ë¼ìš´ë“œ" }
-  },
-  {
-    "model": "main.question",
-    "pk": 95,
-    "fields": {
-      "theme": "idol",
-      "content": "ìµœì• ë‘ ê°€ì¥ ë‹®ì€ ì‚¬ëŒ ì§€ëª© ëŸ¬ë¸Œìƒ·"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 96,
-    "fields": {
-      "theme": "idol",
-      "content": "1ë‹¬ ê°„ ì—¬ê¸°ì— ëˆ 5ë§Œì› ì´í•˜ ì¼ë‹¤ ë§ˆì…”"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 97,
-    "fields": { "theme": "idol", "content": "ë‚´ ìµœì•  ì„±ëŒ€ëª¨ì‚¬" }
-  },
-  {
-    "model": "main.question",
-    "pk": 98,
-    "fields": { "theme": "idol", "content": "ìµœì•  ì´ë¦„ìœ¼ë¡œ ì‚¼í–‰ì‹œ" }
-  },
-  {
-    "model": "main.question",
-    "pk": 99,
-    "fields": { "theme": "idol", "content": "ì£¼ì œê°€ í•œ ì†Œì ˆ / ëª»í•˜ë©´ ë§ˆì…”" }
-  },
-  {
-    "model": "main.question",
-    "pk": 100,
-    "fields": {
-      "theme": "idol",
-      "content": "ê³µì‹ SNS ê°€ì¥ ìµœê·¼ì— ì˜¬ë¦° ì‚¬ëŒ ë¹¼ê³  ë‹¤ ë§ˆì‹œê¸°"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 101,
-    "fields": {
-      "theme": "idol",
-      "content": "ê³ ë¥¸ ë…¸ë˜ ì¬ìƒ ì‹œê°„ì´ ì œì¼ ê¸´ ì‚¬ëŒ í•œ ì”!"
-    }
-  },
-  {
-    "model": "main.question",
-    "pk": 102,
-    "fields": { "theme": "idol", "content": "ì›í•˜ëŠ” ì‚¬ëŒ í•œ ëª… ì§€ëª©í•´ì„œ ë§ˆì…”!" }
-  },
-  {
-    "model": "main.question",
-    "pk": 103,
-    "fields": { "theme": "idol", "content": "ìµœì• ê°€ ì˜ˆëª…ìœ¼ë¡œ í™œë™ì¤‘ì´ë©´ ë§ˆì…”!" }
-  },
-  {
-    "model": "main.question",
-    "pk": 104,
-    "fields": {
-      "theme": "idol",
-      "content": "ê°¤ëŸ¬ë¦¬ 5ë²ˆ ìŠ¤í¬ë¡¤í•´ì„œ ê³ ë¥¸ ì‚¬ì§„ì´ ìµœì• ë©´ í†µê³¼"
-    }
+{
+  "model": "main.question",
+  "pk": 0,
+  "fields": {
+    "theme": "college",
+    "content": "Áö°¢ Á¦ÀÏ ¸¹ÀÌ ÇÒ °Í °°Àº »ç¶÷ Áö¸ñÇÏ±â"
   }
+},
+{
+  "model": "main.question",
+  "pk": 1,
+  "fields": {
+    "theme": "college",
+    "content": "¸¶°¨ Àü³¯ º­¶ôÄ¡±â °¡Àå ¸¹ÀÌ ÇÒ °Í °°Àº »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 2,
+  "fields": {
+    "theme": "college",
+    "content": "ÀÌ¹ø ÇĞ±â ¼ö¾÷ ±³¼ö´Ô ÀÌ¸§ ÁÙÁÙÀÌ ¸»ÇÏ±â ½ÃÀÛ ! ±â¾ï ¸ø ÇÏ¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 3,
+  "fields": {
+    "theme": "college",
+    "content": "ÆÀÇÃ¿¡¼­ Àá¼ö Å¸º» »ç¶÷ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 4,
+  "fields": {
+    "theme": "college",
+    "content": "CC °æÇè ÀÖÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 5,
+  "fields": {
+    "theme": "college",
+    "content": "½ÃÇè Àü³¯ ¹üÀ§ È®ÀÎÇÑ Àû ÀÖÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 6,
+  "fields": {
+    "theme": "college",
+    "content": "°ú¹æ ÇÑ ¹øµµ ¾È °¡ºÃÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 7,
+  "fields": {
+    "theme": "college",
+    "content": "MT ¿¡¼­ ÀÏ¾î³­ Èæ¿ª»ç ¸»ÇÏ±â (´Ù¸¥ »ç¶÷ Èæ¿ª»çµµ °¡´É) ¸ø ¸»ÇÏ¸é ¸¶¼Å ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 8,
+  "fields": {
+    "theme": "college",
+    "content": "½Î°­ Ã³À½ºÎÅÍ ³¡±îÁö µı Áş ¾È ÇÏ°í µé¾îºÃÀ¸¸é ³Ê ÀÎÁ¤."
+  }
+},
+{
+  "model": "main.question",
+  "pk": 9,
+  "fields": {
+    "theme": "college",
+    "content": "°ø°­ÀÌ ¾ø´Ù°í¿ä? ´«¹°ÀÇ ÇÑ ÀÜ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 10,
+  "fields": {
+    "theme": "college",
+    "content": "¿ÃÅ¬ °æÇèÀÚÀÔ´Ï±î? ±â¸¸ÀÚ´Â ¸¶½ÃÀÚ."
+  }
+},
+{
+  "model": "main.question",
+  "pk": 11,
+  "fields": {
+    "theme": "college",
+    "content": "ÇĞ¹ø Çò°¥·Á¼­ ¸» ³õÀº Àû ÀÖÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 12,
+  "fields": {
+    "theme": "college",
+    "content": "Áö±İºÎÅÍ 3ÅÏ µ¿¾È ÇÒ¸Ó´Ï °ÔÀÓ ½ÃÀÛ ¿ô´Â »ç¶÷ ¹úÄ¢"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 13,
+  "fields": {
+    "theme": "college",
+    "content": "¾Ö±³ ²ó?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 14,
+  "fields": {
+    "theme": "college",
+    "content": "¿À´Ã ÀÎ½ºÅ¸ ½ºÅä¸® ¿Ã¸° °Å Á© ¸¹Àº »ç¶÷ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 15,
+  "fields": {
+    "theme": "college",
+    "content": "´ëÇĞ»ıÈ° Áß °¡Àå ¿ô°å´ø Àë¾ê ½ä Ç®±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 16,
+  "fields": {
+    "theme": "college",
+    "content": "ÀÌÁ¦´Â ¸»ÇÒ ¼ö ÀÖ´Ù. ´ëÇĞ »ıÈ° Áß °¡Àå ºıÃÆ´ø ½ä Ç®±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 17,
+  "fields": {
+    "theme": "college",
+    "content": "Áö±İ ÅÏÀÎ »ç¶÷ ¿À¸¥ÂÊ »ç¶÷°ú ·¯ºê¼¦ °í°í¸µ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 18,
+  "fields": {
+    "theme": "college",
+    "content": "´ëÇĞ±³ ÃÖ¾ÇÀÇ °­ÀÇ ½ä ÇÏ³ª Ç®±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 19,
+  "fields": {
+    "theme": "college",
+    "content": "´ç½ÅÀÇ ¿¬¾Ö´Â¡¦ ¾È³çÇÏ½Ê´Ï±î? ¾Æ´Ï¿ä´Â ¸¶½Ç±î?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 20,
+  "fields": {
+    "theme": "college",
+    "content": "Áö±İ ¿ì¸® ÇĞ±³·Î NÇà½Ã"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 21,
+  "fields": {
+    "theme": "college",
+    "content": "Áö¸ñ ·¯ºê¼¦"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 22,
+  "fields": {
+    "theme": "college",
+    "content": "°Ç¹è»ç ÇÏ°í ´Ù °°ÀÌ ÇÑ ÀÜ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 23,
+  "fields": {
+    "theme": "college",
+    "content": "¿À´Ã ÀÌ ÀÚ¸®¿¡¼­ ÇÑ ¸í°ú ´ÜµÑÀÌ ¼ú ¸¶½Å´Ù¸é?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 24,
+  "fields": {
+    "theme": "college",
+    "content": "º»ÀÎ Æ÷ÇÔ 3¸í Áö¸ñ ÇÔ²² ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 25,
+  "fields": {
+    "theme": "college",
+    "content": "ÀÌ¹øÁÖ °úÁ¦ Á¦ÀÏ ¸¹Àº »ç¶÷ ÇÑ ÀÜ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 26,
+  "fields": {
+    "theme": "college",
+    "content": "ÇĞ³âÀÌ °¡Àå ³ôÀº »ç¶÷ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 27,
+  "fields": {
+    "theme": "college",
+    "content": "¼Õº´È£ °ÔÀÓ ½ÃÀÛ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 28,
+  "fields": {
+    "theme": "college",
+    "content": "·£´ı °ÔÀÓ ½ÃÀÛ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 29,
+  "fields": {
+    "theme": "college",
+    "content": "Ä§¹¬ÀÇ °ø°øÄ¥»§ ½ÃÀÛ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 30,
+  "fields": {
+    "theme": "college",
+    "content": "MBTI T¸é ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 31,
+  "fields": {
+    "theme": "college",
+    "content": "¼ú ÄğÅ¸ÀÓ Ã¡´Ù. ¸¶½ÃÀÚ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 32,
+  "fields": {
+    "theme": "college",
+    "content": "ÀÎ½ºÅ¸ ÆÈ·Î¿ö Á© ¸¹Àº »ç¶÷ ¸¶¼Å!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 33,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ±Ù Á÷°ü °£ »ç¶÷ Á¦¿Ü, ³ª¸ÓÁö ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 34,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÀ¿ø¹ı µû¶ó ¸ø ÇÏ¸é ¸¶½Ã±â (¹ÚÀÚ Æ²¸®¸é ¿ø¼¦)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 35,
+  "fields": {
+    "theme": "sports",
+    "content": "À¯´ÏÆû ¼ÒÀå ÁßÀÎ »ç¶÷Àº Åë°ú, ¾øÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 36,
+  "fields": {
+    "theme": "sports",
+    "content": "º»ÀÎÀÌ ½Â¸®¿äÁ¤ÀÌ´Ù! ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 37,
+  "fields": {
+    "theme": "sports",
+    "content": "½ÃÂ÷ ¶§¹®¿¡ »õº® °æ±â º» »ç¶÷ ¸¶½Ã±â\nÃÖ¾Ö ÀÌÀû¿¡ Ãæ°İ ¸ÔÀº Àû ÀÖ´Ù¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 38,
+  "fields": {
+    "theme": "sports",
+    "content": "È¥ÀÚ Á÷°ü or ´Ü°üÇØº» »ç¶÷ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 39,
+  "fields": {
+    "theme": "sports",
+    "content": "ÆÀ ÀÀ¿øµµ±¸ ÇÏ³ª¶óµµ ÀÖÀ¸¸é Åë°ú, ¾øÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 40,
+  "fields": {
+    "theme": "sports",
+    "content": "µµÇÎÅ×½ºÆ®! ÈïºĞ »óÅÂ À¯Áö ÁßÀÎ »ç¶÷ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 41,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÀ¿øÆÀ ¿ì½Â °æÇè ¸» ¸øÇÏ¸é ´«¹°ÀÇ ÇÑ ÀÜ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 42,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ¾Ö/ÆÀÀÌ ºñ¸Å³Ê ³í¶õ ÀÖ¾ú´ø Àû ÀÖ´Ù¸é¡¦ ½¯µå Ä¡Áö ¸»°í ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 43,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ¾Ö ¼±¼ö ¹é³Ñ¹ö ±â¾ï ¸ø ÇÏ¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 44,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ¾Ö°¡ º¥Ä¡µüÀÌ µÇ¾ú´Ù. 1ÅÏ ÈŞ½Ä"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 45,
+  "fields": {
+    "theme": "sports",
+    "content": "ÇüÀº ±×³É ¸¶¼Å ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 46,
+  "fields": {
+    "theme": "sports",
+    "content": "°¡Àå ÃÖ±Ù °æ±â ÀÌ°åÀ¸¸é ¸¶¼Å ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 47,
+  "fields": {
+    "theme": "sports",
+    "content": "¾Æ ºñ°¡ ¿Â´Ù.. ¼úÀÌ³ª ¸ÔÀ¸·¯ °¡ÀÚ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 48,
+  "fields": {
+    "theme": "sports",
+    "content": "³» ÃÖ¾Ö°¡ °¡Àå ÃÖ±Ù¿¡ ÀÌÀûÇÑ »ç¶÷ ¸¶¼Å (°ø½Ä °øÁö ±âÁØ/ ÆÀ°¥ÀÏ °æ¿ì ÆÀ ³» ÀÌÀû ¿Â »ç¶÷)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 49,
+  "fields": {
+    "theme": "sports",
+    "content": "´ç½ÅÀÇ ÆÀÀº ¸ÅÀÏ Áö°í ÀÖ½À´Ï´Ù. ¸¶½ÃÀÚ¡¦"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 50,
+  "fields": {
+    "theme": "sports",
+    "content": "³» ÆÀ/ÃÖ¾Ö°¡ °¡Àå ÀßÇÑ °æ±â 3°³ 5ÃÊ ¾È¿¡ ¸»ÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 51,
+  "fields": {
+    "theme": "sports",
+    "content": "À¯´ÏÆû Á¦ÀÏ ¸¹ÀÌ »ê »ç¶÷ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 52,
+  "fields": {
+    "theme": "sports",
+    "content": "³»°¡ °¡Àå ¿­ ¹Ş¾Ò´ø °æ±â ½ä"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 53,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ¾Ö ¼±¼ö¶û °¡Àå ´àÀº »ç¶÷ Áö¸ñ ·¯ºê¼¦"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 54,
+  "fields": {
+    "theme": "sports",
+    "content": "Áö¸ñ ÆÀ ÆÒ ¾Æ´Ñ »ç¶÷ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 55,
+  "fields": {
+    "theme": "sports",
+    "content": "Á¦ÀÏ ½È¾îÇÏ´Â »ó´ëÆÀÀº? ±× ÆÀ ÆÒ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 56,
+  "fields": {
+    "theme": "sports",
+    "content": "³»°¡ ÁÁ¾ÆÇÏ´Â ÆÀ ÀÌ¸§À¸·Î »ïÇà½Ã"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 57,
+  "fields": {
+    "theme": "sports",
+    "content": "ÆÀ ÀÀ¿ø°¡ 1ÃÊ¶óµµ µû¶óÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 58,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ¾Ö ÆÀ ¼±¼ö Çàµ¿ µû¶óÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 59,
+  "fields": {
+    "theme": "sports",
+    "content": "1ºĞ µ¿¾È ³» ÆÀ ÀÚ¶û¸¸ ÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 60,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÔ´ö °è±â ¾ê±âÇÏ¸é¼­ ¸ğµÎ ÇÑ ÀÜ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 61,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ±Ù º» ¿µ»óÀÌ ÃÖ¾Ö¸é ÇÑ ÀÜ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 62,
+  "fields": {
+    "theme": "sports",
+    "content": "³» ÃÖ¾Ö ¼±¼ö°¡ Ä³¸®Çß´Ù. ÃàÇÏÇÕ´Ï´Ù. ¸¶½Ã¼¼¿ä"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 63,
+  "fields": {
+    "theme": "sports",
+    "content": "´ç½ÅÀº °¡Àå ÃÖ±Ù Á÷°üÀ» ´Ù³à¿À¼Ì½À´Ï´Ù? ¸Â´Ù¸é Åë°ú"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 64,
+  "fields": {
+    "theme": "sports",
+    "content": "5ÃÊ ¾È¿¡ ³» ÃÖ¾Ö ¼±¼ö ¸í´ë»ç ÇÏ³ª ¸»ÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 65,
+  "fields": {
+    "theme": "sports",
+    "content": "³» ¼±¼ö°¡ ÁÖÀüÀÌ´Ù! ³ª »©°í ¸ğµÎ ÇÑ ÀÜ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 66,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ±Ù ´öÁú ¼Òºñ°¡ °¡Àå ¸¹Àº »ç¶÷ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 67,
+  "fields": {
+    "theme": "sports",
+    "content": "³» ÃÖ¾ÖÀÇ Èæ¿ª»ç ÇÏ³ª¾¿ ¸»ÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 68,
+  "fields": {
+    "theme": "sports",
+    "content": "¿ì¸®ÆÀÀÌ ÁÁÀº ÀÌÀ¯ 3°¡Áö 10ÃÊ ¾È¿¡ ¸»ÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 69,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö ¼º´ë¸ğ»ç ½ÇÆĞÇÏ¸é ¸¶½Ã±â (½É»ç´Â Àü¿ø ´Ù¼ö°á)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 70,
+  "fields": {
+    "theme": "idol",
+    "content": "ÀÔ´öÇÑ Áö Á¦ÀÏ ¾ó¸¶ ¾È µÈ »ç¶÷, ¿ø¼¦"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 71,
+  "fields": {
+    "theme": "idol",
+    "content": "ÀÔ´ö ¿¬Â÷ Á¦ÀÏ ³ôÀº »ç¶÷¡¦ ÀÚÁ¸½É ¼¼¿ìÁö ¸»°í ¸¶¼Å¿ä"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 72,
+  "fields": {
+    "theme": "idol",
+    "content": "Áö±İ ³ª´Â ÃÖ¾Ö ÀÎÇüÀ» °¡Áö°í ¿Ô´Ù. ÀÎÇü ÀÚ¶ûÇÏ¸é¼­ ¸¶¼Åº¼±î?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 73,
+  "fields": {
+    "theme": "idol",
+    "content": "10ÃÊ ¾È¿¡ ÃÖ¾Ö°¡ ÁÁÀº ÀÌÀ¯ 3°¡Áö ¸»ÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 74,
+  "fields": {
+    "theme": "idol",
+    "content": "¹ÎÃ¸ÇÑ ÇÏ·ç º¸³»¼¼¿ä ¡°´«Ä¡°ÔÀÓ ½ÃÀÛ¡±"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 75,
+  "fields": {
+    "theme": "idol",
+    "content": "°¡Àå ÃÖ±Ù¿¡ ÃÖ¾Ö¿¡°Ô ¹öºí ¿Â È¿ÀÚ ´©±¸¾ß?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 76,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö »ıÀÏÀÌ Â¦¼öÀÎ »ç¶÷ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 77,
+  "fields": {
+    "theme": "idol",
+    "content": "°ø°è ÆÈ·Î¿ö Á¦ÀÏ ¸¹Àº Á¸Àß´Ô ¸¶¼ÅÁÖ¼¼¿ä"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 78,
+  "fields": {
+    "theme": "idol",
+    "content": "ÀÔ´öÀ» ÃàÇÏÇÕ´Ï´Ù. ´Ù°°ÀÌ ÀÔ´öÁÖ !"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 79,
+  "fields": {
+    "theme": "idol",
+    "content": "µ¹·Áµ¹·Á Æ÷Ä« »Ì±â »Ì¾Ò´Âµ¥ ´Ù¸¥ Áı ¾ÆµéÀÌ´Ù? ¾ö¸¶ ¼­¿îÇØ¿ä ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 80,
+  "fields": {
+    "theme": "idol",
+    "content": "Å»ºü ½ÇÆĞ À§·ÎÇÏ¸ç ´Ù°°ÀÌ ¿ø¼¦"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 81,
+  "fields": {
+    "theme": "idol",
+    "content": "¿ŞÂÊ »ç¶÷ ÃÖ¾Ö ÀåÁ¡ 10ÃÊ ¾È¿¡ 3°³"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 82,
+  "fields": {
+    "theme": "idol",
+    "content": "´ë¸®Æ¼ÄÏÆÃ! ¿À¸¥ÂÊ »ç¶÷ÀÌ ÇÑ ÀÜ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 83,
+  "fields": {
+    "theme": "idol",
+    "content": "°¡Àå ÃÖ±Ù¿¡ ÀúÀåÇÑ »çÁøÀÌ ÃÖ¾Ö°¡ ¾Æ´Ï¶ó¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 84,
+  "fields": {
+    "theme": "idol",
+    "content": "µ¹¾Æ°¡¸é¼­ X¾¾¼º °¡Áø ¾ÆÀÌµ¹ ¸»ÇÏ±â ( X¾¾´Â Ã¹ »ç¶÷ÀÌ Á¤ÇÏ±â !)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 85,
+  "fields": {
+    "theme": "idol",
+    "content": "¿ŞÂÊ »ç¶÷ÀÌ Á¤ÇØÁØ ³¯Â¥¿¡ ±¸ÃÖ¾Ö°Ô ½ºÄÉÁÙ ÀÖ¾úÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 86,
+  "fields": {
+    "theme": "idol",
+    "content": "¿À¸¥ÂÊ »ç¶÷ ÃÖ¾Ö¿¡ °üÇÑ ÄûÁî Æ²¸®¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 87,
+  "fields": {
+    "theme": "idol",
+    "content": "À½¹æ 1°³ Æ²°í °í¸¥ ½Ã°£¿¡ ÃÖ¾Ö ³ª¿À¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 88,
+  "fields": {
+    "theme": "idol",
+    "content": "³ª´Â »ç½Ç ÇÑ Àå¸£¸¸ ÁÁ¾ÆÇÏ´Â °Ô ¾Æ´Ï´Ù. ¸¶½ÃÀÚ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 89,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö ÀÌ¸§À¸·Î ¾ÆÀÌ¿¥±×¶ó¿îµå"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 90,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö¶û °¡Àå ´àÀº »ç¶÷ Áö¸ñ ·¯ºê¼¦"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 91,
+  "fields": {
+    "theme": "idol",
+    "content": "1´Ş °£ ¿©±â¿¡ µ· 5¸¸¿ø ÀÌÇÏ ½è´Ù ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 92,
+  "fields": {
+    "theme": "idol",
+    "content": "³» ÃÖ¾Ö ¼º´ë¸ğ»ç"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 93,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö ÀÌ¸§À¸·Î »ïÇà½Ã"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 94,
+  "fields": {
+    "theme": "idol",
+    "content": "ÁÖÁ¦°¡ ÇÑ ¼ÒÀı / ¸øÇÏ¸é ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 95,
+  "fields": {
+    "theme": "idol",
+    "content": "°ø½Ä SNS °¡Àå ÃÖ±Ù¿¡ ¿Ã·ÁÁØ È¿ÀÚÀÇ ¾î¸Ó´Ô ¾ÆµéÀÌ ±âÆ¯ÇÏ³×¿ä ÀÎÁ¤."
+  }
+},
+{
+  "model": "main.question",
+  "pk": 96,
+  "fields": {
+    "theme": "idol",
+    "content": "°í¸¥ ³ë·¡ Àç»ı ½Ã°£ÀÌ Á¦ÀÏ ±ä »ç¶÷ ÇÑ ÀÜ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 97,
+  "fields": {
+    "theme": "idol",
+    "content": "¿øÇÏ´Â »ç¶÷ ÇÑ ¸í Áö¸ñÇØ¼­ ¸¶¼Å!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 98,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö°¡ ¿¹¸íÀ¸·Î È°µ¿ÁßÀÌ¸é ¸¶¼Å!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 99,
+  "fields": {
+    "theme": "idol",
+    "content": "°¶·¯¸® 5¹ø ½ºÅ©·ÑÇØ¼­ °í¸¥ »çÁøÀÌ ÃÖ¾Ö¸é Åë°ú"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 100,
+  "fields": {
+    "theme": "idol",
+    "content": "¿äÁò °ü½É ÀÖ´Â »ç¶÷ ÀÖ³ª¿ä? ÀÖ´Ù¸é ´©±¸?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 101,
+  "fields": {
+    "theme": "idol",
+    "content": "¿À¸¥ÂÊ Ä£±¸°¡ ÁÁ¾ÆÇÏ´Â ¾ÆÀÌµ¹ ¸â¹ö ÁÙÁÙÀÌ ´Ù ¸»ÇØº¸±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 102,
+  "fields": {
+    "theme": "college",
+    "content": "´Ù°°ÀÌ ÀÎ½ºÅ¸ ¸ÂÆÈ Å¸ÀÓ! ¾È ÇÒ °Å¸é ¸¶¼Å ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 103,
+  "fields": {
+    "theme": "college",
+    "content": "¿À´Ã °¡Àå ¸ÕÀú µµÂøÇÑ »ç¶÷ ½½ÇÁÁö¸¸ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 104,
+  "fields": {
+    "theme": "college",
+    "content": "¿ŞÂÊ »ç¶÷¿¡°Ô ÇÏ°í ½ÍÀº ¸» ÇÏ±â or ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 105,
+  "fields": {
+    "theme": "college",
+    "content": "Áö±İ ÀÌ ÀÚ¸®¿¡¼­ °¡Àå ¿À·¡ ¾È ¾ÄÀº »ç¶÷(?) ¸¶½Ã±â (¾ç½É °ÔÀÓ)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 106,
+  "fields": {
+    "theme": "college",
+    "content": "Àü¿ø ÇÚµåÆù ¹è°æÈ­¸é °ø°³ or ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 107,
+  "fields": {
+    "theme": "college",
+    "content": "¼ÒÁÖÆÄ vs ¸ÆÁÖÆÄ vs ¿ÍÀÎÆÄ? ³¢¸® Â§!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 108,
+  "fields": {
+    "theme": "college",
+    "content": "¹«ÀÎµµ¿¡ ¶³¾îÁ³´Ù. °¡Àå ¸ÕÀú ÇÒ ÀÏÀº?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 109,
+  "fields": {
+    "theme": "college",
+    "content": "¿À´ÃÀÇ TMI ÇÏ³ª °øÀ¯ÇØº¸Àğ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 110,
+  "fields": {
+    "theme": "college",
+    "content": "¸¶Áö¸·À¸·Î ÅëÈ­ÇÑ »ç¶÷Àº ´©±¸¾ß~?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 111,
+  "fields": {
+    "theme": "college",
+    "content": "ÀÚÁÖ ¾²´Â ¸»¹ö¸©ÀÌ³ª À¯Çà¾î ¸»ÇØº¸ÀÚ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 112,
+  "fields": {
+    "theme": "college",
+    "content": "ÀÌ ÀÚ¸®¿¡ ÀÖ´Â »ç¶÷ Áß ´õ Ä£ÇØÁö°í ½ÍÀº »ç¶÷Àº?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 113,
+  "fields": {
+    "theme": "college",
+    "content": "¿äÁò µè´Â ³ë·¡ ÃßÃµÇÏ°í ³Ñ¾î°¡~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 114,
+  "fields": {
+    "theme": "college",
+    "content": "°¡Àå ÃÖ±Ù¿¡ ÂïÀº »çÁø º¸¿©ÁÖ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 115,
+  "fields": {
+    "theme": "college",
+    "content": "ÀÌµû Áı °¡´Â ±æ °¡Àå ¸Õ »ç¶÷ ½½ÇÁÁö¸¸ ¸¶½ÃÀÚ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 116,
+  "fields": {
+    "theme": "college",
+    "content": "Æù ¹èÅÍ¸® 5%·Î ÇÏ·ç º¸³»±â vs ¿ÍÀÌÆÄÀÌ ¾øÀÌ ÇÏ·ç º¸³»±â / ³íÀï¿¡¼­ Áø »ç¶÷ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 117,
+  "fields": {
+    "theme": "college",
+    "content": "Ä«ÆäÀÎ ¼öÇ÷Àº ÇÊ¼ö! ¿À´Ã ÇĞ±³¿¡¼­ Ä¿ÇÇ ¸¶½Å »ç¶÷ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 118,
+  "fields": {
+    "theme": "college",
+    "content": "MT¿¡¼­ ´õ º°·ÎÀÎ »ç¶÷Àº? ²Á´ë vs ¹«°ü½É·¯ ³íÀï¿¡¼­ Áø »ç¶÷µé ´Ù°°ÀÌ ¿ø¼¦~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 119,
+  "fields": {
+    "theme": "college",
+    "content": "½Ã°£Ç¥ Á¤ÇÒ ¶§ ÆòÁ¡ vs ½Ã°£´ë ³íÀï¿¡¼­ Áø »ç¶÷µé ´Ù°°ÀÌ ¿ø¼¦~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 120,
+  "fields": {
+    "theme": "college",
+    "content": "¿ù¿äÀÏ 1±³½Ã + ½ÃÇè º¸°í¼­ ´ëÃ¼ vs Ãâ¼® X ½ÃÇè ÇÑ ¹ø ³íÀï¿¡¼­ Áø »ç¶÷µé ´Ù°°ÀÌ Â§~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 121,
+  "fields": {
+    "theme": "college",
+    "content": "¿ù°ø°­ vs ±İ°ø°­"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 122,
+  "fields": {
+    "theme": "college",
+    "content": "»ç¼ÒÇÑ ¸ÂÃã¹ıµµ Æ²¸®´Â ¾ÖÀÎ vs »ç¼ÒÇÑ ¸ÂÃã¹ıµµ ÁöÀûÇÏ´Â ¾ÖÀÎ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 123,
+  "fields": {
+    "theme": "college",
+    "content": "ÇĞ½Ä ¹«Á¦ÇÑ Á¦°ø vs ±³³» Ä«Æä ¹«·á ÀÌ¿ë±Ç"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 124,
+  "fields": {
+    "theme": "college",
+    "content": "±³¼ö´Ô°ú ´ÜµÑÀÌ ¿¤¸®º£ÀÌÅÍ vs Á¶±³¶û ¼úÀÚ¸®"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 125,
+  "fields": {
+    "theme": "college",
+    "content": "¸ğµç °­ÀÇ Æò°¡¿¡ ³» ÀÌ¸§ ½Ç¸í ¾ğ±Ş vs ±³¼ö´ÔÇÑÅ× SNS °èÁ¤ µéÅ´"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 126,
+  "fields": {
+    "theme": "college",
+    "content": "³» ¾Õ¿¡¼­ ³ª ¿åÇÏ´Â ±³¼ö vs ³» ¾Õ¿¡¼­ ³» ÄªÂùÇÏ´Â Àü ¾ÖÀÎ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 127,
+  "fields": {
+    "theme": "sports",
+    "content": "´Ù°°ÀÌ ÀÎ½ºÅ¸ ¸ÂÆÈ Å¸ÀÓ! ¾È ÇÒ °Å¸é ¸¶¼Å ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 128,
+  "fields": {
+    "theme": "sports",
+    "content": "¿À´Ã °¡Àå ¸ÕÀú µµÂøÇÑ »ç¶÷ ½½ÇÁÁö¸¸ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 129,
+  "fields": {
+    "theme": "sports",
+    "content": "¿ŞÂÊ »ç¶÷¿¡°Ô ÇÏ°í ½ÍÀº ¸» ÇÏ±â or ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 130,
+  "fields": {
+    "theme": "sports",
+    "content": "Áö±İ ÀÌ ÀÚ¸®¿¡¼­ °¡Àå ¿À·¡ ¾È ¾ÄÀº »ç¶÷(?) ¸¶½Ã±â (¾ç½É °ÔÀÓ)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 131,
+  "fields": {
+    "theme": "sports",
+    "content": "Àü¿ø ÇÚµåÆù ¹è°æÈ­¸é °ø°³ or ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 132,
+  "fields": {
+    "theme": "sports",
+    "content": "¼ÒÁÖÆÄ vs ¸ÆÁÖÆÄ vs ¿ÍÀÎÆÄ? ³¢¸® Â§!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 133,
+  "fields": {
+    "theme": "sports",
+    "content": "¹«ÀÎµµ¿¡ ¶³¾îÁ³´Ù. °¡Àå ¸ÕÀú ÇÒ ÀÏÀº?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 134,
+  "fields": {
+    "theme": "sports",
+    "content": "¿À´ÃÀÇ TMI ÇÏ³ª °øÀ¯ÇØº¸Àğ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 135,
+  "fields": {
+    "theme": "sports",
+    "content": "¸¶Áö¸·À¸·Î ÅëÈ­ÇÑ »ç¶÷Àº ´©±¸¾ß~?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 136,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÚÁÖ ¾²´Â ¸»¹ö¸©ÀÌ³ª À¯Çà¾î ¸»ÇØº¸ÀÚ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 137,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÌ ÀÚ¸®¿¡ ÀÖ´Â »ç¶÷ Áß ´õ Ä£ÇØÁö°í ½ÍÀº »ç¶÷Àº?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 138,
+  "fields": {
+    "theme": "sports",
+    "content": "¿äÁò µè´Â ³ë·¡ ÃßÃµÇÏ°í ³Ñ¾î°¡~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 139,
+  "fields": {
+    "theme": "sports",
+    "content": "°¡Àå ÃÖ±Ù¿¡ ÂïÀº »çÁø º¸¿©ÁÖ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 140,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÌµû Áı °¡´Â ±æ °¡Àå ¸Õ »ç¶÷ ½½ÇÁÁö¸¸ ¸¶½ÃÀÚ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 141,
+  "fields": {
+    "theme": "sports",
+    "content": "Æù ¹èÅÍ¸® 5%·Î ÇÏ·ç º¸³»±â vs ¿ÍÀÌÆÄÀÌ ¾øÀÌ ÇÏ·ç º¸³»±â / ³íÀï¿¡¼­ Áø »ç¶÷ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 142,
+  "fields": {
+    "theme": "sports",
+    "content": "ÁÁ¾ÆÇÏ´Â ÆÀ ÀÀ¿øÇÒ ¶§ ³ª¸¸ÀÇ Â¡Å©½º°¡ ÀÖ´Ù¸é?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 143,
+  "fields": {
+    "theme": "sports",
+    "content": "°æ±âº¸´Ù°¡ ¹°°Ç Áı¾î´øÁø Àû ÀÖÀ¸¸é ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 144,
+  "fields": {
+    "theme": "sports",
+    "content": "¶óÀÌ¹ú ÆÀ¿¡°Ô ÆĞ¹è vs 3µîÇÏ´ø ÆÀÀÎµ¥ 5µîÇÔ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 145,
+  "fields": {
+    "theme": "sports",
+    "content": "´õ ½½Æâ´ø ¼ø°£Àº? ÆÀ °­µî vs ÃÖ¾Ö ¼±¼ö ÅğÃâ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 146,
+  "fields": {
+    "theme": "sports",
+    "content": "ÆÀ¿ø³¢¸® »çÀÌ ¾È ÁÁÀºµ¥ 1µîÆÀ vs ÆÀ¿ø³¢¸® »çÀÌ ÁÁÀºµ¥ µÚ¿¡¼­ 2µî / ³íÀï Áø »ç¶÷ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 147,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÌÀû Ãæ°İ ´õ Å« °Ç? ³í¶õ ¼±¼ö ¿µÀÔ vs ÃÖ¾Ö°¡ ¶óÀÌ¹úÆÀ ÀÌÀû"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 148,
+  "fields": {
+    "theme": "sports",
+    "content": "ÀÀ¿ø Áß ´õ Â¥Áõ³ª´Â °Ç? °¡Àå Áß¿äÇÑ ¼ø°£ ¹öÆÛ¸µ vs ÆÛÁî 30ºĞ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 149,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ¾Ö ½ºÆ÷Ã÷ ÆÀ ¿ì½Â Á÷°ü vs ¼±¼ö¿Í ½Ä»ç 10ºĞ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 150,
+  "fields": {
+    "theme": "sports",
+    "content": "³» À¯´ÏÆû¿¡ »çÀÎ ¹Ş±â vs ³» ÀÌ¸§ÀÌ ÀûÈù ÇÃ·¡Ä«µå ¼±¼ö ¼Õ¿¡ µé¸®±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 151,
+  "fields": {
+    "theme": "sports",
+    "content": "ÃÖ¾Ö ¼±¼ö°¡ ÀºÅğ ÈÄ ÇØ¼³À§¿øÀ¸·Î È°µ¿ vs ÄÚÄ¡·Î µ¹¾Æ¿È"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 152,
+  "fields": {
+    "theme": "idol",
+    "content": "´Ù°°ÀÌ ÀÎ½ºÅ¸ ¸ÂÆÈ Å¸ÀÓ! ¾È ÇÒ °Å¸é ¸¶¼Å ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 153,
+  "fields": {
+    "theme": "sports",
+    "content": "º»ÀÎÀÌ ¿ì¸® ÆÀ ÆĞ¹è ¿äÀÎÀÌ´Ù¡¦ ¸¶¼Å!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 154,
+  "fields": {
+    "theme": "idol",
+    "content": "¿À´Ã °¡Àå ¸ÕÀú µµÂøÇÑ »ç¶÷ ½½ÇÁÁö¸¸ ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 155,
+  "fields": {
+    "theme": "idol",
+    "content": "¿ŞÂÊ »ç¶÷¿¡°Ô ÇÏ°í ½ÍÀº ¸» ÇÏ±â or ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 156,
+  "fields": {
+    "theme": "idol",
+    "content": "Áö±İ ÀÌ ÀÚ¸®¿¡¼­ °¡Àå ¿À·¡ ¾È ¾ÄÀº »ç¶÷(?) ¸¶½Ã±â (¾ç½É °ÔÀÓ)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 157,
+  "fields": {
+    "theme": "idol",
+    "content": "Àü¿ø ÇÚµåÆù ¹è°æÈ­¸é °ø°³ or ¸¶½Ã±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 158,
+  "fields": {
+    "theme": "idol",
+    "content": "¼ÒÁÖÆÄ vs ¸ÆÁÖÆÄ vs ¿ÍÀÎÆÄ? ³¢¸® Â§!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 159,
+  "fields": {
+    "theme": "idol",
+    "content": "¹«ÀÎµµ¿¡ ¶³¾îÁ³´Ù. °¡Àå ¸ÕÀú ÇÒ ÀÏÀº?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 160,
+  "fields": {
+    "theme": "idol",
+    "content": "¿À´ÃÀÇ TMI ÇÏ³ª °øÀ¯ÇØº¸Àğ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 161,
+  "fields": {
+    "theme": "idol",
+    "content": "¸¶Áö¸·À¸·Î ÅëÈ­ÇÑ »ç¶÷Àº ´©±¸¾ß~?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 162,
+  "fields": {
+    "theme": "idol",
+    "content": "ÀÚÁÖ ¾²´Â ¸»¹ö¸©ÀÌ³ª À¯Çà¾î ¸»ÇØº¸ÀÚ!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 163,
+  "fields": {
+    "theme": "idol",
+    "content": "ÀÌ ÀÚ¸®¿¡ ÀÖ´Â »ç¶÷ Áß ´õ Ä£ÇØÁö°í ½ÍÀº »ç¶÷Àº?"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 164,
+  "fields": {
+    "theme": "idol",
+    "content": "°¡Àå ÃÖ±Ù¿¡ ÂïÀº »çÁø º¸¿©ÁÖ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 165,
+  "fields": {
+    "theme": "idol",
+    "content": "¿äÁò µè´Â ³ë·¡ ÃßÃµÇÏ°í ³Ñ¾î°¡~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 166,
+  "fields": {
+    "theme": "idol",
+    "content": "ÀÌµû Áı °¡´Â ±æ °¡Àå ¸Õ »ç¶÷ ½½ÇÁÁö¸¸ ¸¶½ÃÀÚ~"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 167,
+  "fields": {
+    "theme": "idol",
+    "content": "Æù ¹èÅÍ¸® 5%·Î ÇÏ·ç º¸³»±â vs ¿ÍÀÌÆÄÀÌ ¾øÀÌ ÇÏ·ç º¸³»±â / ³íÀï¿¡¼­ Áø »ç¶÷ ¸¶¼Å"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 168,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö ¹«´ë Áß ·¹Àüµå Á÷Ä· °øÀ¯ÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 169,
+  "fields": {
+    "theme": "idol",
+    "content": "´öÁúÇÏ´Ù°¡ ÅÖÀåµÈ Àû ÀÖÀ¸¸é ¸¶¼Å!"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 170,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾Ö¶û °¡Àå ´àÀº Â© ¶Ç´Â ¹Ò º¸¿©ÁÖ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 171,
+  "fields": {
+    "theme": "idol",
+    "content": "Å»´ö ÀÌÀ¯·Î ´õ Å« °Ç? ÀÎ¼º ³í¶õ vs ¿¬¾Ö"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 172,
+  "fields": {
+    "theme": "idol",
+    "content": "À½¾Ç¹æ¼Û ÇÏ³ª¸¸ ³²±ä´Ù¸é? ÀÎ±â°¡¿ä vs ¿¥Ä«¿îÆ®´Ù¿î"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 173,
+  "fields": {
+    "theme": "idol",
+    "content": "2ÁÖ Á¤Àû ÇÑ ¹ø ÇÒ ¶§ 30ºĞ vs 3ÀÏ¿¡ ÇÑ ¹ø ¿À´Âµ¥ ¾È³ç? ¹¹ÇØ? ÀßÀÚ, º¸³»°í »ç¶óÁü"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 174,
+  "fields": {
+    "theme": "idol",
+    "content": "100¾ï ºÎÀÚ À¯º´Àç vs ºú 10¾ï ÃÖ¾Ö (ÃÖ¾Ö°¡ µ· ¾È ¹ú¾îÁÜ)"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 175,
+  "fields": {
+    "theme": "idol",
+    "content": "ÃÖ¾ÖÀÇ ¹é´í¼­ 1È¸ vs ÃÖ¾Ö ¾Ù¹ü¿¡ ÄÚ·¯½º Âü¿©"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 176,
+  "fields": {
+    "theme": "college",
+    "content": "±³¼ö´ÔÀÌ ³ª¸¸ ¾Ë¾Æº½ vs ±³¼ö´ÔÀÌ ³ª¸¸ ¸ğ¸§"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 177,
+  "fields": {
+    "theme": "college",
+    "content": "¸ğµç »ç¶÷°ú ¾èÀº Ä£ºĞ vs 1~2¸í°ú¸¸ ±íÀº Ä£¹Ğ°¨"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 178,
+  "fields": {
+    "theme": "college",
+    "content": "³»°¡ Ä£ÇÏ´Ù°í »ı°¢ÇÑ Ä£±¸°¡ ³¯ ¸ğ¸¥ Ã´ÇÔ vs ¾È Ä£ÇÏ´Ù°í »ı°¢ÇÑ Ä£±¸°¡ Ã¬°ÜÁÜ"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 179,
+  "fields": {
+    "theme": "college",
+    "content": "¹ßÇ¥¿¡¼­ 5ÃÊ ¸ØÄ©ÇÏ±â vs ½Ç¼ö·Î Ä«ÅåÃ¢ º¸¿©Áö±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 180,
+  "fields": {
+    "theme": "college",
+    "content": "¿¬¾Ö Á© ¸¹ÀÌ ÇØºÃÀ» °Í °°Àº »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 181,
+  "fields": {
+    "theme": "college",
+    "content": "°¡Àå ¸ÕÀú °áÈ¥ÇÒ °Í °°Àº »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 182,
+  "fields": {
+    "theme": "college",
+    "content": "³»°¡ ¸»ÇÏ´Â ¸ğµç ¹®ÀåÀÌ ³ë·¡·Î ³ª¿È vs ³»°¡ °È´Â °ÉÀ½¸¶´Ù È¿°úÀ½ ¹ß»ı"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 183,
+  "fields": {
+    "theme": "college",
+    "content": "ÇÏ·ç µ¿¾È ´« °¨°í »ì±â vs ÇÏ·ç µ¿¾È ±Í ¸·°í »ì±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 184,
+  "fields": {
+    "theme": "idol",
+    "content": "¶±¹äÀÌ ¾ø´Ù. 1ÅÏ ÆĞ½º"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 185,
+  "fields": {
+    "theme": "idol",
+    "content": "ÀÇ¸®°ÔÀÓ. ¿À¸¥ÂÊ »ç¶÷ÀÇ ÃÖ¾Ö ÄûÁî ¸ÂÃß±â. Æ²¸®¸é ÀÇ¸®°¡ ¾ø´Ù.. ¸¶½ÃÀÚ.."
+  }
+},
+{
+  "model": "main.question",
+  "pk": 186,
+  "fields": {
+    "theme": "idol",
+    "content": "³»°¡ ¸»ÇÏ´Â ¸ğµç ¹®ÀåÀÌ ³ë·¡·Î ³ª¿È vs ³»°¡ °È´Â °ÉÀ½¸¶´Ù È¿°úÀ½ ¹ß»ı"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 187,
+  "fields": {
+    "theme": "idol",
+    "content": "ÇÏ·ç µ¿¾È ´« °¨°í »ì±â vs ÇÏ·ç µ¿¾È ±Í ¸·°í »ì±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 208,
+  "fields": {
+    "theme": "college",
+    "content": "±æ °¡´Ù ¹«ÀÛÀ§ Äù½ºÆ® »ı±è(¡°ÆíÀÇÁ¡¿¡¼­ ¶ó¸é »ç°í ÃãÃß¼¼¿ä¡±) vs ÇÏ·ç¿¡ ÇÑ ¹ø ¹ö±× ¹ß»ı"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 209,
+  "fields": {
+    "theme": "college",
+    "content": "°¡Àå ¿¡°Õ³à / ¿¡°Õ³²ÀÎ »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 210,
+  "fields": {
+    "theme": "college",
+    "content": "°¡Àå Å×Åä³à / Å×Åä³²ÀÎ »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 211,
+  "fields": {
+    "theme": "college",
+    "content": "¿À¸¥ÂÊ »ç¶÷ MBTI ¸ÂÃß±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 212,
+  "fields": {
+    "theme": "college",
+    "content": "ÇĞ½Ä ¸Ş´º ¸Ç³¯ ¿Ü¿ì°í ÀÖÀ» °Í °°Àº »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 213,
+  "fields": {
+    "theme": "college",
+    "content": "½ÃÇè ¸ÁÄ¡°í ¡°³ª ÁøÂ¥ ¸ÁÇß¾î¡± ÇÏ¸é¼­ A+ ¹ŞÀ» »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 214,
+  "fields": {
+    "theme": "college",
+    "content": "ÆÀÇÃ Àá¼ö Å» °Í °°Àº »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 215,
+  "fields": {
+    "theme": "sports",
+    "content": "±æ °¡´Ù ¹«ÀÛÀ§ Äù½ºÆ® »ı±è(¡°ÆíÀÇÁ¡¿¡¼­ ¶ó¸é »ç°í ÃãÃß¼¼¿ä¡±) vs ÇÏ·ç¿¡ ÇÑ ¹ø ¹ö±× ¹ß»ı"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 216,
+  "fields": {
+    "theme": "sports",
+    "content": "°¡Àå ¿¡°Õ³à / ¿¡°Õ³²ÀÎ »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 217,
+  "fields": {
+    "theme": "sports",
+    "content": "°¡Àå Å×Åä³à / Å×Åä³²ÀÎ »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 218,
+  "fields": {
+    "theme": "sports",
+    "content": "¿À¸¥ÂÊ »ç¶÷ MBTI ¸ÂÃß±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 219,
+  "fields": {
+    "theme": "sports",
+    "content": "Á÷°ü °¡¼­ °¡Àå ¸ñ ÅÍÁ®¶ó ÀÀ¿øÇÒ °Í °°Àº »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 220,
+  "fields": {
+    "theme": "idol",
+    "content": "±æ °¡´Ù ¹«ÀÛÀ§ Äù½ºÆ® »ı±è(¡°ÆíÀÇÁ¡¿¡¼­ ¶ó¸é »ç°í ÃãÃß¼¼¿ä¡±) vs ÇÏ·ç¿¡ ÇÑ ¹ø ¹ö±× ¹ß»ı"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 221,
+  "fields": {
+    "theme": "idol",
+    "content": "°¡Àå ¿¡°Õ³à / ¿¡°Õ³²ÀÎ »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 222,
+  "fields": {
+    "theme": "idol",
+    "content": "°¡Àå Å×Åä³à / Å×Åä³²ÀÎ »ç¶÷ Áö¸ñÇÏ±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 223,
+  "fields": {
+    "theme": "idol",
+    "content": "¿À¸¥ÂÊ »ç¶÷ MBTI ¸ÂÃß±â"
+  }
+},
+{
+  "model": "main.question",
+  "pk": 224,
+  "fields": {
+    "theme": "idol",
+    "content": "°¡Àå ¼ø¾ÖÀÎ »ç¶÷ Áö¸ñÇÏ±â"
+  }
+}
 ]
