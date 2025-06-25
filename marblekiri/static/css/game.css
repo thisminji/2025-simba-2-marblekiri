@@ -19,22 +19,20 @@ body[class^="theme-"] {
 
 body.theme-college {
   background: var(
-    --Grad-Orange,
-    linear-gradient(0deg, #ff850b 0%, #ffb200 100%)
+    linear-gradient(90deg, #ff850b 0%, #ffb200 100%)
   ); /* 주황 테마 */
 }
 
 body.theme-sports {
   background: var(
-    --Grad-Green,
-    linear-gradient(90deg, #1fb230 0%, #4cc85a 100%)
+    linear-gradient(90deg, #27a836 0%, #41d051 100%)
   ); /* 초록 테마 */
 }
 
 body.theme-idol {
   background: var(
     --Grad-Purple,
-    linear-gradient(90deg, #812fa7 0%, #8a49d5 100%)
+    linear-gradient(90deg, #8733af 0%, #7e36cf 100%)
   ); /* 보라 테마 */
 }
 

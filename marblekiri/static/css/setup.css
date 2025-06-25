@@ -8,25 +8,21 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #ffa600, #fe7f00);
+  background: var(
+    --Grad-Orange,
+    linear-gradient(90deg, #ff850b 0%, #ffb200 100%)
+  );
   justify-content: center;
   align-items: center;
   overflow: hidden;
 }
-/* .container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(to bottom, #ffa600, #fe7f00);
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-} */
 
 /* 전체 배경 */
 body {
-  background: linear-gradient(0deg, #ff850b 0%, #ffb200 100%);
+  background: var(
+    --Grad-Orange,
+    linear-gradient(90deg, #ff850b 0%, #ffb200 100%)
+  );
   color: white;
   height: 100vh;
   transition: background 0.6s ease-in-out;
@@ -35,12 +31,12 @@ body {
 /* 테마 hover / 선택 시 배경 */
 body.hover-college,
 body.selected-college {
-  background: linear-gradient(0deg, #ff850b, #ffb200);
+  background: var(linear-gradient(90deg, #ff850b 0%, #ffb200 100%));
 }
 
 body.hover-sports,
 body.selected-sports {
-  background: linear-gradient(90deg, #1fb230, #4cc85a);
+  background: var(linear-gradient(90deg, #27a836 0%, #41d051 100%));
 }
 
 body.hover-idol,

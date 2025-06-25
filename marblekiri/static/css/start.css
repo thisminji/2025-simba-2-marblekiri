@@ -12,7 +12,10 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(to bottom, #ffa600, #fe7f00);
+  background: var(
+    --Grad-Orange,
+    linear-gradient(90deg, #ff850b 0%, #ffb200 100%)
+  );
   justify-content: center;
   align-items: center;
 }
@@ -78,9 +81,9 @@ body {
 }
 
 .dice {
-  top: -50px;
-  right: -50px;
-  width: 300px;
+  top: -30px;
+  right: -30px;
+  width: 350px;
   opacity: 1; /* 선택 사항: 배경처럼 보이게 */
   z-index: 0; /* 배경 요소 뒤로 */
   pointer-events: none; /* 클릭 방해 방지 */
@@ -88,16 +91,17 @@ body {
 
 /* 1번 왼쪽 아래 */
 .bottle {
-  bottom: 50px;
-  left: 20px;
-  width: 800px;
+  bottom: 80px;
+  left: 140px;
+  width: 300px;
+  height: 200px;
   z-index: 0;
 }
 
 /* 2번 가운데 아래 */
 .liquid {
-  bottom: 0px;
+  bottom: -5px;
   left: 30%;
-  width: 1000px;
+  width: 900px;
   z-index: 0;
 }
