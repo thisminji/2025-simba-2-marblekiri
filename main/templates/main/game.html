@@ -13,16 +13,16 @@
   </head>
 
   <body class="theme-{{ theme }}">
-    <!-- 왼쪽: 게임판 -->
+    <!-- 게임판 영역 -->
     <div class="board">
+
+      <!-- 턴 정보 및 플레이어 순서 표시 -->
       <div class="turn-info">
         <div class="turn-header">
           <p>
-            현재 턴 :
-            <span id="turn-number" class="turn-number">{{ current_round }}</span
-            >바퀴
+            현재&nbsp;&nbsp;:&nbsp;
+            <span id="turn-number" class="turn-number">{{ current_round }}</span>바퀴
           </p>
-
           <button class="end-button">
             게임 종료
             <img
@@ -32,6 +32,8 @@
             />
           </button>
         </div>
+
+        <!-- 이전, 현재, 다음 플레이어 표시 -->
         <p
           id="player-data"
           class="players"
@@ -42,10 +44,7 @@
           <span id="prev-player" style="color: #ccc">
             {{ prev_player.nickname }}
           </span>
-          <span
-            id="current-player"
-            style="color: #000; font-weight: bold; margin: 0 20px"
-          >
+          <span id="current-player" style="color: #000; font-weight: bold; margin: 0 20px">
             {{ current_player.nickname }}
           </span>
           <span id="next-player" style="color: #ccc">
@@ -53,16 +52,16 @@
           </span>
         </p>
       </div>
-      <!-- 게임 타일 그리드 -->
+
+      <!-- 게임 타일 및 말 아이콘 배치 -->
       <div class="tiles-grid" style="position: relative">
-        <!-- 💡 마블끼리 로고 배경 추가 -->
         <img
           src="{% static 'assets/icons/marblekiri.svg' %}"
           alt="마블끼리 로고"
           class="board-logo"
         />
 
-        <!-- 🎯 기존 타일 구조 유지 -->
+        <!-- 각 타일 요소 (시계 방향 순서) -->
         <div class="tile" data-index="10">11</div>
         <div class="tile" data-index="9">10</div>
         <div class="tile" data-index="8">9</div>
@@ -70,17 +69,13 @@
         <div class="tile" data-index="6">7</div>
         <div class="tile" data-index="5">6</div>
         <div class="tile" data-index="4">5</div>
-
         <div class="tile" data-index="11">12</div>
         <div class="tile" data-index="3">4</div>
-
         <div class="tile" data-index="12">13</div>
         <div class="mission-box"></div>
         <div class="tile" data-index="2">3</div>
-
         <div class="tile" data-index="13">14</div>
         <div class="tile" data-index="1">2</div>
-
         <div class="tile" data-index="14">15</div>
         <div class="tile" data-index="15">16</div>
         <div class="tile" data-index="16">17</div>
@@ -89,6 +84,7 @@
         <div class="tile" data-index="19">20</div>
         <div class="tile" data-index="0">1</div>
 
+        <!-- 말 아이콘 -->
         <img
           src="{% static 'assets/images/horse.svg' %}"
           alt="말"
@@ -97,6 +93,7 @@
         />
       </div>
 
+      <!-- 행동 버튼 영역 (마셔/통과) -->
       <div class="action-buttons">
         <input
           type="hidden"
@@ -108,9 +105,10 @@
       </div>
     </div>
 
-    <!-- 오른쪽: 사이드바 -->
+    <!-- 사이드바 영역 -->
     <div class="sidebar">
-      <!--세인 수정, setup의 랭킹 체크 여부 가져오기-->
+
+      <!-- 많이 마신 사람 랭킹 표시 (옵션) -->
       <input
         type="hidden"
         id="show-ranking-hidden"
@@ -123,26 +121,22 @@
       </div>
       {% endif %}
 
-      <!--세인 수정, 도착한 칸의 미션 목록을 누적해서 띄우기-->
-      <!-- 민지 수정, css 수정 위한 구조 수정 -->
+      <!-- 미션 목록 표시 -->
       <div class="missions">
         <h3>미션 목록</h3>
         <ol class="mission-list">
           <li class="mission-spacer"></li>
-          <!-- 위쪽 여백용 -->
-
           {% for i in "01234567890123456789" %}
           <li class="mission-item" data-index="{{ forloop.counter0 }}">
             <span class="mission-number">{{ forloop.counter }}.</span>
             <span class="mission-text"> </span>
           </li>
           {% endfor %}
-
           <li class="mission-spacer"></li>
-          <!-- 아래쪽 여백용 -->
         </ol>
       </div>
 
+      <!-- 주사위 굴리기 버튼 -->
       <div class="dice">
         <div class="dice-roll-container">
           <div class="dice-number-box">
@@ -155,7 +149,7 @@
       </div>
     </div>
 
-    <!-- 게임 종료 모달 -->
+    <!-- 게임 종료 확인 모달 -->
     <div id="endGameModal" class="modal hidden">
       <div class="modal-box">
         <h2 class="modal-title">게임을 종료하시겠습니까?</h2>
@@ -169,7 +163,6 @@
         </p>
         <div class="modal-buttons">
           <button class="continue-button">이어서 진행</button>
-          <!-- <button class="end-button-modal">게임 종료</button> -->
           <button
             class="end-button-modal"
             id="endGameConfirmButton"
@@ -181,6 +174,7 @@
       </div>
     </div>
 
+    <!-- 자바스크립트 로드 -->
     <script src="{% static 'js/game.js' %}"></script>
     <script src="{% static 'js/start.js' %}"></script>
   </body>
